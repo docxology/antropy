@@ -1,0 +1,21 @@
+schema_version: 1
+seed: 20261009
+shapes: [[48], [10, 12], [6, 7, 8]]
+mixing_probabilities: [0.0, 0.25, 0.5, 0.75, 1.0]
+controls: [constant, checkerboard, gaussian, correlated, shuffled]
+replicates: 5
+radii: [1.5, 2.0, 2.5]
+period: 12.0
+phase_origin: 1
+embedding_shape: 2
+gaussian_sd: 1.0
+correlation_steps: 3
+symbol_range: [-4.0, 4.0]
+symbol_bins: 16
+max_input_elements: 10000
+max_fields: 200
+max_distance_component_visits: 500000000
+max_templates: 1000
+max_pairs: 500000
+max_memory_bytes: 134217728
+block_size: 64

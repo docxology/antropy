@@ -11,7 +11,7 @@ from pydantic import ValidationError
 
 from scripts.artifact_io import bounded_path
 from scripts.build_manuscript import build
-from scripts.render_manuscript import paragraph_text, render_pdf
+from scripts.render_manuscript import render_pdf
 from scripts.run_experiments import ExperimentPlan, execute_experiments, synthesize
 from scripts.validate_artifacts import validate
 
@@ -236,7 +236,6 @@ def test_synthetic_controls_are_consumed() -> None:
 def test_renderer_rejects_escape_and_malformed_images(tmp_path: Path) -> None:
     root = tmp_path / "root"
     root.mkdir()
-    assert paragraph_text("x < 2 & `y`") == "x &lt; 2 &amp; y"
     with pytest.raises(ValueError, match="Invalid"):
         render_pdf(root, "![broken", root / "broken.pdf")
     with pytest.raises(ValueError, match="escapes"):

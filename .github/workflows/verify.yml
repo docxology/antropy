@@ -7,7 +7,7 @@ permissions:
 jobs:
   contracts:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6; peeled commit
@@ -16,23 +16,46 @@ jobs:
           enable-cache: true
       - run: uv python install 3.14
       - run: uv sync --frozen
+      - name: Install native manuscript toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y texlive-xetex texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra fonts-texgyre poppler-utils
+          mkdir -p work/toolchain
+          curl --fail --location https://github.com/jgm/pandoc/releases/download/3.12/pandoc-3.12-1-amd64.deb --output work/toolchain/pandoc.deb
+          echo '91903ff19f1b1d4db4129797c7e18f71212990d7394fcff1787719aebf04e372  work/toolchain/pandoc.deb' | sha256sum --check
+          sudo dpkg --install work/toolchain/pandoc.deb
+          curl --fail --location https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.25a/pandoc-crossref-Linux-X64.tar.xz --output work/toolchain/crossref.tar.xz
+          echo '7f8b7c5c91233db2dcb1145fa580a9ee8343695589bdb0ece8661490bc12a644  work/toolchain/crossref.tar.xz' | sha256sum --check
+          tar -xJf work/toolchain/crossref.tar.xz -C work/toolchain
+          sudo install work/toolchain/pandoc-crossref /usr/local/bin/pandoc-crossref
+          pandoc --version
+          pandoc-crossref --version
+          xelatex --version
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run basedpyright
+      - name: Type check research boundaries and examples
+        run: uv run basedpyright scripts/validate_artifacts.py scripts/validate_publication.py scripts/build_manuscript.py scripts/render_manuscript.py scripts/manuscript_*.py scripts/template_provenance.py scripts/study_models.py scripts/study_fields.py scripts/study_analysis.py scripts/run_study.py scripts/validate_study.py scripts/result_replay.py scripts/benchmark_models.py scripts/benchmark_complexity.py scripts/validate_benchmarks.py scripts/check_installed_wheel.py examples
       - run: uv run pytest --cov=src/antropy_hd --cov-branch --cov-report=term-missing --cov-report=json:work/source-coverage.json
-      - run: uv run pytest tests/test_artifacts.py tests/test_artifact_roundoff.py --cov=scripts --cov-branch --cov-report=term-missing --cov-fail-under=60
+      - run: uv run pytest tests/test_artifacts.py tests/test_artifact_roundoff.py tests/test_manuscript.py tests/test_manuscript_tables.py tests/test_manuscript_verification.py tests/test_publication.py tests/test_study.py tests/test_study_artifacts.py tests/test_benchmarks.py --cov=scripts --cov-branch --cov-report=term-missing --cov-fail-under=60
       - run: uv run python scripts/validate_artifacts.py
       - run: uv run python scripts/run_experiments.py --plan experiment_plan.yaml
+      - run: uv run python scripts/run_study.py --plan study_plan.yaml
+      - run: uv run python scripts/benchmark_complexity.py --plan benchmark_plan.yaml
       - run: uv run python scripts/build_manuscript.py
       - run: uv run python scripts/validate_artifacts.py
       - run: uv build
-      - run: uv run python scripts/check_installed_wheel.py --wheel dist/antropy_hd-0.1.0-py3-none-any.whl
+      - run: uv run python scripts/check_installed_wheel.py
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: antropy-verification
           path: |
             output/pdf/antropy-methods.pdf
             output/provenance/manifest.json
+            output/provenance/manuscript-template.json
+            output/data/manuscript_variables.json
+            output/manuscript/*
+            output/study/*.json
             work/source-coverage.json
             dist/*
           if-no-files-found: error

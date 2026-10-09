@@ -1,0 +1,3 @@
+# Copyright (c) 2026 Daniel Ari Friedman
+# Exact substitution signature verified against the installed pinned source.
+def substitute_manuscript_text(text: str, variables: dict[str, str]) -> tuple[str, list[str]]: ...

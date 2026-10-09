@@ -5,7 +5,7 @@
 # dependencies = ["numpy>=2.3", "typer>=0.16"]
 # ///
 # How to run: install uv with https://docs.astral.sh/uv/getting-started/installation/
-# uv run scripts/check_installed_wheel.py --wheel dist/antropy_hd-0.1.0-py3-none-any.whl
+# uv run scripts/check_installed_wheel.py
 # chmod +x scripts/check_installed_wheel.py && ./scripts/check_installed_wheel.py --wheel PATH
 """Install a wheel in a real isolated environment and exercise the installed CLI."""
 
@@ -58,8 +58,8 @@ def check(wheel: Path) -> None:
     if wheel.suffix != ".whl" or not wheel.is_file():
         raise WheelCheckError("wheel", "provide one existing wheel")
     environment = dict(os.environ)
-    environment.pop("PYTHONPATH", None)
-    environment.pop("VIRTUAL_ENV", None)
+    _ = environment.pop("PYTHONPATH", None)
+    _ = environment.pop("VIRTUAL_ENV", None)
     with TemporaryDirectory(prefix="antropy-wheel-") as directory:
         temporary = Path(directory)
         isolated = temporary / "environment"
@@ -82,7 +82,7 @@ def check(wheel: Path) -> None:
             environment,
         )
         requirements = temporary / "locked-requirements.txt"
-        requirements.write_text(locked, encoding="utf-8")
+        _ = requirements.write_text(locked, encoding="utf-8")
         _ = run(
             [
                 uv,
@@ -123,6 +123,30 @@ def check(wheel: Path) -> None:
             raise WheelCheckError("analysis", "installed CLI failed the analytical Shannon example")
         if payload["input_file_sha256"] != hashlib.sha256(fixture.read_bytes()).hexdigest():
             raise WheelCheckError("provenance", "installed CLI did not bind actual input bytes")
+        planned = json.loads(
+            run([str(executable), "plan", "--shape", "[6,7,8]"], temporary, environment)
+        )
+        if planned["input_elements"] != 336 or planned["stages"][0]["templates"] != 120:
+            raise WheelCheckError("planning", "Installed planner failed the exact lattice example")
+        uniform = temporary / "uniform.npy"
+        np.save(uniform, np.array([0.5, 0.5]), allow_pickle=False)
+        complexity = json.loads(
+            run(
+                [
+                    str(executable),
+                    "analyze",
+                    str(uniform),
+                    "--measure",
+                    "statistical_complexity",
+                    "--parameters",
+                    '{"config":{"alphabet_size":2}}',
+                ],
+                temporary,
+                environment,
+            )
+        )["results"]["analysis"]
+        if complexity["status"] != "finite" or complexity["value"] != 0:
+            raise WheelCheckError("complexity", "Installed fixed-alphabet uniform example failed")
         _ = run([str(executable), "methods"], temporary, environment)
         version = run([str(executable), "version"], temporary, environment).strip()
         print(
@@ -130,9 +154,16 @@ def check(wheel: Path) -> None:
         )
 
 
-def main(wheel: Annotated[Path, typer.Option(exists=True, dir_okay=False)]) -> None:
-    """Validate one built wheel through its installed command line interface."""
-    check(wheel)
+def main(wheel: Annotated[Path | None, typer.Option(exists=True, dir_okay=False)] = None) -> None:
+    """Validate an explicit wheel or the sole built wheel, rejecting ambiguous archives."""
+    if wheel is None:
+        wheels = list((Path(__file__).resolve().parents[1] / "dist").glob("antropy_hd-*.whl"))
+        if len(wheels) != 1:
+            raise WheelCheckError("wheel", "Exactly one built wheel is required")
+        selected = wheels[0]
+    else:
+        selected = wheel
+    check(selected)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,62 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Volumes/GitVault/Username/docxology/Public/antropy
+configfile: pyproject.toml
+testpaths: tests
+plugins: hypothesis-6.168.5, cov-7.1.0
+collected 613 items
+
+tests/test_artifact_roundoff.py ................                         [  2%]
+tests/test_artifacts.py ................................................ [ 10%]
+                                                                         [ 10%]
+tests/test_benchmarks.py .........................                       [ 14%]
+tests/test_cli.py ..................                                     [ 17%]
+tests/test_complexity.py ............................................... [ 25%]
+........................                                                 [ 29%]
+tests/test_hdse.py ..................................................... [ 37%]
+...........                                                              [ 39%]
+tests/test_information.py .............................................. [ 46%]
+...................................................                      [ 55%]
+tests/test_manuscript.py ..............................                  [ 60%]
+tests/test_manuscript_tables.py ..                                       [ 60%]
+tests/test_manuscript_verification.py ...................                [ 63%]
+tests/test_multiscale.py ............                                    [ 65%]
+tests/test_orchestration.py .....................................        [ 71%]
+tests/test_ordinal.py .......................                            [ 75%]
+tests/test_publication.py .....................                          [ 78%]
+tests/test_spectral.py ..............................                    [ 83%]
+tests/test_statistical.py ........................                       [ 87%]
+tests/test_study.py ....................                                 [ 90%]
+tests/test_study_artifacts.py ...............                            [ 93%]
+tests/test_template_variants.py ........................................ [ 99%]
+.                                                                        [100%]
+
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.14.7-final-0 _______________
+
+Name                                 Stmts   Miss Branch BrPart   Cover   Missing
+---------------------------------------------------------------------------------
+src/antropy_hd/__init__.py              12      0      0      0 100.00%
+src/antropy_hd/_complexity.py          129      4     28      2  96.18%   70-71, 219-220
+src/antropy_hd/_information.py          70      0     16      0 100.00%
+src/antropy_hd/cli.py                   71      1      8      1  97.47%   138
+src/antropy_hd/complexity.py            89      6     34      2  91.87%   164-173, 222-223
+src/antropy_hd/distribution.py          45      1     18      1  96.83%   62
+src/antropy_hd/embedding.py             70      3     20      2  94.44%   39-40, 125
+src/antropy_hd/errors.py                 9      0      0      0 100.00%
+src/antropy_hd/fuzzy.py                 54      1     16      2  95.71%   41, 67->55
+src/antropy_hd/information.py          112      3     32      2  96.53%   146-147, 155
+src/antropy_hd/models.py                73      7     20      5  87.10%   38, 48, 54-55, 96-97, 105
+src/antropy_hd/multiscale.py            35      0      8      0 100.00%
+src/antropy_hd/orchestration.py         88      0     10      0 100.00%
+src/antropy_hd/ordinal.py               48      1     10      1  96.55%   54
+src/antropy_hd/pairs.py                 65      5     26      3  91.21%   32-33, 43, 78-79
+src/antropy_hd/spectral.py              62      3     10      1  94.44%   129, 136-137
+src/antropy_hd/statistical.py           28      0      2      0 100.00%
+src/antropy_hd/template_entropy.py      65      0     14      0 100.00%
+src/antropy_hd/validation.py            37      3     14      1  92.16%   51-52, 54
+---------------------------------------------------------------------------------
+TOTAL                                 1162     38    286     23  95.65%
+Coverage JSON written to file output/reports/verification/source-coverage-improved.json
+Required test coverage of 90.0% reached. Total coverage: 95.65%
+======================= 613 passed in 123.22s (0:02:03) ========================

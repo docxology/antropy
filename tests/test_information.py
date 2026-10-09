@@ -3,6 +3,7 @@
 
 import math
 from collections.abc import Callable
+from decimal import Decimal, localcontext
 
 import numpy as np
 import pytest
@@ -343,6 +344,74 @@ def test_jensen_shannon_when_distributions_are_identical_is_zero() -> None:
     result = jensen_shannon_divergence(probabilities, probabilities)
     # Then their divergence is zero.
     assert result.value == pytest.approx(0)
+
+
+@pytest.mark.parametrize("weight", [0.5, 0.2, 1e-8])
+def test_jensen_shannon_when_distributions_are_nearby_matches_decimal_oracle(weight: float) -> None:
+    # Given independently evaluated 80-digit entropy differences for nearby distributions.
+    left, right = [0.5 + 1e-8, 0.5 - 1e-8], [0.5, 0.5]
+    with localcontext() as context:
+        context.prec = 80
+        a, b = ([Decimal(value) for value in left], [Decimal(value) for value in right])
+        a = [value / sum(a) for value in a]
+        b = [value / sum(b) for value in b]
+        w = Decimal(weight)
+        mixture = [w * p + (1 - w) * q for p, q in zip(a, b, strict=True)]
+        expected = float(
+            (
+                -sum(value * value.ln() for value in mixture)
+                + w * sum(value * value.ln() for value in a)
+                + (1 - w) * sum(value * value.ln() for value in b)
+            )
+            / Decimal(2).ln()
+        )
+    # When the weighted divergence is evaluated in ordinary float64 arithmetic.
+    result = jensen_shannon_divergence(left, right, weight=weight)
+    # Then representable quadratic information is preserved rather than rounded away.
+    assert result.value == pytest.approx(expected, rel=1e-8, abs=0)
+
+
+@pytest.mark.parametrize("weight", [1e-200, 1e-8, 0.2, 0.8])
+def test_jensen_shannon_when_zero_supports_mix_unequally_matches_binary_entropy(
+    weight: float,
+) -> None:
+    # Given disjoint supports and a stable analytic binary-mixture entropy.
+    expected = (-weight * math.log(weight) - (1 - weight) * math.log1p(-weight)) / math.log(2)
+    # When arbitrary mixture weights and explicit zero cells are used.
+    result = jensen_shannon_divergence([1, 0], [0, 1], weight=weight)
+    # Then tiny mixing probabilities are retained without ratio overflow.
+    assert result.value == pytest.approx(expected, rel=1e-12, abs=0)
+
+
+def test_jensen_shannon_when_alphabets_share_zero_cells_handles_exact_zero_limits() -> None:
+    # Given a shared zero cell and an analytic binary mixture on the occupied cells.
+    expected = -(0.25 * math.log2(0.25) + 0.75 * math.log2(0.75)) - 0.5
+    # When both probability distributions retain the complete three-cell alphabet.
+    result = jensen_shannon_divergence([0.5, 0.5, 0], [0, 1, 0])
+    # Then shared zeros create no undefined logarithms or spurious contributions.
+    assert result.value == pytest.approx(expected)
+
+
+def test_jensen_shannon_when_mixture_weight_is_subnormal_remains_finite() -> None:
+    # Given the smallest positive float mixing two disjoint point masses.
+    weight = float(np.nextafter(0.0, 1.0))
+    expected = (-weight * math.log(weight) - (1 - weight) * math.log1p(-weight)) / math.log(2)
+    # When logarithmic mixture coordinates avoid p/m ratio overflow.
+    result = jensen_shannon_divergence([1, 0], [0, 1], weight=weight)
+    # Then the representable subnormal binary entropy is retained.
+    assert result.value == pytest.approx(expected, abs=2 * weight)
+
+
+def test_jensen_shannon_when_weighted_mass_underflows_preserves_log_amplified_contribution() -> (
+    None
+):
+    # Given a rare cell whose weighted mass underflows but whose entropy contribution does not.
+    rare, weight = 1e-124, 1e-200
+    expected = weight * (rare * -math.log(weight)) / math.log(2)
+    # When log-mixture arithmetic avoids prematurely rounding the rare mass to zero.
+    result = jensen_shannon_divergence([1, rare], [1, 0], weight=weight)
+    # Then the leading entropy contribution survives within two subnormal ulps.
+    assert result.value == pytest.approx(expected, abs=2 * float(np.nextafter(0.0, 1.0)))
 
 
 def test_jensen_shannon_when_alphabets_differ_rejects_it() -> None:

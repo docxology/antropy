@@ -1,0 +1,83 @@
+schema_version: 1
+title: 'antropy: native multidimensional entropy and configurable complexity analysis'
+subtitle: 'Methods, replicated synthetic studies, and resource-aware reproducibility'
+document_id: antropy
+date: '2026-10-09'
+affiliations:
+  Daniel Ari Friedman: Active Inference Institute
+orcids: {}
+template_repository: https://github.com/docxology/template
+template_revision: d39f2478da2512b42ad961e98a5f3b854723f92e
+template_exemplar: projects/templates/template_code_project/manuscript
+study_required: true
+complexity_required: true
+benchmark_required: true
+verification_prefix: improved
+infrastructure_coverage_floor: 60
+numeric_digits: 6
+language: en
+paper_size: a4paper
+margin_mm: 24
+font_size_pt: 11
+section_breaks: false
+figure_height_fraction: 0.90
+compiler: xelatex
+measure_labels:
+  distribution_entropy: DistEn
+  permutation: PermEn
+  spectral: Spectral
+  shannon: Shannon
+  statistical_complexity: C-JS
+sections:
+  - 00_abstract.md
+  - 01_introduction.md
+  - 07_scope_and_related_work.md
+  - 02_methodology.md
+  - 05_experimental_setup.md
+  - 08_computational_complexity.md
+  - 03_results.md
+  - 06_reproducibility.md
+  - 04_conclusion.md
+  - 99_references.md
+figures:
+  - token: BASELINE_FIGURE
+    source: output/figures/hdse-tolerance.png
+    label: baseline
+    caption: 'Baseline HDSE tolerance demonstration. Finite estimates are plotted; undefined and infinite estimates remain annotated and recorded in the table.'
+    dependency: baseline
+  - token: MIX_FIGURE
+    source: output/study/figures/mix-entropy.png
+    label: mix
+    caption: 'Native HDSE across Bernoulli replacement probabilities and configured radii. Finite conditional summaries are accompanied by outcome counts; variability is across generated fields, not template pairs.'
+    dependency: study
+  - token: DEGENERACY_FIGURE
+    source: output/study/figures/degeneracy.png
+    label: degeneracy
+    caption: 'Finite, undefined and infinite outcomes across the replicated design. These statuses are retained rather than imputed as zero.'
+    dependency: study
+  - token: GEOMETRY_FIGURE
+    source: output/study/figures/native-v-flattened.png
+    label: geometry
+    caption: 'Native spatial HDSE and row-major flattened sample entropy. Their template feature counts and extension geometries differ; the comparison does not isolate flattening alone.'
+    dependency: study
+  - token: STATISTICAL_FIGURE
+    source: output/study/figures/entropy-complexity.png
+    label: statistical
+    caption: 'Normalized Shannon entropy and Jensen-Shannon statistical complexity of the complete configured fixed-bin amplitude alphabet. This is a descriptive distributional extension, not a causal ordinal classification.'
+    dependency: study
+  - token: INPUT_FIGURE
+    source: output/study/figures/input-fields.png
+    label: inputs
+    float_page: true
+    caption: 'Illustrative generated fields from the stored synthetic design. Full inputs and seeds are preserved separately from their visual examples.'
+    dependency: study
+  - token: MATCH_FIGURE
+    source: output/study/figures/match-probability.png
+    label: matches
+    caption: 'Base and extended template matching probabilities from observed pair counts. Sparse extended matches explain finite-sample degeneracy without reinterpreting it as zero entropy.'
+    dependency: study
+  - token: COST_FIGURE
+    source: output/study/figures/cost-scaling.png
+    label: cost
+    caption: 'Measured runtime and configured deterministic work estimates. Host timings are diagnostic observations; exact scheduled counts and asymptotic terms have separate interpretations.'
+    dependency: benchmark

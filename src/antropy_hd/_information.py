@@ -53,6 +53,48 @@ def shannon_value(array: NDArray[np.float64], base: float) -> float:
     return max(0.0, -float(np.sum(positive * np.log(positive))) / math.log(base))
 
 
+def jensen_shannon_value(
+    left: NDArray[np.float64], right: NDArray[np.float64], weight: float
+) -> float:
+    """Compute weighted JS in natural units without subtracting nearby entropies.
+
+    Each component uses the convex remainder f(x)=(1+x)log(1+x)-x.
+    A degree-16 series for |x|<=0.01 avoids first-order cancellation; its
+    omitted remainder is below 5e-36. Large ratios use log differences instead
+    of division, and zero-probability terms use their exact limiting values.
+    """
+    if weight in (0, 1):
+        return 0.0
+    complement = 1 - weight
+    mixture = weight * left + complement * right
+    difference = left - right
+    log_left, log_right = np.full_like(left, -math.inf), np.full_like(right, -math.inf)
+    positive_left, positive_right = left > 0, right > 0
+    log_left[positive_left] = np.log(left[positive_left])
+    log_right[positive_right] = np.log(right[positive_right])
+    log_mixture = np.logaddexp(math.log(weight) + log_left, math.log1p(-weight) + log_right)
+    active = positive_left | positive_right
+    total = 0.0
+    for probabilities, logarithms, coefficient, numerator in (
+        (left, log_left, weight, complement * difference),
+        (right, log_right, complement, -weight * difference),
+    ):
+        close = (np.abs(numerator) <= 0.01 * mixture) & (mixture > 0)
+        ratio = numerator[close] / mixture[close]
+        polynomial = np.full_like(ratio, 1 / (16 * 15))
+        for order in range(15, 1, -1):
+            polynomial = (-1) ** order / (order * (order - 1)) + ratio * polynomial
+        total += float(np.sum(coefficient * mixture[close] * ratio**2 * polynomial))
+        distant = active & ~close
+        log_term = np.zeros_like(probabilities)
+        positive = distant & (probabilities > 0)
+        log_term[positive] = probabilities[positive] * (
+            logarithms[positive] - log_mixture[positive]
+        )
+        total += float(np.sum(coefficient * (log_term[distant] - numerator[distant])))
+    return max(0.0, total)
+
+
 def probability_result(
     measure: str, value: float | None, array: NDArray[np.float64], parameters: dict[str, JsonValue]
 ) -> EntropyResult:

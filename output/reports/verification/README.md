@@ -1,5 +1,35 @@
 # Accepted verification evidence
 
+The current 0.2.0 local receipts use the `improved` suffix:
+
+- `source-tests-improved.log` and `source-coverage-improved.json`: 613 passing
+  tests and 95.65% branch-inclusive coverage across all 19 package modules.
+- `infrastructure-tests-improved.log` and `infrastructure-coverage-improved.json`:
+  196 passing tests and 88.50% branch-inclusive coverage across all research scripts.
+- `lint-improved.log`, `format-improved.log`, `types-improved.log`,
+  `types-research-improved.log`, `types-last-changed-improved.log`, and
+  `programming-improved.log`: successful lint, formatting, strict numerical and
+  adapter typing, and supplemental source checks. Plotting is exercised through
+  real generated figures and physical PDF review.
+- The first expanded full-suite run is preserved in
+  `source-tests-improved-r1-failure.log`: one benchmark negative test expected an
+  untyped missing-file exception while the validator correctly raised its typed
+  artifact error. Correcting that expectation passed the final frozen run.
+- `source-tests-improved-r3-overflow-failure.log` and its infrastructure counterpart
+  preserve the full-profile failure exposed by the stricter native overflow guard.
+  Figure placement was repaired without weakening the guard; final positive and
+  negative rendering controls pass. Earlier passing snapshots retain their suffixes.
+
+The manuscript binds the three selected source-test and coverage producers.
+They are retained in the source archive. Archive/wheel attestations and hosted
+receipts are excluded from that archive to avoid circular package claims.
+Local checks, independent source/physical-artifact review and hosted CI remain
+separate evidence. Current independent acceptance is recorded in
+`../../reviews/improved-publication-review.md`.
+
+The following receipts describe historical 0.1.0 source epochs and do not certify
+the expanded source or new manuscript.
+
 The accepted local receipts for the bounded replay correction are:
 
 - `source-tests-roundoff.log` and `source-coverage-roundoff.json`: 370 passing

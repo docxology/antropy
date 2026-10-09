@@ -25,13 +25,15 @@ def prepare_project(root: Path) -> Path:
         shutil.copytree(
             REPOSITORY / folder, root / folder, ignore=shutil.ignore_patterns("__pycache__")
         )
+    shutil.copytree(REPOSITORY / "typings", root / "typings")
     (root / "docs").mkdir()
     for name in ("implementation-contract.md", "sources-related.md"):
         shutil.copyfile(REPOSITORY / "docs" / name, root / "docs" / name)
-    (root / "docs/manuscript").mkdir()
-    shutil.copyfile(
-        REPOSITORY / "docs/manuscript/template.md", root / "docs/manuscript/template.md"
-    )
+    shutil.copytree(REPOSITORY / "docs/manuscript", root / "docs/manuscript")
+    profile_path = root / "docs/manuscript/project.yaml"
+    profile = yaml.safe_load(profile_path.read_text())
+    profile.update(study_required=False, complexity_required=False, benchmark_required=False)
+    profile_path.write_text(yaml.safe_dump(profile, sort_keys=False))
     for name in ("domain_profile.yaml", "pyproject.toml", "uv.lock"):
         shutil.copyfile(REPOSITORY / name, root / name)
     plan = root / "experiment_plan.yaml"

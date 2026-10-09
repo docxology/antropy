@@ -8,11 +8,17 @@ SeedSequence derived from the plan seed, shape and structure position; tolerance
 sweeps reuse the same field. Every plan field contributes to execution or a
 resource bound.
 
-Run the three commands in the README in order. Missing results prevent manuscript
-generation; missing or changed artifacts prevent acceptance. The manuscript
-source is generated from the actual CSV, and the PDF is rendered from that
-inspectable Markdown. The SHA-256 inventory includes source/configuration inputs,
-generated NPY arrays, JSON batches, CSV rows, the figure, source manuscript and PDF.
+Run the research commands in the README in order: baseline, replicated study,
+benchmark, manuscript build and validation. `study_plan.yaml` separately defines
+paired replacement controls, independent trial seeds, fixed alphabet and native
+geometry; `benchmark_plan.yaml` defines real timed kernel requests. Their exact
+schemas and replay policies are documented in [study design](study-design.md).
+Missing results prevent manuscript generation; missing or changed artifacts
+prevent acceptance. Ordered source sections are hydrated from actual reports
+and the validated publication profile through the pinned template package.
+The SHA-256 inventory includes source/configuration inputs, generated NPY arrays,
+JSON batches, CSV rows, all selected figures, resolved sections, native compiler
+outputs, template receipt, source manuscript and PDF.
 The manifest is written last. It does not authenticate itself; a reviewed commit
 or release records the manifest's identity externally.
 
@@ -20,7 +26,11 @@ The validator independently checks the required artifact floor, nonempty files,
 relative path confinement, byte counts and hashes, input-file and canonical-array
 hashes, consumed configuration hashes, exact batch/CSV analysis coverage, estimate
 values and statuses, effective parameter/diagnostic details, CSV binding in the
-manuscript, PNG geometry and PDF text/provenance. Adversarial tests remove files,
+manuscript, PNG geometry and PDF text/provenance. The expanded validators replay
+every study and benchmark result, check complete matrices, verify exact summary
+and timing arithmetic, and regenerate manuscript values and hydrated text.
+Native renderer identity, configuration, source inventory, ordered sections,
+TeX, TOC and PDF are checked against the renderer receipt. Adversarial tests remove files,
 change results and weaken manifests to confirm rejection. Hash consistency is a
 custody control; numerical oracle tests provide separate algorithm evidence.
 

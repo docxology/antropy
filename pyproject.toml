@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "antropy-hd"
-version = "0.1.0"
+version = "0.2.0"
 description = "Dimension-agnostic entropy and spatial complexity analysis"
 readme = "README.md"
 requires-python = ">=3.14"
@@ -20,7 +20,19 @@ Documentation = "https://github.com/docxology/antropy/tree/main/docs"
 antropy-hd = "antropy_hd.cli:app"
 
 [dependency-groups]
-dev = ["pytest>=9", "pytest-cov>=7", "hypothesis>=6.130", "ruff>=0.12", "basedpyright>=1.29", "build>=1.2", "matplotlib>=3.10", "pyyaml>=6", "reportlab>=4", "pypdf>=5"]
+dev = [
+    "pytest>=9",
+    "pytest-cov>=7",
+    "hypothesis>=6.130",
+    "ruff>=0.12",
+    "basedpyright>=1.29",
+    "build>=1.2",
+    "matplotlib>=3.10",
+    "pyyaml>=6",
+    "reportlab>=4",
+    "pypdf>=5",
+    "research-project-template[rendering]",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/antropy_hd"]
@@ -28,7 +40,7 @@ packages = ["src/antropy_hd"]
 [tool.hatch.build.targets.sdist]
 # Build acceptance receipts authenticate an archive externally; including them
 # inside that archive would create circular or stale package-hash attestations.
-exclude = ["output/reviews", "output/reports/verification", "output/provenance/pipeline-verification.json"]
+exclude = ["output/reviews", "output/reports/verification/archive-*.json", "output/reports/verification/wheel-*.log", "output/reports/verification/hosted-*", "output/provenance/pipeline-verification.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -67,3 +79,6 @@ reportAny = false
 # Exhaustive assert_never branches and runtime boundary checks are intentional.
 reportUnnecessaryComparison = false
 reportUnnecessaryIsInstance = false
+
+[tool.uv.sources]
+research-project-template = { git = "https://github.com/docxology/template.git", rev = "d39f2478da2512b42ad961e98a5f3b854723f92e" }

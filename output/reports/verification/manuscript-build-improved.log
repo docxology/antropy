@@ -1,0 +1,44 @@
+
+============================================================
+COMBINED MANUSCRIPT RENDERING
+============================================================
+Combining 10 section(s):
+  [ 1/10] 00_abstract.md                           (   1.5 KB)
+  [ 2/10] 01_introduction.md                       (   1.8 KB)
+  [ 3/10] 07_scope_and_related_work.md             (   2.2 KB)
+  [ 4/10] 02_methodology.md                        (   6.2 KB)
+  [ 5/10] 05_experimental_setup.md                 (   3.7 KB)
+  [ 6/10] 08_computational_complexity.md           (   4.9 KB)
+  [ 7/10] 03_results.md                            (  13.5 KB)
+  [ 8/10] 06_reproducibility.md                    (   3.7 KB)
+  [ 9/10] 04_conclusion.md                         (   1.7 KB)
+  [10/10] 99_references.md                         (   0.4 KB)
+  Total input size:                                (  39.5 KB)
+============================================================
+
+✓ Normalised 1 figure path(s) to ../figures/ in combined markdown
+Converting combined markdown to LaTeX...
+Using pandoc-crossref at /opt/homebrew/bin/pandoc-crossref
+✓ Disabled lmodern package to prevent XeLaTeX font conflicts
+✓ Patched hidelinks → colorlinks=true (uniform red hyperlinks)
+✓ Normalised 1 \hypersetup block(s) to uniform red link colours
+✓ Made 2 long monospace path span(s) breakable
+✓ Constrained 8 Pandoc figure height bound(s)
+Fixed 7 figure path(s)
+✓ Extracted preamble from preamble.md
+✓ Inserted inline \bibliography{...} after explicit references section
+Verifying 8 figure reference(s)...
+  Found: 8/8 figures
+Rendering combined manuscript to PDF: antropy_combined.pdf
+  Source files: 10
+  Bibliography: references.bib
+  LaTeX compilation pass 1/4...
+  Bibliography processing...
+Processing bibliography with bibtex...
+
+Successfully combined 10 sections
+   Output: antropy_combined.pdf
+   Size: 1184.4 KB (1.16 MB)
+   Location: /Volumes/GitVault/Username/docxology/Public/antropy/work/manuscript-build/pdf
+   Duration: 11.39 seconds
+Built /Volumes/GitVault/Username/docxology/Public/antropy/output/pdf/antropy-methods.pdf; manifest binds required artifacts and source inputs

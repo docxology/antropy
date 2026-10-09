@@ -1,0 +1,238 @@
+[
+  {
+    "doi": "10.1109/TNSRE.2007.897025",
+    "registry_url": "https://api.crossref.org/works/10.1109%2FTNSRE.2007.897025",
+    "title": [
+      "Characterization of Surface EMG Signal Based on Fuzzy Entropy"
+    ],
+    "author": [
+      {
+        "given": "Weiting",
+        "family": "Chen",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Zhizhong",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Hongbo",
+        "family": "Xie",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Wangxin",
+        "family": "Yu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "volume": "15",
+    "page": "266-272"
+  },
+  {
+    "doi": "10.1007/s11517-014-1216-0",
+    "registry_url": "https://api.crossref.org/works/10.1007%2Fs11517-014-1216-0",
+    "title": [
+      "Assessing the complexity of short-term heartbeat interval series by distribution entropy"
+    ],
+    "author": [
+      {
+        "given": "Peng",
+        "family": "Li",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Chengyu",
+        "family": "Liu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ke",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Dingchang",
+        "family": "Zheng",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Changchun",
+        "family": "Liu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yinglong",
+        "family": "Hou",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "volume": "53",
+    "page": "77-87"
+  },
+  {
+    "doi": "10.1109/10.709563",
+    "registry_url": "https://api.crossref.org/works/10.1109%2F10.709563",
+    "title": [
+      "Stochastic complexity measures for physiological signal analysis"
+    ],
+    "author": [
+      {
+        "given": "I.A.",
+        "family": "Rezek",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "S.J.",
+        "family": "Roberts",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "volume": "45",
+    "page": "1186-1191"
+  },
+  {
+    "doi": "10.1103/PhysRevE.87.022911",
+    "registry_url": "https://api.crossref.org/works/10.1103%2FPhysRevE.87.022911",
+    "title": [
+      "Weighted-permutation entropy: A complexity measure for time series incorporating amplitude information"
+    ],
+    "author": [
+      {
+        "given": "Bilal",
+        "family": "Fadlallah",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Badong",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Andreas",
+        "family": "Keil",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jos\u00e9",
+        "family": "Pr\u00edncipe",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "volume": "87",
+    "page": null
+  }
+]

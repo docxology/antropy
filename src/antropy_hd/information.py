@@ -12,6 +12,7 @@ from antropy_hd._information import (
     LogOptions,
     MixtureOptions,
     OrderOptions,
+    jensen_shannon_value,
     normalize_value,
     parse_probabilities,
     partition_axes,
@@ -223,12 +224,7 @@ def jensen_shannon_divergence(
     if left.shape != right.shape:
         raise ParameterError("probabilities", "both distributions must have the same shape")
     mixture = weight * left + (1 - weight) * right
-    value = max(
-        0.0,
-        shannon_value(mixture, options.base)
-        - weight * shannon_value(left, options.base)
-        - (1 - weight) * shannon_value(right, options.base),
-    )
+    value = jensen_shannon_value(left, right, weight) / math.log(options.base)
     return probability_result(
         "jensen_shannon", value, mixture, {"base": options.base, "weight": weight}
     )

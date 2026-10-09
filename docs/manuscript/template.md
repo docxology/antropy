@@ -1,3 +1,9 @@
+# Archived initial authoring template
+
+This file preserves the initial 0.1.0 authoring scaffold. The current manuscript
+build uses `project.yaml` and its ordered section files; this historical text is
+not hydrated or rendered by that build.
+
 # antropy: a dimension-agnostic entropy methods framework
 
 Daniel Ari Friedman

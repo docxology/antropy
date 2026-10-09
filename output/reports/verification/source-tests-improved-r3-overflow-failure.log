@@ -1,0 +1,167 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Volumes/GitVault/Username/docxology/Public/antropy
+configfile: pyproject.toml
+testpaths: tests
+plugins: hypothesis-6.168.5, cov-7.1.0
+collected 613 items
+
+tests/test_artifact_roundoff.py ................                         [  2%]
+tests/test_artifacts.py ................................................ [ 10%]
+                                                                         [ 10%]
+tests/test_benchmarks.py .........................                       [ 14%]
+tests/test_cli.py ..................                                     [ 17%]
+tests/test_complexity.py ............................................... [ 25%]
+........................                                                 [ 29%]
+tests/test_hdse.py ..................................................... [ 37%]
+...........                                                              [ 39%]
+tests/test_information.py .............................................. [ 46%]
+...................................................                      [ 55%]
+tests/test_manuscript.py .........................F....                  [ 60%]
+tests/test_manuscript_tables.py ..                                       [ 60%]
+tests/test_manuscript_verification.py ...................                [ 63%]
+tests/test_multiscale.py ............                                    [ 65%]
+tests/test_orchestration.py .....................................        [ 71%]
+tests/test_ordinal.py .......................                            [ 75%]
+tests/test_publication.py .....................                          [ 78%]
+tests/test_spectral.py ..............................                    [ 83%]
+tests/test_statistical.py ........................                       [ 87%]
+tests/test_study.py ....................                                 [ 90%]
+tests/test_study_artifacts.py ...............                            [ 93%]
+tests/test_template_variants.py ........................................ [ 99%]
+.                                                                        [100%]
+
+=================================== FAILURES ===================================
+___________ test_full_profile_renders_authenticated_producer_figures ___________
+tests/test_manuscript.py:242: in test_full_profile_renders_authenticated_producer_figures
+    pdf = build(publication)
+          ^^^^^^^^^^^^^^^^^^
+scripts/build_manuscript.py:142: in build
+    render_pdf(root, markdown, pdf)
+scripts/render_manuscript.py:120: in render_pdf
+    validate_latex_output(rendered.parent / "_combined_manuscript.log")
+scripts/render_manuscript.py:67: in validate_latex_output
+    raise ParameterError(
+E   antropy_hd.errors.ParameterError: renderer: LaTeX diagnostics contain unsupported or excessive layout overflow
+----------------------------- Captured stdout call -----------------------------
+
+============================================================
+COMBINED MANUSCRIPT RENDERING
+============================================================
+Combining 10 section(s):
+  [ 1/10] 00_abstract.md                           (   1.5 KB)
+  [ 2/10] 01_introduction.md                       (   1.8 KB)
+  [ 3/10] 07_scope_and_related_work.md             (   2.2 KB)
+  [ 4/10] 02_methodology.md                        (   6.2 KB)
+  [ 5/10] 05_experimental_setup.md                 (   3.5 KB)
+  [ 6/10] 08_computational_complexity.md           (   3.4 KB)
+  [ 7/10] 03_results.md                            (   5.7 KB)
+  [ 8/10] 06_reproducibility.md                    (   3.3 KB)
+  [ 9/10] 04_conclusion.md                         (   1.7 KB)
+  [10/10] 99_references.md                         (   0.4 KB)
+  Total input size:                                (  29.6 KB)
+============================================================
+
+✓ Normalised 1 figure path(s) to ../figures/ in combined markdown
+Converting combined markdown to LaTeX...
+Using pandoc-crossref at /opt/homebrew/bin/pandoc-crossref
+✓ Disabled lmodern package to prevent XeLaTeX font conflicts
+✓ Patched hidelinks → colorlinks=true (uniform red hyperlinks)
+✓ Normalised 1 \hypersetup block(s) to uniform red link colours
+✓ Made 2 long monospace path span(s) breakable
+✓ Constrained 8 Pandoc figure height bound(s)
+Fixed 7 figure path(s)
+✓ Extracted preamble from preamble.md
+✓ Inserted inline \bibliography{...} after explicit references section
+Verifying 8 figure reference(s)...
+  Found: 8/8 figures
+Rendering combined manuscript to PDF: antropy_combined.pdf
+  Source files: 10
+  Bibliography: references.bib
+  LaTeX compilation pass 1/4...
+  Bibliography processing...
+Processing bibliography with bibtex...
+
+Successfully combined 10 sections
+   Output: antropy_combined.pdf
+   Size: 804.3 KB (0.79 MB)
+   Location: /Volumes/GitVault/Username/docxology/Public/antropy/work/source-gate-improved-r3/test_full_profile_renders_auth0/project/work/manuscript-build/pdf
+   Duration: 9.54 seconds
+------------------------------ Captured log call -------------------------------
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:212 
+============================================================
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:213 COMBINED MANUSCRIPT RENDERING
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:214 ============================================================
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:215 Combining 10 section(s):
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:218   [ 1/10] 00_abstract.md                           (   1.5 KB)
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:218   [ 2/10] 01_introduction.md                       (   1.8 KB)
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:218   [ 3/10] 07_scope_and_related_work.md             (   2.2 KB)
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:218   [ 4/10] 02_methodology.md                        (   6.2 KB)
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:218   [ 5/10] 05_experimental_setup.md                 (   3.5 KB)
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:218   [ 6/10] 08_computational_complexity.md           (   3.4 KB)
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:218   [ 7/10] 03_results.md                            (   5.7 KB)
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:218   [ 8/10] 06_reproducibility.md                    (   3.3 KB)
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:218   [ 9/10] 04_conclusion.md                         (   1.7 KB)
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:218   [10/10] 99_references.md                         (   0.4 KB)
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:221   Total input size:                                (  29.6 KB)
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:222 ============================================================
+
+INFO     infrastructure.rendering._pdf_combined_markdown:_pdf_combined_markdown.py:134 ✓ Normalised 1 figure path(s) to ../figures/ in combined markdown
+INFO     infrastructure.rendering.pdf_renderer:pdf_renderer.py:294 Converting combined markdown to LaTeX...
+INFO     infrastructure.rendering._pdf_combined_pandoc:_pdf_combined_pandoc.py:93 Using pandoc-crossref at /opt/homebrew/bin/pandoc-crossref
+INFO     infrastructure.rendering._pdf_combined_latex:_pdf_combined_latex.py:149 ✓ Disabled lmodern package to prevent XeLaTeX font conflicts
+INFO     infrastructure.rendering._pdf_combined_latex:_pdf_combined_latex.py:185 ✓ Patched hidelinks → colorlinks=true (uniform red hyperlinks)
+INFO     infrastructure.rendering._pdf_combined_latex:_pdf_combined_latex.py:233 ✓ Normalised 1 \hypersetup block(s) to uniform red link colours
+INFO     infrastructure.rendering._pdf_combined_latex:_pdf_combined_latex.py:265 ✓ Made 2 long monospace path span(s) breakable
+INFO     infrastructure.rendering._pdf_combined_latex:_pdf_combined_latex.py:278 ✓ Constrained 8 Pandoc figure height bound(s)
+INFO     infrastructure.rendering._pdf_figure_paths:_pdf_figure_paths.py:190 Fixed 7 figure path(s)
+INFO     infrastructure.rendering._pdf_combined_preamble:_pdf_combined_preamble.py:32 ✓ Extracted preamble from preamble.md
+INFO     infrastructure.rendering._pdf_combined_bibliography:_pdf_combined_bibliography.py:133 ✓ Inserted inline \bibliography{...} after explicit references section
+INFO     infrastructure.rendering._pdf_combined_prevalidate:_pdf_combined_prevalidate.py:32 Verifying 8 figure reference(s)...
+INFO     infrastructure.rendering._pdf_combined_prevalidate:_pdf_combined_prevalidate.py:70   Found: 8/8 figures
+INFO     infrastructure.rendering._pdf_latex_pipeline:_pdf_latex_pipeline.py:247 Rendering combined manuscript to PDF: antropy_combined.pdf
+INFO     infrastructure.rendering._pdf_latex_pipeline:_pdf_latex_pipeline.py:248   Source files: 10
+INFO     infrastructure.rendering._pdf_latex_pipeline:_pdf_latex_pipeline.py:251   Bibliography: references.bib
+INFO     infrastructure.rendering._pdf_latex_pipeline:_pdf_latex_pipeline.py:263   LaTeX compilation pass 1/4...
+INFO     infrastructure.rendering._pdf_latex_pipeline:_pdf_latex_pipeline.py:285   Bibliography processing...
+INFO     infrastructure.rendering._pdf_latex_bibliography:_pdf_latex_bibliography.py:46 Processing bibliography with bibtex...
+INFO     infrastructure.core.logging.progress:progress.py:46 LaTeX compilation: [██████████░░░░░░░░░░] 50%
+INFO     infrastructure.core.logging.progress:progress.py:46 LaTeX compilation: [███████████████░░░░░] 75%
+INFO     infrastructure.core.logging.progress:progress.py:46 LaTeX compilation: [████████████████████] 100%
+INFO     infrastructure.rendering._pdf_latex_bibliography:_pdf_latex_bibliography.py:70 
+Successfully combined 10 sections
+INFO     infrastructure.rendering._pdf_latex_bibliography:_pdf_latex_bibliography.py:71    Output: antropy_combined.pdf
+INFO     infrastructure.rendering._pdf_latex_bibliography:_pdf_latex_bibliography.py:72    Size: 804.3 KB (0.79 MB)
+INFO     infrastructure.rendering._pdf_latex_bibliography:_pdf_latex_bibliography.py:73    Location: /Volumes/GitVault/Username/docxology/Public/antropy/work/source-gate-improved-r3/test_full_profile_renders_auth0/project/work/manuscript-build/pdf
+INFO     infrastructure.rendering._pdf_latex_bibliography:_pdf_latex_bibliography.py:76    Duration: 9.54 seconds
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.14.7-final-0 _______________
+
+Name                                 Stmts   Miss Branch BrPart   Cover   Missing
+---------------------------------------------------------------------------------
+src/antropy_hd/__init__.py              12      0      0      0 100.00%
+src/antropy_hd/_complexity.py          129      4     28      2  96.18%   70-71, 219-220
+src/antropy_hd/_information.py          70      0     16      0 100.00%
+src/antropy_hd/cli.py                   71      1      8      1  97.47%   138
+src/antropy_hd/complexity.py            89      6     34      2  91.87%   164-173, 222-223
+src/antropy_hd/distribution.py          45      1     18      1  96.83%   62
+src/antropy_hd/embedding.py             70      3     20      2  94.44%   39-40, 125
+src/antropy_hd/errors.py                 9      0      0      0 100.00%
+src/antropy_hd/fuzzy.py                 54      1     16      2  95.71%   41, 67->55
+src/antropy_hd/information.py          112      3     32      2  96.53%   146-147, 155
+src/antropy_hd/models.py                73      7     20      5  87.10%   38, 48, 54-55, 96-97, 105
+src/antropy_hd/multiscale.py            35      0      8      0 100.00%
+src/antropy_hd/orchestration.py         88      0     10      0 100.00%
+src/antropy_hd/ordinal.py               48      1     10      1  96.55%   54
+src/antropy_hd/pairs.py                 65      5     26      3  91.21%   32-33, 43, 78-79
+src/antropy_hd/spectral.py              62      3     10      1  94.44%   129, 136-137
+src/antropy_hd/statistical.py           28      0      2      0 100.00%
+src/antropy_hd/template_entropy.py      65      0     14      0 100.00%
+src/antropy_hd/validation.py            37      3     14      1  92.16%   51-52, 54
+---------------------------------------------------------------------------------
+TOTAL                                 1162     38    286     23  95.65%
+Coverage JSON written to file output/reports/verification/source-coverage-improved.json
+Required test coverage of 90.0% reached. Total coverage: 95.65%
+=========================== short test summary info ============================
+FAILED tests/test_manuscript.py::test_full_profile_renders_authenticated_producer_figures
+================== 1 failed, 612 passed in 101.62s (0:01:41) ===================

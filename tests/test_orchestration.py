@@ -32,6 +32,8 @@ def test_every_registered_measure_runs(measure: str) -> None:
         parameters = {"q": [0.75, 0.25]}
     if measure == "multiscale_entropy":
         parameters = {"scales": [1, 2]}
+    if measure == "statistical_complexity":
+        parameters = {"config": {"alphabet_size": 2}}
     result = analyze(data, AnalysisSpec(id="real", measure=measure, parameters=parameters))
     estimates = result if isinstance(result, tuple) else (result,)
     assert estimates

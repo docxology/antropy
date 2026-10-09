@@ -5,3 +5,6 @@
 *.png binary
 *.npy binary
 *.npz binary
+# Preserve raw command receipts, including logger padding, and Markdown hard breaks.
+output/reports/verification/*.log -text whitespace=-blank-at-eol
+output/reviews/*.md whitespace=-blank-at-eol

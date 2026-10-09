@@ -1,9 +1,10 @@
 #!/usr/bin/env -S uv run --script
 # /// script
 # requires-python = ">=3.14"
-# dependencies = ["antropy-hd", "matplotlib>=3.10", "pyyaml>=6", "pypdf>=5", "typer>=0.16"]
+# dependencies = ["antropy-hd", "matplotlib>=3.10", "pyyaml>=6", "pypdf>=5", "typer>=0.16", "research-project-template[rendering]"]
 # [tool.uv.sources]
 # antropy-hd = { path = "..", editable = true }
+# research-project-template = { git = "https://github.com/docxology/template.git", rev = "d39f2478da2512b42ad961e98a5f3b854723f92e" }
 # ///
 # How to run: install uv at https://docs.astral.sh/uv/getting-started/installation/
 # Frozen project environment: uv run python scripts/validate_artifacts.py [OPTIONS]
@@ -25,7 +26,6 @@ from typing import Annotated, Final, Never, assert_never
 import numpy as np
 import typer
 import yaml
-from numpy.typing import NDArray
 from pydantic import JsonValue
 from pypdf import PdfReader
 
@@ -37,7 +37,7 @@ from antropy_hd.validation import as_real_array
 if __package__ in (None, ""):
     # Source-tree execution imports the same plan schema as module/test execution.
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from scripts.artifact_io import bounded_path, digest, read_json
+from scripts.artifact_io import bounded_path, digest, read_json, replay_equivalent
 from scripts.artifact_models import (
     ArtifactReport,
     ClaimLedger,
@@ -47,6 +47,7 @@ from scripts.artifact_models import (
     Manifest,
 )
 from scripts.run_experiments import ExperimentPlan, Structure, analyses_for, synthesize
+from scripts.validate_publication import expected_claim_ids, validate_publication
 
 REQUIRED_ARTIFACTS: Final[frozenset[str]] = frozenset(
     {
@@ -65,20 +66,6 @@ type FieldDesign = dict[str, tuple[tuple[int, ...], Structure]]
 type ResultIndex = dict[tuple[str, str], tuple[ExperimentBatch, EntropyResult]]
 
 
-def replay_equivalent(array: NDArray[np.float64], reference: NDArray[np.float64]) -> bool:
-    """Allow only the declared float64 replay budget, with exact shape and zero rtol."""
-    if array.shape != reference.shape:
-        return False
-    if not np.isfinite(array).all() or not np.isfinite(reference).all():
-        return False
-    # Two implementations each receive a conservative k-operation full-epsilon budget.
-    # The unit scale covers cancellation near zero; this is not a libm accuracy theorem.
-    budget = (16 + 8 * reference.ndim) * float(np.finfo(np.float64).eps)
-    gamma = budget / (1 - budget)
-    limit = 2 * gamma * np.maximum(1.0, np.abs(reference))
-    return bool(np.all(np.abs(array - reference) <= limit))
-
-
 def fail_artifact(reason: str) -> Never:
     """Preserve the common typed artifact failure boundary without duplicate boilerplate."""
     raise ParameterError("artifacts", reason)
@@ -93,7 +80,7 @@ def validated_design(root: Path, experiments: Experiments) -> FieldDesign:
     )
     if snapshot.plan != plan or snapshot.plan_sha256 != digest(plan_path):
         raise ParameterError("plan", "Experiment plan snapshot/seed/source hash is inconsistent")
-    design = {
+    design: FieldDesign = {
         f"{structure}-{'x'.join(map(str, shape))}": (shape, structure)
         for shape in plan.shapes
         for structure in plan.structures
@@ -216,7 +203,7 @@ def validate_results(root: Path, manifest_paths: set[str]) -> int:
         rows = list(csv.DictReader(stream))
     if len(rows) != len(expected) or not rows:
         fail_artifact("CSV row coverage differs from JSON analyses")
-    seen = set()
+    seen: set[tuple[str, str]] = set()
     for row in rows:
         key = (row["field_id"], row["analysis_id"])
         if key in seen or key not in expected:
@@ -230,12 +217,12 @@ def validate_results(root: Path, manifest_paths: set[str]) -> int:
 def validate_claims(root: Path, csv_hash: str, paths: list[str]) -> None:
     """Require complete claim identities and authenticated source bindings."""
     ledger = ClaimLedger.model_validate(read_json(root / "docs/manuscript/claims.json"))
-    if ledger.results_csv_sha256 != csv_hash or {claim.id for claim in ledger.claims} != {
-        "hdse-contract",
-        "related-contracts",
-        "synthetic-estimates",
-        "synthetic-design",
-    }:
+    ids = [claim.id for claim in ledger.claims]
+    if (
+        ledger.results_csv_sha256 != csv_hash
+        or len(ids) != len(set(ids))
+        or set(ids) != expected_claim_ids(root)
+    ):
         raise ParameterError(
             "claims", "Claim ledger is not bound to the current results or complete"
         )
@@ -266,6 +253,7 @@ def validate(root: Path, manifest_path: Path | None = None) -> ArtifactReport:
     manuscript = (root / "docs/manuscript/manuscript.md").read_text(encoding="utf-8")
     csv_hash = digest(root / "output/data/results.csv")
     validate_claims(root, csv_hash, paths)
+    validate_publication(root, set(paths))
     if (
         f"Results CSV SHA-256: {csv_hash}" not in manuscript
         or "../../output/figures/hdse-tolerance.png" not in manuscript
@@ -280,11 +268,7 @@ def validate(root: Path, manifest_path: Path | None = None) -> ArtifactReport:
         fail_artifact("Figure is not a legible PNG artifact")
     reader = PdfReader(root / "output/pdf/antropy-methods.pdf")
     text = "\n".join(page.extract_text() for page in reader.pages)
-    if (
-        not reader.pages
-        or "Computational results" not in text
-        or csv_hash not in text.replace("\n", "")
-    ):
+    if not reader.pages or csv_hash not in text.replace("\n", ""):
         fail_artifact("PDF lacks the required result and provenance text")
     return {"authenticated_files": len(paths), "result_rows": rows, "pdf_pages": len(reader.pages)}
 

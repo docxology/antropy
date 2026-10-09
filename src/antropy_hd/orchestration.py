@@ -30,6 +30,7 @@ from antropy_hd.models import EmbeddingConfig, EntropyResult, MatchConfig
 from antropy_hd.multiscale import multiscale_entropy
 from antropy_hd.ordinal import permutation_entropy, weighted_permutation_entropy
 from antropy_hd.spectral import spectral_entropy, svd_entropy
+from antropy_hd.statistical import StatisticalComplexityConfig, statistical_complexity
 from antropy_hd.template_entropy import approximate_entropy, fuzzy_entropy, hdse, sample_entropy
 from antropy_hd.validation import as_real_array
 
@@ -39,7 +40,7 @@ if TYPE_CHECKING:
     from numpy.typing import ArrayLike, NDArray
 
 type AnalysisResult = EntropyResult | tuple[EntropyResult, ...]
-type ParameterValue = JsonValue | EmbeddingConfig | MatchConfig
+type ParameterValue = JsonValue | EmbeddingConfig | MatchConfig | StatisticalComplexityConfig
 
 
 @dataclass(frozen=True, slots=True)
@@ -76,6 +77,7 @@ METHODS: Final[Mapping[str, Method]] = MappingProxyType(
         "weighted_permutation_entropy": Method(weighted_permutation_entropy, "observations"),
         "spectral_entropy": Method(spectral_entropy, "observations"),
         "svd_entropy": Method(svd_entropy, "observations"),
+        "statistical_complexity": Method(statistical_complexity, "fixed-alphabet probabilities"),
     }
 )
 
@@ -147,6 +149,8 @@ def prepared_parameters(spec: AnalysisSpec) -> dict[str, ParameterValue]:
         parameters["embedding"] = EmbeddingConfig.model_validate(parameters["embedding"])
     if "match" in parameters:
         parameters["match"] = MatchConfig.model_validate(parameters["match"])
+    if "config" in parameters and spec.measure == "statistical_complexity":
+        parameters["config"] = StatisticalComplexityConfig.model_validate(parameters["config"])
     runner = METHODS[spec.measure].resolve()
     try:
         _ = inspect.signature(runner).bind(np.array([0.0]), **parameters)

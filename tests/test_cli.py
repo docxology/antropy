@@ -6,6 +6,7 @@ import json
 import os
 import subprocess
 import sys
+import tomllib
 from pathlib import Path
 
 import numpy as np
@@ -23,7 +24,8 @@ def test_help_methods_and_version() -> None:
     methods = runner.invoke(app, ["methods"])
     assert methods.exit_code == 0
     assert json.loads(methods.stdout)["shannon_entropy"]["input_kind"] == "probabilities"
-    assert runner.invoke(app, ["version"]).stdout.strip() == "0.1.0"
+    project = tomllib.loads((Path(__file__).parents[1] / "pyproject.toml").read_text())
+    assert runner.invoke(app, ["version"]).stdout.strip() == project["project"]["version"]
 
 
 @pytest.mark.parametrize("extension", ["npy", "csv"])
@@ -65,6 +67,34 @@ def test_batch_from_real_json_and_stdout(tmp_path: Path) -> None:
     assert json.loads(result.stdout)["results"]["hist"]["value"] == pytest.approx(2.0)
     config.write_text('{"analyses":[{"id":"hist","measure":"hdse"}],"unused":true}')
     assert runner.invoke(app, ["batch", str(path), "--config", str(config)]).exit_code == 2
+
+
+def test_plan_json_exclusive_output_and_resource_violations(tmp_path: Path) -> None:
+    path = tmp_path / "nested/plan.json"
+    arguments = ["plan", "--shape", "[6,7,8]", "--output", str(path)]
+    result = runner.invoke(app, arguments)
+    assert result.exit_code == 0, result.output
+    payload = json.loads(path.read_text())
+    assert payload["input_elements"] == 336
+    assert payload["stages"][0]["templates"] == 120
+    assert payload["feasible"] is True
+    assert runner.invoke(app, arguments).exit_code == 2
+    assert runner.invoke(app, [*arguments, "--overwrite"]).exit_code == 0
+    result = runner.invoke(
+        app, ["plan", "--shape", "[6,7,8]", "--config", '{"embedding":{"max_templates":2}}']
+    )
+    assert result.exit_code == 0
+    assert json.loads(result.stdout)["feasible"] is False
+
+
+@pytest.mark.parametrize(
+    ("shape", "config"),
+    [("[true,7]", "{}"), ("[]", "{}"), ("notjson", "{}"), ("[6,7]", '{"unused":1}')],
+)
+def test_plan_rejects_invalid_shapes_and_unconsumed_config(shape: str, config: str) -> None:
+    result = runner.invoke(app, ["plan", "--shape", shape, "--config", config])
+    assert result.exit_code == 2
+    assert "Error:" in result.stderr
 
 
 @pytest.mark.parametrize(

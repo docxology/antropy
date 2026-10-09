@@ -1,0 +1,21 @@
+schema_version: 1
+seed: 20261009
+shapes: [[32], [64], [96], [6, 6], [10, 10], [14, 14], [4, 4, 4], [6, 6, 6], [8, 8, 8]]
+block_sizes: [16, 64]
+repetitions: 3
+warmups: 1
+max_input_elements: 10000
+embedding:
+  shape: 2
+  max_templates: 1000
+  max_pairs: 500000
+  max_memory_bytes: 134217728
+match:
+  tolerance: 2.0
+  relative: true
+  ddof: 0
+  closed: false
+  metric: chebyshev
+  exclusion: self
+  theiler: 0
+  block_size: 64

@@ -1,0 +1,15 @@
+{
+  "exact_sdist_manifest_match": true,
+  "exact_wheel_source_match": true,
+  "excluded_working_directories": true,
+  "hashes": {
+    "dist/antropy_hd-0.2.0-py3-none-any.whl": "3d624c7543a993e301a2728dac5c649d7bd6a1c96abc991257c004fe8fec3690",
+    "dist/antropy_hd-0.2.0.tar.gz": "fc391bad2b671d7f55d2ac6fa3a4049cc6754e5ae688f67b5bacd7211f33c3ab",
+    "output/pdf/antropy-methods.pdf": "f224e5ac55db0ca69f7a58ba5e85c4015db5d1f46a6de9e8446ee2d76f82759b",
+    "output/provenance/manifest.json": "64bd5fbe80830237f732b283fff9342efa0a8e33275e2c2a85d1016080cd7af3"
+  },
+  "manifest_records": 297,
+  "sdist_members": 392,
+  "version": "0.2.0",
+  "wheel_modules": 19
+}

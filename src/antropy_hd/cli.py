@@ -14,6 +14,8 @@ import typer
 from numpy.typing import NDArray
 from pydantic import JsonValue, ValidationError
 
+from antropy_hd._complexity import InputShape
+from antropy_hd.complexity import ComplexityConfig, estimate_complexity
 from antropy_hd.errors import ParameterError
 from antropy_hd.orchestration import METHODS, AnalysisSpec, BatchConfig, canonical_json, run_batch
 from antropy_hd.validation import as_real_array
@@ -104,6 +106,32 @@ def methods_command() -> None:
 def version_command() -> None:
     """Print the installed distribution version."""
     typer.echo(package_version("antropy-hd"))
+
+
+@app.command("plan")
+def plan_command(
+    shape: Annotated[
+        str, typer.Option(help="JSON axis lengths, e.g. [64,64]; no array allocated.")
+    ],
+    config: Annotated[str, typer.Option(help="JSON ComplexityConfig.")] = "{}",
+    output: Annotated[Path | None, typer.Option()] = None,
+    overwrite: Annotated[bool, typer.Option()] = False,
+) -> None:
+    """Estimate scheduled work and conservative guards; report resource violations."""
+    try:
+        parsed_shape = InputShape.model_validate_json('{"shape":' + shape + "}").shape
+        parsed_config = ComplexityConfig.model_validate_json(config)
+        estimate = estimate_complexity(parsed_shape, parsed_config)
+        payload = estimate.model_dump(mode="json")
+        payload.update(
+            feasible=estimate.feasible,
+            guard_peak_bytes=estimate.guard_peak_bytes,
+            distance_component_visits=estimate.distance_component_visits,
+        )
+        emit(payload, output, overwrite=overwrite)
+    except (OSError, ValueError, TypeError, ValidationError) as exc:
+        typer.echo(f"Error: {exc}", err=True)
+        raise typer.Exit(code=2) from exc
 
 
 if __name__ == "__main__":

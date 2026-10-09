@@ -1,0 +1,25 @@
+paper:
+  title: 'antropy: native multidimensional entropy and configurable complexity analysis'
+  subtitle: Methods, replicated synthetic studies, and resource-aware reproducibility
+  version: 0.2.0
+  date: '2026-10-09'
+authors:
+- name: Daniel Ari Friedman
+  email: daniel@activeinference.institute
+  affiliation: Active Inference Institute
+publication:
+  repository_url: https://github.com/docxology/antropy
+  repository_label: Source repository
+  transmission_bookends:
+    enabled: false
+metadata:
+  language: en
+  license: MIT
+  documentclass: article
+  fontsize: 11pt
+  geometry: a4paper,margin=24mm
+rendering:
+  section_breaks: false
+  include_date: false
+  figure_height_fraction: 0.9
+  front_matter_figure_height_fraction: 0.9
