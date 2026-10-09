@@ -20,7 +20,7 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run basedpyright
       - run: uv run pytest --cov=src/antropy_hd --cov-branch --cov-report=term-missing --cov-report=json:work/source-coverage.json
-      - run: uv run pytest tests/test_artifacts.py --cov=scripts --cov-branch --cov-report=term-missing --cov-fail-under=60
+      - run: uv run pytest tests/test_artifacts.py tests/test_artifact_roundoff.py --cov=scripts --cov-branch --cov-report=term-missing --cov-fail-under=60
       - run: uv run python scripts/validate_artifacts.py
       - run: uv run python scripts/run_experiments.py --plan experiment_plan.yaml
       - run: uv run python scripts/build_manuscript.py

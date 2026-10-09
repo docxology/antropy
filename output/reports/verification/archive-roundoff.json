@@ -1,0 +1,12 @@
+{
+  "authenticated_files": 48,
+  "unchanged_numerical_modules": 16,
+  "manifest_sha256": "77fcb285afd720c41a5d5b41cd9247841ea4a1ebd057c71b243db79ba7a7c654",
+  "pdf_sha256": "3b329b9de395655f00ba358366e49bf5b08d0132060c1b453fa4e69231c05637",
+  "wheel_sha256": "3a902f5eaa4100c84313e24936a7f72467a8431a79594c83a7224050baae6a78",
+  "wheel_bytes": 31289,
+  "sdist_sha256": "080852a115d174efe68b34a936879021ce8d505feeb374b29917f4a8cddedab6",
+  "sdist_bytes": 355502,
+  "sdist_entries": 82,
+  "forbidden_archive_paths": []
+}

@@ -24,6 +24,40 @@ manuscript, PNG geometry and PDF text/provenance. Adversarial tests remove files
 change results and weaken manifests to confirm rejection. Hash consistency is a
 custody control; numerical oracle tests provide separate algorithm evidence.
 
+Synthetic design replay uses a separate, bounded floating-point equivalence rule.
+The stored NPY shape must match exactly, and both stored and replayed arrays must
+contain only finite values before any tolerance comparison. A finite plan can
+still overflow during synthesis; that replay fails closed. For each stored value x and replayed
+reference y in a d-dimensional field, the replay comparison accepts only
+`abs(x-y) <= 2*gamma_k*max(1,abs(y))`, where `epsilon = 2^-52`,
+`k = 16 + 8*d`, and `gamma_k = k*epsilon/(1-k*epsilon)`. Relative tolerance is
+zero; the displayed expression is the complete per-element absolute envelope.
+The factor two budgets two platform implementations, the dimension term budgets
+axiswise phase/trigonometric/sum work, and the fixed term conservatively budgets
+scaling, Gaussian transformation and mixture operations. The unit-scale floor
+allows cancellation near zero. This is an explicit float64 replay acceptance
+policy, not a universal proof of every platform's transcendental-library error.
+Differences outside the envelope fail closed, including genuinely reseeded data
+with coherently recomputed provenance. Extreme numerical designs whose replay
+error exceeds this budget require investigation rather than a larger hidden
+tolerance.
+
+This equivalence applies only when checking a synthetic field against the live
+plan's regenerated reference. SHA-256 and byte counts for manifest files, the
+actual NPY file hash, canonical stored-array identity, configuration hashes, CSV
+values/statuses and report/manuscript bindings remain exact. A one-ULP alteration
+without re-authenticated file and report hashes still fails. Accepted replay
+roundoff does not change stored arrays or estimates, smooth entropy thresholds,
+or imply that regenerated entropy estimates are bit-identical across platforms.
+
+The initial hosted run
+[37978727833](https://github.com/docxology/antropy/actions/runs/37978727833)
+passed its numerical/tooling gates but failed the former bit-identical synthetic
+replay check on Linux. That failure remains part of the project record. Regression
+controls reproduce it with a one-ULP real NPY difference, require strict custody
+checks to pass after legitimate recomputation, and reject the first binary64 step
+outside an independently derived exact-rational envelope.
+
 Synthetic fields are implementation demonstrations. No experiment in the source
 paper, biological finding, classification accuracy or application-specific
 validation is claimed. Undefined and infinite estimates are preserved in CSV,

@@ -20,11 +20,12 @@ import json
 import math
 import sys
 from pathlib import Path
-from typing import Annotated, Final, assert_never
+from typing import Annotated, Final, Never, assert_never
 
 import numpy as np
 import typer
 import yaml
+from numpy.typing import NDArray
 from pydantic import JsonValue
 from pypdf import PdfReader
 
@@ -64,6 +65,25 @@ type FieldDesign = dict[str, tuple[tuple[int, ...], Structure]]
 type ResultIndex = dict[tuple[str, str], tuple[ExperimentBatch, EntropyResult]]
 
 
+def replay_equivalent(array: NDArray[np.float64], reference: NDArray[np.float64]) -> bool:
+    """Allow only the declared float64 replay budget, with exact shape and zero rtol."""
+    if array.shape != reference.shape:
+        return False
+    if not np.isfinite(array).all() or not np.isfinite(reference).all():
+        return False
+    # Two implementations each receive a conservative k-operation full-epsilon budget.
+    # The unit scale covers cancellation near zero; this is not a libm accuracy theorem.
+    budget = (16 + 8 * reference.ndim) * float(np.finfo(np.float64).eps)
+    gamma = budget / (1 - budget)
+    limit = 2 * gamma * np.maximum(1.0, np.abs(reference))
+    return bool(np.all(np.abs(array - reference) <= limit))
+
+
+def fail_artifact(reason: str) -> Never:
+    """Preserve the common typed artifact failure boundary without duplicate boilerplate."""
+    raise ParameterError("artifacts", reason)
+
+
 def validated_design(root: Path, experiments: Experiments) -> FieldDesign:
     """Require the complete matrix derived independently from the live plan."""
     plan_path = root / "experiment_plan.yaml"
@@ -90,9 +110,7 @@ def validated_design(root: Path, experiments: Experiments) -> FieldDesign:
                 "coverage", "Experiment method/tolerance/parameter matrix differs from the plan"
             )
         array = as_real_array(np.load(bounded_path(root, record.input_file), allow_pickle=False))
-        if array.shape != shape or array_sha256(array) != array_sha256(
-            synthesize(plan, shape, structure)
-        ):
+        if array.shape != shape or not replay_equivalent(array, synthesize(plan, shape, structure)):
             raise ParameterError("seed", "Generated input differs from the declared seeded design")
     return design
 
@@ -102,32 +120,26 @@ def expected_results(root: Path, manifest_paths: set[str], experiments: Experime
     expected: ResultIndex = {}
     for record in experiments.batches:
         if record.input_file not in manifest_paths:
-            raise ParameterError("artifacts", f"Unmanifested experiment input: {record.input_file}")
+            fail_artifact(f"Unmanifested experiment input: {record.input_file}")
         path = bounded_path(root, record.input_file)
         if digest(path) != record.input_file_sha256:
-            raise ParameterError(
-                "artifacts", f"Experiment input hash mismatch: {record.input_file}"
-            )
+            fail_artifact(f"Experiment input hash mismatch: {record.input_file}")
         array = as_real_array(np.load(path, allow_pickle=False))
-        if (
-            array_sha256(array) != record.batch.input_sha256
-            or array.shape != record.batch.input_shape
-        ):
-            raise ParameterError("artifacts", "Batch input array identity is inconsistent")
+        batch = record.batch
+        if array_sha256(array) != batch.input_sha256 or array.shape != batch.input_shape:
+            fail_artifact("Batch input array identity is inconsistent")
         config_hash = hashlib.sha256(
             canonical_json(record.batch.config.model_dump(mode="json")).encode()
         ).hexdigest()
         if config_hash != record.batch.config_sha256:
-            raise ParameterError("artifacts", "Batch configuration hash mismatch")
+            fail_artifact("Batch configuration hash mismatch")
         ids = {spec.id for spec in record.batch.config.analyses}
         if ids != set(record.batch.results):
-            raise ParameterError(
-                "artifacts", "Batch results do not cover exactly the configured analyses"
-            )
+            fail_artifact("Batch results do not cover exactly the configured analyses")
         for spec in record.batch.config.analyses:
             key = (record.field_id, spec.id)
             if key in expected:
-                raise ParameterError("artifacts", "Duplicate experiment field/analysis identity")
+                fail_artifact("Duplicate experiment field/analysis identity")
             result = record.batch.results[spec.id]
             expected[key] = (record, scalar_result(result))
     return expected
@@ -156,27 +168,27 @@ def validate_csv_row(row: CsvRow, record: ExperimentBatch, result: EntropyResult
         raise ParameterError("results", "CSV structure differs from the declared field")
     validate_radius(row, spec.parameters.get("match"))
     if row["status"] != result.status or row["measure"] != spec.measure:
-        raise ParameterError("artifacts", "CSV status or measure differs from JSON")
+        fail_artifact("CSV status or measure differs from JSON")
     if (
         row["input_sha256"] != record.batch.input_sha256
         or row["config_sha256"] != record.batch.config_sha256
     ):
-        raise ParameterError("artifacts", "CSV provenance differs from JSON")
+        fail_artifact("CSV provenance differs from JSON")
     if (
         row["ndim"] != str(len(record.batch.input_shape))
         or row["shape"] != "x".join(map(str, record.batch.input_shape))
         or row["n_observations"] != str(result.n_observations)
     ):
-        raise ParameterError("artifacts", "CSV geometry or observation count differs from JSON")
+        fail_artifact("CSV geometry or observation count differs from JSON")
     if canonical_json(json.loads(row["parameters_json"])) != canonical_json(
         result.parameters
     ) or canonical_json(json.loads(row["diagnostics_json"])) != canonical_json(result.diagnostics):
-        raise ParameterError("artifacts", "CSV estimator details differ from JSON")
+        fail_artifact("CSV estimator details differ from JSON")
     if result.value is None:
         if row["value"] != "":
-            raise ParameterError("artifacts", "Nonfinite status must retain an empty CSV value")
+            fail_artifact("Nonfinite status must retain an empty CSV value")
     elif not math.isfinite(float(row["value"])) or float(row["value"]) != result.value:
-        raise ParameterError("artifacts", "CSV estimate differs from JSON")
+        fail_artifact("CSV estimate differs from JSON")
 
 
 def validate_radius(row: CsvRow, matching: JsonValue) -> None:
@@ -203,12 +215,12 @@ def validate_results(root: Path, manifest_paths: set[str]) -> int:
     with (root / "output/data/results.csv").open(newline="", encoding="utf-8") as stream:
         rows = list(csv.DictReader(stream))
     if len(rows) != len(expected) or not rows:
-        raise ParameterError("artifacts", "CSV row coverage differs from JSON analyses")
+        fail_artifact("CSV row coverage differs from JSON analyses")
     seen = set()
     for row in rows:
         key = (row["field_id"], row["analysis_id"])
         if key in seen or key not in expected:
-            raise ParameterError("artifacts", "Duplicate or unknown CSV result identity")
+            fail_artifact("Duplicate or unknown CSV result identity")
         seen.add(key)
         record, result = expected[key]
         validate_csv_row(row, record, result)
@@ -239,19 +251,17 @@ def validate(root: Path, manifest_path: Path | None = None) -> ArtifactReport:
     manifest = Manifest.model_validate(read_json(path))
     required = set(manifest.required_artifacts)
     if not required >= REQUIRED_ARTIFACTS:
-        raise ParameterError("artifacts", "Manifest omits the required artifact completeness floor")
+        fail_artifact("Manifest omits the required artifact completeness floor")
     paths = [artifact.path for artifact in manifest.artifacts]
     if len(set(paths)) != len(paths) or not required <= set(paths):
-        raise ParameterError(
-            "artifacts", "Manifest contains duplicate paths or missing required records"
-        )
+        fail_artifact("Manifest contains duplicate paths or missing required records")
     for artifact in manifest.artifacts:
         artifact_path = bounded_path(root, artifact.path)
         if (
             artifact_path.stat().st_size != artifact.bytes
             or digest(artifact_path) != artifact.sha256
         ):
-            raise ParameterError("artifacts", f"Artifact byte/hash mismatch: {artifact.path}")
+            fail_artifact(f"Artifact byte/hash mismatch: {artifact.path}")
     rows = validate_results(root, set(paths))
     manuscript = (root / "docs/manuscript/manuscript.md").read_text(encoding="utf-8")
     csv_hash = digest(root / "output/data/results.csv")
@@ -260,16 +270,14 @@ def validate(root: Path, manifest_path: Path | None = None) -> ArtifactReport:
         f"Results CSV SHA-256: {csv_hash}" not in manuscript
         or "../../output/figures/hdse-tolerance.png" not in manuscript
     ):
-        raise ParameterError(
-            "artifacts", "Manuscript is not bound to the authenticated results and figure"
-        )
+        fail_artifact("Manuscript is not bound to the authenticated results and figure")
     image = (root / "output/figures/hdse-tolerance.png").read_bytes()
     if (
         image[:8] != b"\x89PNG\r\n\x1a\n"
         or int.from_bytes(image[16:20]) < 300
         or int.from_bytes(image[20:24]) < 200
     ):
-        raise ParameterError("artifacts", "Figure is not a legible PNG artifact")
+        fail_artifact("Figure is not a legible PNG artifact")
     reader = PdfReader(root / "output/pdf/antropy-methods.pdf")
     text = "\n".join(page.extract_text() for page in reader.pages)
     if (
@@ -277,7 +285,7 @@ def validate(root: Path, manifest_path: Path | None = None) -> ArtifactReport:
         or "Computational results" not in text
         or csv_hash not in text.replace("\n", "")
     ):
-        raise ParameterError("artifacts", "PDF lacks the required result and provenance text")
+        fail_artifact("PDF lacks the required result and provenance text")
     return {"authenticated_files": len(paths), "result_rows": rows, "pdf_pages": len(reader.pages)}
 
 
