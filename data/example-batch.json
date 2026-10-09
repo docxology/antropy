@@ -1,0 +1,1 @@
+{"schema_version":1,"analyses":[{"id":"hdse","measure":"hdse","parameters":{"embedding":{"shape":2},"match":{"tolerance":0.5}}},{"id":"ordinal","measure":"permutation_entropy","parameters":{"embedding":{"shape":2},"normalize":true}},{"id":"spectral","measure":"spectral_entropy","parameters":{"normalize":true}}]}

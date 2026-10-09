@@ -1,0 +1,1 @@
+{"plan":{"embedding_shape":2,"histogram_bins":16,"max_pairs":500000,"max_templates":1000,"noise_amplitude":0.35,"period":8.0,"schema_version":1,"seed":20261009,"shapes":[[64],[16,16],[8,8,8]],"structures":["periodic","noise","mixed"],"tolerances":[0.2,0.5,1.0]},"plan_sha256":"23b82aabbbbfa4dbbc1c3362dbff95d9f3d9f081f7f678a92091736938fe078e"}

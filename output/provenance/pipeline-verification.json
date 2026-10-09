@@ -1,0 +1,49 @@
+{
+  "artifact_sha256": {
+    ".github/workflows/verify.yml": "2d8a918ef345cf2461aa589b7c094d458d82eb976133b51e104e4c720060d494",
+    "docs/manuscript/manuscript.md": "3f24e7d97a33ce7871d84525291e6f84cb4855f3979bf3ffa2f25167a90c44a2",
+    "output/data/results.csv": "a4104429035874774f07cb2ec816a1cd656504435f245754d730e3bc06526727",
+    "output/pdf/antropy-methods.pdf": "3b329b9de395655f00ba358366e49bf5b08d0132060c1b453fa4e69231c05637",
+    "output/provenance/manifest.json": "3bf63ad4a217bd75647e74b2c9e9b52422bc1c4d8c8dc775712d1f6ad1b97460"
+  },
+  "boundaries": [
+    "No empirical source-paper replication claim",
+    "No public push performed by worker",
+    "Root owns final packaging rerun and independent release approval"
+  ],
+  "preserved_failures": [
+    "External GitVault volume briefly disappeared; no shadow checkout created",
+    "Internal temporary filesystem reached ENOSPC in one infrastructure run; rerun on repository-local TMPDIR passed",
+    "Pre-final visual QA found heading orphan and plot-text overlap; bounded visual fixes rerendered and passed"
+  ],
+  "schema_version": 1,
+  "scope": "orchestration CLI research pipeline manuscript CI",
+  "verification": {
+    "artifact_tests_after_visual_fixes": 48,
+    "artifact_validation": {
+      "authenticated_files": 48,
+      "pdf_pages": 5,
+      "result_rows": 54
+    },
+    "basedpyright": "0 errors",
+    "focused_tests": 97,
+    "full_tests_last_run": 354,
+    "infrastructure_branch_coverage_percent": 86.51,
+    "isolated_frozen_lock_wheel_cli": "pass before final root rebuild",
+    "no_excuse_owned_files": 15,
+    "ruff": "pass",
+    "source_branch_coverage_percent": 95.92,
+    "visual_qa": {
+      "figure": "output/figures/hdse-tolerance.png",
+      "physical_pages": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "raster_prefix": "work/pdf-qa/accepted-manuscript",
+      "verdict": "pass"
+    }
+  }
+}

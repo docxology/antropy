@@ -1,0 +1,69 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "antropy-hd"
+version = "0.1.0"
+description = "Dimension-agnostic entropy and spatial complexity analysis"
+readme = "README.md"
+requires-python = ">=3.14"
+license = "MIT"
+authors = [{name = "Daniel Ari Friedman", email = "daniel@activeinference.institute"}]
+dependencies = ["numpy>=2.3", "pydantic>=2.11", "typer>=0.16"]
+
+[project.urls]
+Repository = "https://github.com/docxology/antropy"
+Documentation = "https://github.com/docxology/antropy/tree/main/docs"
+
+[project.scripts]
+antropy-hd = "antropy_hd.cli:app"
+
+[dependency-groups]
+dev = ["pytest>=9", "pytest-cov>=7", "hypothesis>=6.130", "ruff>=0.12", "basedpyright>=1.29", "build>=1.2", "matplotlib>=3.10", "pyyaml>=6", "reportlab>=4", "pypdf>=5"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/antropy_hd"]
+
+[tool.hatch.build.targets.sdist]
+# Build acceptance receipts authenticate an archive externally; including them
+# inside that archive would create circular or stale package-hash attestations.
+exclude = ["output/reviews", "output/reports/verification", "output/provenance/pipeline-verification.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers --tb=short"
+markers = ["integration: real subprocess and artifact scenarios"]
+
+[tool.coverage.run]
+source = ["antropy_hd"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+precision = 2
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["ALL"]
+# Numerical notation, scientific APIs and Pydantic validators have domain-specific shapes.
+ignore = ["D203", "D213", "COM812", "ISC001", "E501", "PLR0913", "PLR0917", "PLR2004", "N803", "N806", "ANN401", "FBT001", "FBT002", "FBT003", "TD", "FIX", "EM", "TRY003", "TC001", "TC002", "TC003"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D", "S101", "SLF001", "ARG", "PLR2004", "PLC0415"]
+"scripts/*" = ["T201", "INP001"]
+
+[tool.basedpyright]
+typeCheckingMode = "all"
+include = ["src"]
+pythonVersion = "3.14"
+# NumPy's shape/scalar stubs and JSON deserialization expose Any internally.
+# Public APIs remain annotated; unknown types and argument/return incompatibility stay errors.
+reportAny = false
+# Exhaustive assert_never branches and runtime boundary checks are intentional.
+reportUnnecessaryComparison = false
+reportUnnecessaryIsInstance = false

@@ -1,0 +1,7 @@
+# Preserve scientific artifact bytes while keeping source checkout endings stable.
+* text=auto eol=lf
+*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+*.pdf binary
+*.png binary
+*.npy binary
+*.npz binary

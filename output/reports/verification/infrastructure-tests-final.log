@@ -1,0 +1,20 @@
+................................................                         [100%]
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.14.7-final-0 _______________
+
+Name                               Stmts   Miss Branch BrPart   Cover   Missing
+-------------------------------------------------------------------------------
+scripts/__init__.py                    0      0      0      0 100.00%
+scripts/artifact_io.py                23      0      6      0 100.00%
+scripts/artifact_models.py            44      0      0      0 100.00%
+scripts/build_manuscript.py           66      5     14      3  90.00%   32, 58, 168-169, 173
+scripts/check_installed_wheel.py      62     62     14      0   0.00%   12-139
+scripts/plot_experiments.py           28      0      6      0 100.00%
+scripts/render_manuscript.py          76      1     24      1  98.00%   59
+scripts/run_experiments.py           124     10     34      4  89.87%   35, 151-152, 188-193, 236-237, 241
+scripts/validate_artifacts.py        166     19     86     12  86.11%   38, 96, 105, 130, 141-146, 177, 191-195, 206, 211, 280, 289, 293
+-------------------------------------------------------------------------------
+TOTAL                                589     97    184     20  82.28%
+Coverage JSON written to file output/reports/verification/infrastructure-coverage-final.json
+Required test coverage of 60% reached. Total coverage: 82.28%
+48 passed in 39.49s

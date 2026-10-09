@@ -1,0 +1,14 @@
+schema_version: 1
+seed: 20261009
+shapes:
+  - [64]
+  - [16, 16]
+  - [8, 8, 8]
+structures: [periodic, noise, mixed]
+tolerances: [0.2, 0.5, 1.0]
+embedding_shape: 2
+period: 8.0
+noise_amplitude: 0.35
+histogram_bins: 16
+max_templates: 1000
+max_pairs: 500000

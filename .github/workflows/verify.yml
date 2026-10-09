@@ -1,0 +1,38 @@
+name: verify
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6; peeled commit
+        with:
+          version: '0.12.0'
+          enable-cache: true
+      - run: uv python install 3.14
+      - run: uv sync --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run basedpyright
+      - run: uv run pytest --cov=src/antropy_hd --cov-branch --cov-report=term-missing --cov-report=json:work/source-coverage.json
+      - run: uv run pytest tests/test_artifacts.py --cov=scripts --cov-branch --cov-report=term-missing --cov-fail-under=60
+      - run: uv run python scripts/validate_artifacts.py
+      - run: uv run python scripts/run_experiments.py --plan experiment_plan.yaml
+      - run: uv run python scripts/build_manuscript.py
+      - run: uv run python scripts/validate_artifacts.py
+      - run: uv build
+      - run: uv run python scripts/check_installed_wheel.py --wheel dist/antropy_hd-0.1.0-py3-none-any.whl
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: antropy-verification
+          path: |
+            output/pdf/antropy-methods.pdf
+            output/provenance/manifest.json
+            work/source-coverage.json
+            dist/*
+          if-no-files-found: error

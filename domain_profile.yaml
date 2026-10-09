@@ -1,0 +1,11 @@
+project: antropy
+distribution: antropy-hd
+domain: computational complexity methods
+units:
+  local_template_entropy: nats
+  probability_entropy_default: bits
+  normalized_entropy: dimensionless
+research_boundary: deterministic synthetic implementation demonstrations
+primary_algorithm: high-dimensional sample entropy
+source: https://www.sciencedirect.com/science/article/abs/pii/S0960077926002171
+data_policy: generated synthetic arrays only; published PDF not redistributed
