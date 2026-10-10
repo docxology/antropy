@@ -7,7 +7,7 @@ permissions:
 jobs:
   contracts:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6; peeled commit
@@ -35,13 +35,14 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run basedpyright
       - name: Type check research boundaries and examples
-        run: uv run basedpyright scripts/validate_artifacts.py scripts/validate_publication.py scripts/build_manuscript.py scripts/render_manuscript.py scripts/manuscript_*.py scripts/template_provenance.py scripts/study_models.py scripts/study_fields.py scripts/study_analysis.py scripts/run_study.py scripts/validate_study.py scripts/result_replay.py scripts/benchmark_models.py scripts/benchmark_complexity.py scripts/validate_benchmarks.py scripts/check_installed_wheel.py examples
+        run: uv run basedpyright scripts/validate_artifacts.py scripts/validate_publication.py scripts/build_manuscript.py scripts/render_manuscript.py scripts/manuscript_*.py scripts/template_provenance.py scripts/study_models.py scripts/study_fields.py scripts/study_analysis.py scripts/run_study.py scripts/validate_study.py scripts/result_replay.py scripts/benchmark_models.py scripts/benchmark_complexity.py scripts/validate_benchmarks.py scripts/check_installed_wheel.py scripts/power_models.py scripts/power_plan.py scripts/power_fields.py scripts/power_analysis.py scripts/power_summary.py scripts/power_preflight.py scripts/power_storage.py scripts/power_serialization.py scripts/validate_power.py scripts/power_validation_*.py scripts/example_*.py examples
       - run: uv run pytest --cov=src/antropy_hd --cov-branch --cov-report=term-missing --cov-report=json:work/source-coverage.json
-      - run: uv run pytest tests/test_artifacts.py tests/test_artifact_roundoff.py tests/test_manuscript.py tests/test_manuscript_tables.py tests/test_manuscript_verification.py tests/test_publication.py tests/test_study.py tests/test_study_artifacts.py tests/test_benchmarks.py --cov=scripts --cov-branch --cov-report=term-missing --cov-fail-under=60
+      - run: uv run pytest tests/test_artifacts.py tests/test_artifact_roundoff.py tests/test_manuscript.py tests/test_manuscript_tables.py tests/test_manuscript_verification.py tests/test_manuscript_power.py tests/test_publication.py tests/test_study.py tests/test_study_artifacts.py tests/test_benchmarks.py tests/test_power_*.py tests/test_examples.py tests/test_example_controls.py --cov=scripts --cov-branch --cov-report=term-missing --cov-fail-under=60
       - run: uv run python scripts/validate_artifacts.py
       - run: uv run python scripts/run_experiments.py --plan experiment_plan.yaml
       - run: uv run python scripts/run_study.py --plan study_plan.yaml
       - run: uv run python scripts/benchmark_complexity.py --plan benchmark_plan.yaml
+      - run: uv run python scripts/run_power.py --plan power_plan.yaml
       - run: uv run python scripts/build_manuscript.py
       - run: uv run python scripts/validate_artifacts.py
       - run: uv build
@@ -56,6 +57,9 @@ jobs:
             output/data/manuscript_variables.json
             output/manuscript/*
             output/study/*.json
+            output/power/report.json
+            output/power/*.csv
+            output/power/figures/*
             work/source-coverage.json
             dist/*
           if-no-files-found: error

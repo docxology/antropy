@@ -19,6 +19,7 @@ from scripts.manuscript_variables import publication_variables
 from scripts.render_manuscript import validate_latex_output
 from scripts.template_provenance import TemplateIdentity, template_identity
 from scripts.validate_benchmarks import validate_benchmarks
+from scripts.validate_power import validate_power
 from scripts.validate_study import validate_study
 
 
@@ -59,7 +60,14 @@ def expected_claim_ids(root: Path) -> set[str]:
         ids.add("complexity-plan")
     if data.benchmark is not None:
         ids.add("measured-runtime")
-    if data.study is not None or data.complexity is not None or data.benchmark is not None:
+    if data.power is not None:
+        ids.update({"power-design", "power-estimates", "inference-method"})
+    if (
+        data.study is not None
+        or data.complexity is not None
+        or data.benchmark is not None
+        or data.power is not None
+    ):
         ids.add("template-renderer")
     return ids
 
@@ -160,11 +168,25 @@ def validate_publication(root: Path, authenticated: set[str]) -> None:
         required.update({"benchmark_plan.yaml", "output/study/benchmark.json"})
         required.update(record.input_file for record in data.benchmark.records)
         _ = validate_benchmarks(root)
+    if data.power is not None:
+        required.update(
+            {
+                "power_plan.yaml",
+                "docs/power-design.md",
+                "docs/inference.md",
+                "output/power/report.json",
+                "output/power/decisions.csv",
+                "output/power/summary.csv",
+            }
+        )
+        required.update(pool.input_file for pool in data.power.pools)
+        _ = validate_power(root)
     for figure in context.profile.figures:
         if (
             figure.dependency == "baseline"
             or (figure.dependency == "study" and data.study is not None)
             or (figure.dependency == "benchmark" and data.benchmark is not None)
+            or (figure.dependency == "power" and data.power is not None)
         ):
             required.add(figure.source)
     if not required <= authenticated:

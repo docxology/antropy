@@ -16,16 +16,16 @@ coherently altered artifact records are controls proving that checks can fail.
 Configured coverage floors are 90 percent for numerical
 source and 60 percent for research infrastructure.
 
-The configured verification receipts report 613 passing tests, 95.6492 percent source coverage and 88.4959 percent infrastructure coverage. These are recorded runs, not a substitute for independent release review.
+The configured verification receipts report 900 passing tests, 94.5148 percent source coverage and 90.3808 percent infrastructure coverage. These are recorded runs, not a substitute for independent release review.
 
 Receipt identities (SHA-256):
 
 \begingroup\small
 
 ```text
-Source coverage: 482700cb812cba4b713afe1e47d1cadec4474b26c3ba8a9cc0631ba283e9987f
-Infra coverage:  c3febbc9fb7a4ef63c2eda9cda2e8704f959960802a1597b5dad59cffcc352a5
-Test log:        22b78552a93712b0018ed744b6519438fab29689ca6750dfb4a9186ae7cfee4c
+Source coverage: 03540005d22140e5a9c01a3285f3a7a296fd00face280f7de5ee925a49c6c2f2
+Infra coverage:  eac3d86e592fd68e400e59f9fdaaf572c374a255d6792b2bcebeaacfc5a1a214
+Test log:        8002be50f04715d7253e93f2de3b567791818dcc083ab85ec5923ac4769c6086
 ```
 
 \endgroup

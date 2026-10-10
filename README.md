@@ -16,6 +16,12 @@ complexity and an allocation-free planner for template populations, exact schedu
 distance work and conservative workspace guards. Native geometry, distributional
 uncertainty, algorithm cost and numerical degeneracy are separate reported quantities.
 
+Whole-observation inference includes exact and Monte Carlo permutation tests,
+paired or independent percentile bootstrap intervals, Wilson score intervals and
+fixed-family Holm adjustment. [The inference contracts](docs/inference.md) state
+exchangeability assumptions, inclusive tails, finite-sample resolution, seed and
+work limits. `fixed_alphabet` retains declared empty categories and both tails.
+
 ## Install and run
 
 CPython 3.14 and [uv](https://docs.astral.sh/uv/) are required for development.
@@ -57,6 +63,7 @@ uv run antropy-hd plan --shape '[64,80]' \
 uv run python examples/spatial_embeddings.py
 uv run python examples/fixed_alphabet.py
 uv run python examples/planning_and_counts.py
+uv run python examples/replicate_inference.py
 ```
 
 The planner reports feasibility and violations rather than inventing runtime or
@@ -69,6 +76,7 @@ for anisotropic geometry, exclusion sensitivity and fixed alphabet conventions.
 uv run python scripts/run_experiments.py --plan experiment_plan.yaml
 uv run python scripts/run_study.py --plan study_plan.yaml
 uv run python scripts/benchmark_complexity.py --plan benchmark_plan.yaml
+uv run python scripts/run_power.py --plan power_plan.yaml
 uv run python scripts/build_manuscript.py
 uv run python scripts/validate_artifacts.py
 ```
@@ -80,6 +88,19 @@ mixing probabilities within trials. Summaries preserve every nonfinite outcome;
 error bars represent trial variability. Native and flattened estimators retain
 their different feature counts and origin populations. See the
 [complete design and limitations](docs/study-design.md).
+
+A separate [prospective power study](docs/power-design.md) compares independent
+whole fields under stochastic same-distribution null controls and prespecified
+replacement contrasts. It reports rejection conditional on availability,
+unconditional rejection, failure rates, pointwise Monte Carlo uncertainty and
+the exact/Monte Carlo inference schedules. Missing estimates remain explicit;
+the analysis family and sample-size grid come from `power_plan.yaml`. Smaller
+sample sizes reuse pool prefixes, so curve points are dependent. These curves
+describe the declared synthetic design and do not certify biological sample sizes.
+
+The example entry points read strict YAML plans in `examples/configs/` and call
+shared numerical helpers. Their data-generation controls, geometry, thresholds,
+resampling, and budgets are configurable; use `--plan` for a different design.
 
 Manuscript building uses the actual **docxology/template** package, pinned by Git
 revision in `uv.lock`, with Pandoc, pandoc-crossref, BibTeX and XeLaTeX. Install

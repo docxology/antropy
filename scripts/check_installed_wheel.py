@@ -147,11 +147,46 @@ def check(wheel: Path) -> None:
         )["results"]["analysis"]
         if complexity["status"] != "finite" or complexity["value"] != 0:
             raise WheelCheckError("complexity", "Installed fixed-alphabet uniform example failed")
+        check_inference(python, executable, temporary, environment)
         _ = run([str(executable), "methods"], temporary, environment)
         version = run([str(executable), "version"], temporary, environment).strip()
         print(
             f"Installed-wheel CLI passed: {version}; isolated import and analytical result verified"
         )
+
+
+def check_inference(
+    python: Path, executable: Path, temporary: Path, environment: dict[str, str]
+) -> None:
+    """Verify installed exact inference, consumed config bytes and fixed symbol counts."""
+    first, second, config = (temporary / name for name in ("first.npy", "second.npy", "test.json"))
+    np.save(first, np.array([1.0, 2.0]), allow_pickle=False)
+    np.save(second, np.array([3.0, 4.0]), allow_pickle=False)
+    _ = config.write_text('{"seed":42,"mode":"exact"}', encoding="utf-8")
+    comparison = json.loads(
+        run(
+            [str(executable), "compare", str(first), str(second), "--config", str(config)],
+            temporary,
+            environment,
+        )
+    )
+    if comparison["test"]["effect"] != 2 or comparison["test"]["p_value"] != 2 / 6:
+        raise WheelCheckError("inference", "Installed exact permutation example failed")
+    if comparison["config_file_sha256"] != hashlib.sha256(config.read_bytes()).hexdigest():
+        raise WheelCheckError("inference", "Installed test did not consume the configured bytes")
+    symbols = json.loads(
+        run(
+            [
+                str(python),
+                "-c",
+                "from antropy_hd import fixed_alphabet, SymbolizationConfig; print(fixed_alphabet([-2,0,2],config=SymbolizationConfig(cuts=(-1,1))).model_dump_json())",
+            ],
+            temporary,
+            environment,
+        )
+    )
+    if symbols["counts"] != [1, 1, 1]:
+        raise WheelCheckError("symbolization", "Installed alphabet failed its direct-count control")
 
 
 def main(wheel: Annotated[Path | None, typer.Option(exists=True, dir_okay=False)] = None) -> None:

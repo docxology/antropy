@@ -11,6 +11,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 from antropy_hd.errors import ParameterError
+from antropy_hd.symbolization import SymbolizationConfig, fixed_alphabet
 from scripts.study_models import Family, StudyCase, StudyPlan
 
 
@@ -90,8 +91,7 @@ def study_field(plan: StudyPlan, case: StudyCase) -> NDArray[np.float64]:
 
 def symbol_probabilities(array: NDArray[np.float64], plan: StudyPlan) -> NDArray[np.float64]:
     """Quantize on fixed cuts, retaining zero categories and both overflow categories."""
-    cuts = np.linspace(*plan.symbol_range, plan.symbol_bins - 1)
-    counts = np.bincount(
-        np.searchsorted(cuts, array.ravel(), side="right"), minlength=plan.symbol_bins
+    config = SymbolizationConfig(
+        cuts=tuple(float(value) for value in np.linspace(*plan.symbol_range, plan.symbol_bins - 1))
     )
-    return counts.astype(np.float64) / array.size
+    return np.asarray(fixed_alphabet(array, config=config).probabilities, dtype=np.float64)

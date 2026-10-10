@@ -1,0 +1,80 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Volumes/GitVault/Username/docxology/Public/antropy
+configfile: pyproject.toml
+testpaths: tests
+plugins: hypothesis-6.168.5, cov-7.1.0
+collected 897 items
+
+tests/test_artifact_roundoff.py ................                         [  1%]
+tests/test_artifacts.py ................................................ [  7%]
+                                                                         [  7%]
+tests/test_benchmarks.py .........................                       [  9%]
+tests/test_cli.py ..................                                     [ 11%]
+tests/test_cli_inference.py ....                                         [ 12%]
+tests/test_complexity.py ............................................... [ 17%]
+........................                                                 [ 20%]
+tests/test_example_controls.py ....................................      [ 24%]
+tests/test_examples.py ............                                      [ 25%]
+tests/test_hdse.py ..................................................... [ 31%]
+...........                                                              [ 32%]
+tests/test_inference.py .................................                [ 36%]
+tests/test_inference_intervals.py ...................................... [ 40%]
+............                                                             [ 42%]
+tests/test_inference_validation.py ........................              [ 44%]
+tests/test_information.py .............................................. [ 49%]
+...................................................                      [ 55%]
+tests/test_manuscript.py ...............................                 [ 58%]
+tests/test_manuscript_power.py ..........                                [ 60%]
+tests/test_manuscript_tables.py ..                                       [ 60%]
+tests/test_manuscript_verification.py ...................                [ 62%]
+tests/test_multiscale.py ............                                    [ 63%]
+tests/test_orchestration.py .....................................        [ 67%]
+tests/test_ordinal.py .......................                            [ 70%]
+tests/test_power_execution.py .....                                      [ 71%]
+tests/test_power_models.py .....................................         [ 75%]
+tests/test_power_tensor_validation.py .........................          [ 77%]
+tests/test_power_validation.py .............................             [ 81%]
+tests/test_publication.py .....................                          [ 83%]
+tests/test_spectral.py ..............................                    [ 86%]
+tests/test_statistical.py ........................                       [ 89%]
+tests/test_study.py ....................                                 [ 91%]
+tests/test_study_artifacts.py ...............                            [ 93%]
+tests/test_symbolization.py ..................                           [ 95%]
+tests/test_template_variants.py ........................................ [ 99%]
+.                                                                        [100%]
+
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.14.7-final-0 _______________
+
+Name                                 Stmts   Miss Branch BrPart   Cover   Missing
+---------------------------------------------------------------------------------
+src/antropy_hd/__init__.py              15      0      0      0 100.00%
+src/antropy_hd/_complexity.py          129      4     28      2  96.18%   70-71, 219-220
+src/antropy_hd/_inference.py           137     14     54      7  89.01%   83-84, 120-121, 142-143, 185-186, 197-198, 210-211, 221-222
+src/antropy_hd/_information.py          70      0     16      0 100.00%
+src/antropy_hd/cli.py                   79      6      8      1  91.95%   115-119, 155
+src/antropy_hd/cli_inference.py         23      8      6      2  58.62%   22, 24, 27-29, 34-36
+src/antropy_hd/complexity.py            89      6     34      2  91.87%   164-173, 222-223
+src/antropy_hd/distribution.py          45      1     18      1  96.83%   62
+src/antropy_hd/embedding.py             70      3     20      2  94.44%   39-40, 125
+src/antropy_hd/errors.py                 9      0      0      0 100.00%
+src/antropy_hd/fuzzy.py                 54      1     16      2  95.71%   41, 67->55
+src/antropy_hd/inference.py             75      2     20      1  96.84%   94-95
+src/antropy_hd/inference_models.py      76      0     16      0 100.00%
+src/antropy_hd/information.py          112      3     32      2  96.53%   146-147, 155
+src/antropy_hd/models.py                73      7     20      5  87.10%   38, 48, 54-55, 96-97, 105
+src/antropy_hd/multiscale.py            35      0      8      0 100.00%
+src/antropy_hd/orchestration.py         88      0     10      0 100.00%
+src/antropy_hd/ordinal.py               48      1     10      1  96.55%   54
+src/antropy_hd/pairs.py                 65      5     26      3  91.21%   32-33, 43, 78-79
+src/antropy_hd/spectral.py              62      3     10      1  94.44%   129, 136-137
+src/antropy_hd/statistical.py           28      0      2      0 100.00%
+src/antropy_hd/symbolization.py         28      0      2      0 100.00%
+src/antropy_hd/template_entropy.py      65      0     14      0 100.00%
+src/antropy_hd/validation.py            37      3     14      1  92.16%   51-52, 54
+---------------------------------------------------------------------------------
+TOTAL                                 1512     67    384     33  94.51%
+Coverage JSON written to file output/reports/verification/source-coverage-power.json
+Required test coverage of 90.0% reached. Total coverage: 94.51%
+======================== 897 passed in 96.34s (0:01:36) ========================

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+from inspect import signature
 from pathlib import Path
 
 from infrastructure.rendering.manuscript_injection import substitute_manuscript_text
@@ -11,6 +12,7 @@ from infrastructure.rendering.manuscript_injection import substitute_manuscript_
 from antropy_hd.errors import ParameterError
 from antropy_hd.orchestration import METHODS
 from scripts.manuscript_data import PublicationData, file_sha256
+from scripts.manuscript_power import power_variables
 from scripts.manuscript_profile import ManuscriptContext
 from scripts.manuscript_tables import (
     Variables,
@@ -56,6 +58,21 @@ def publication_variables(
         "COMPLEXITY_TABLE": cost_tables(data.complexity),
     }
     values.update(measured_tables(data, digits, profile.measure_labels))
+    values.update(power_variables(root, data.power, digits))
+    values["METHOD_REGISTRY_TABLE"] = markdown_table(
+        ("Registered estimator", "Input meaning", "Configured arguments"),
+        [
+            (
+                name.replace("_", " "),
+                method.input_kind,
+                ", ".join(
+                    parameter.replace("_", " ")
+                    for parameter in tuple(signature(method.runner).parameters)[1:]
+                ),
+            )
+            for name, method in sorted(METHODS.items())
+        ],
+    )
     values["MEASURE_LABELS"] = "; ".join(
         f"{label}: {measure.replace('_', ' ')}" for measure, label in profile.measure_labels.items()
     )
@@ -145,6 +162,7 @@ def publication_variables(
             figure.dependency == "baseline"
             or (figure.dependency == "study" and data.study is not None)
             or (figure.dependency == "benchmark" and data.benchmark is not None)
+            or (figure.dependency == "power" and data.power is not None)
         )
         if not enabled:
             values[figure.token] = (

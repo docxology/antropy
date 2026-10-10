@@ -1,6 +1,23 @@
 # Accepted verification evidence
 
-The current 0.2.0 local receipts use the `improved` suffix:
+The 0.3.0 candidate uses the `power` receipt suffix. Its selected full-source
+and infrastructure JSON inventories cover every current Python module; their
+logs retain the actual passing test counts and branch-inclusive percentages.
+The manuscript binds those measured receipts. Lint, format, strict source and
+research-boundary typing, programming checks, complete power replay, and
+standalone examples are separate records. The independent numerical/power source
+approval is `../../reviews/power-code-review.md`; it does not establish physical
+PDF, archive, hosted-CI or publication acceptance.
+
+`source-tests-power-r1-failure.log` retains sixteen new negative-test expectation
+errors: Pydantic correctly converted a typed parameter rejection into
+ValidationError, while those tests initially expected the inner error type.
+The corrected controls pass. The `r2` snapshots preceded the independent
+preflight finding: unsupported joint-axis probability-vector requests could
+fail after admission. Early real-geometry validation and negative file-creation
+controls repaired that boundary. All failed and superseded receipts remain.
+
+The historical 0.2.0 local receipts use the `improved` suffix:
 
 - `source-tests-improved.log` and `source-coverage-improved.json`: 613 passing
   tests and 95.65% branch-inclusive coverage across all 19 package modules.

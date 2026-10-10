@@ -1,5 +1,14 @@
 # Methodology {#sec:methodology}
 
+## Complete registered interface
+
+The following table is generated from the current executable registry and
+call signatures. Arguments select mathematical conventions and resource limits;
+all numerical claims use the effective configuration recorded with each result.
+Input probabilities and raw field observations have separate meanings.
+
+{{METHOD_REGISTRY_TABLE}}
+
 ## Native spatial templates
 
 Let $x$ be a finite real-valued array with axis lengths
@@ -76,12 +85,27 @@ membership sums in the log domain [@chen2007]. Centering changes template
 semantics, so fuzzy continuation need not share all monotonicity properties of
 un-centered threshold counts. Nonfinite eligible distances or log weights raise
 a numerical-range error rather than becoming mathematical undefined estimates.
+Its statistic is the difference between the logarithms of mean base and
+extended pair memberships, with the same declared pair-selection policy.
 
 Multiscale analysis uses trimmed block means at the configured scale vector
 [@costa2002]. Original-input tolerance is preserved by default. Distribution
 entropy uses a specified histogram of pairwise distances; using all valid local
 origins, including the final valid origin omitted by the original DistEn
 construction, is explicitly an implementation extension [@li2015distribution].
+
+For scale vector $\boldsymbol c$, coarse-grained observations are
+
+$$
+y_{\boldsymbol\ell}=\frac{1}{\prod_jc_j}
+\sum_{0\leq u_j<c_j}x_{\boldsymbol\ell\odot\boldsymbol c+\boldsymbol u}.
+$$ {#eq:coarse-grain}
+
+Partial outer blocks are trimmed. The implementation evaluates HDSE at each
+coarse-grained level, extending the original one-dimensional multiscale
+construction to native spatial fields. Distribution entropy instead forms
+probabilities from the histogram of eligible pair distances:
+$H_D=-\sum_{k=1}^{K}p_k\ln p_k$, optionally divided by $\ln K$ for $K>1$.
 
 ## Probability, ordinal and decomposition estimators
 
@@ -97,6 +121,25 @@ limit [@renyi1961; @tsallis1988]. Conditional entropy and mutual information use
 the named tensor-axis partitions, not the spatial-axis interpretation of an
 amplitude field.
 
+For a joint probability array $P_{X,Y}$, marginalization sums over the declared
+complementary axes. The joint entropy is the Shannon entropy of the complete
+joint alphabet. The implemented identities are
+
+$$
+H_b(X\mid Y)=H_b(X,Y)-H_b(Y),\qquad
+I_b(X;Y)=H_b(X)+H_b(Y)-H_b(X,Y).
+$$ {#eq:information-identities}
+
+Amplitude histogram entropy first constructs probabilities from the configured
+bins and every observed amplitude, then applies $H_b$. Bin edges that exclude
+observed amplitudes are rejected rather than silently truncating the field.
+For two distributions on the same alphabet, the configurable weighted
+Jensen-Shannon divergence is
+
+$$
+J_{b,w}(P,Q)=H_b(wP+(1-w)Q)-wH_b(P)-(1-w)H_b(Q).
+$$ {#eq:weighted-js}
+
 Permutation entropy applies Shannon entropy to local ordinal-pattern
 probabilities; equal amplitudes are ordered stably by local C-order position
 [@bandt2002]. Its weighted version uses local population variance
@@ -105,6 +148,18 @@ power distribution, retaining conjugate bins individually. SVD entropy
 normalizes singular values of the local trajectory matrix without squaring them
 [@rezek1998; @broomhead1986]. Units, normalization and alphabet sizes accompany
 each result; singleton and zero-energy degeneracies are handled explicitly.
+
+If local windows have patterns $\pi_i$ and population variances $v_i$, weighted
+permutation probabilities are $p_\pi=\sum_i v_i\mathbf1\{\pi_i=\pi\}/\sum_i v_i$.
+Ordinary permutation probabilities replace these variance weights with unit
+weights. Their normalized entropy uses the declared factorial pattern alphabet,
+not only the observed patterns. Spectral probabilities are
+$p_{\boldsymbol k}=|\mathcal F(x)_{\boldsymbol k}|^2/\sum_{\boldsymbol j}
+|\mathcal F(x)_{\boldsymbol j}|^2$, with the configured mean/DC policy. Trajectory
+SVD probabilities are $p_i=\sigma_i/\sum_j\sigma_j$ for singular values
+$\sigma_i$ of the configured local-window matrix. These constructions apply
+Shannon entropy to different representations; equal numerical values do not
+imply equal information about spatial structure.
 
 ## Jensen-Shannon statistical complexity
 

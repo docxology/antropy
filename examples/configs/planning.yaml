@@ -1,0 +1,64 @@
+schema_version: 1
+kind: planning
+seed: 20261009
+input_shape:
+- 5
+- 6
+field:
+  mean: 0.0
+  standard_deviation: 1.0
+embedding:
+  shape:
+  - 2
+  - 1
+  delay:
+  - 1
+  - 2
+  stride:
+  - 1
+  - 1
+  extend_axes:
+  - 0
+  max_templates: 10000
+  max_pairs: 50000000
+  max_memory_bytes: 134217728
+match:
+  tolerance: 1.5
+  relative: true
+  ddof: 0
+  closed: false
+  metric: chebyshev
+  exclusion: coordinate
+  theiler: 1
+  block_size: 128
+block_sizes:
+- 1
+- 4
+- 128
+max_input_elements: 10000
+below_guard_bytes: 1
+large_shape:
+- 128
+- 128
+- 128
+large_config:
+  measure: hdse
+  embedding:
+    shape: 2
+    delay: 1
+    stride: 1
+    extend_axes: null
+    max_templates: 10000
+    max_pairs: 50000000
+    max_memory_bytes: 134217728
+  match:
+    tolerance: 0.2
+    relative: true
+    ddof: 0
+    closed: false
+    metric: chebyshev
+    exclusion: self
+    theiler: 0
+    block_size: 128
+  bins: 16
+  max_pattern_length: 10

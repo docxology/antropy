@@ -42,7 +42,7 @@ class ManuscriptFigure(BaseModel):
     source: str
     label: str = Field(pattern=r"^[a-z][a-z0-9-]*$")
     caption: str
-    dependency: Literal["baseline", "study", "benchmark"]
+    dependency: Literal["baseline", "study", "benchmark", "power"]
     float_page: bool = False
 
 
@@ -66,6 +66,7 @@ class ManuscriptProfile(BaseModel):
     study_required: bool
     complexity_required: bool
     benchmark_required: bool
+    power_required: bool
     verification_prefix: str = Field(pattern=r"^[a-z0-9][a-z0-9-]*$")
     infrastructure_coverage_floor: float = Field(ge=0, le=100)
     numeric_digits: int = Field(ge=3, le=12)

@@ -1,0 +1,76 @@
+schema_version: 1
+kind: spatial
+seed: 20261009
+field:
+  mean: 0.0
+  standard_deviation: 0.25
+  sine_axis: 0
+  sine_amplitude: 1.0
+  sine_divisor: 2.0
+  trend_slope: 0.2
+cases:
+- input_shape:
+  - 8
+  - 9
+  embedding:
+    shape:
+    - 2
+    - 1
+    delay:
+    - 2
+    - 1
+    stride:
+    - 1
+    - 2
+    extend_axes:
+    - 0
+    max_templates: 10000
+    max_pairs: 50000000
+    max_memory_bytes: 134217728
+  match:
+    tolerance: 1.5
+    relative: true
+    ddof: 0
+    closed: false
+    metric: chebyshev
+    exclusion: self
+    theiler: 1
+    block_size: 4
+- input_shape:
+  - 6
+  - 7
+  - 8
+  embedding:
+    shape:
+    - 1
+    - 2
+    - 2
+    delay:
+    - 1
+    - 2
+    - 1
+    stride:
+    - 2
+    - 1
+    - 2
+    extend_axes:
+    - 1
+    max_templates: 10000
+    max_pairs: 50000000
+    max_memory_bytes: 134217728
+  match:
+    tolerance: 1.5
+    relative: true
+    ddof: 0
+    closed: false
+    metric: chebyshev
+    exclusion: coordinate
+    theiler: 1
+    block_size: 4
+max_cases: 4
+max_input_elements: 10000
+entropy_base: 2.0
+weighted_permutation_normalize: true
+max_pattern_length: 10
+svd_demean: true
+svd_normalize: true

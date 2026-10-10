@@ -1,0 +1,88 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Volumes/GitVault/Username/docxology/Public/antropy
+configfile: pyproject.toml
+plugins: hypothesis-6.168.5, cov-7.1.0
+collected 351 items
+
+tests/test_artifacts.py ................................................ [ 13%]
+                                                                         [ 13%]
+tests/test_artifact_roundoff.py ................                         [ 18%]
+tests/test_manuscript.py ...............................                 [ 27%]
+tests/test_manuscript_tables.py ..                                       [ 27%]
+tests/test_manuscript_verification.py ...................                [ 33%]
+tests/test_manuscript_power.py ..........                                [ 35%]
+tests/test_publication.py .....................                          [ 41%]
+tests/test_study.py ....................                                 [ 47%]
+tests/test_study_artifacts.py ...............                            [ 51%]
+tests/test_benchmarks.py .........................                       [ 58%]
+tests/test_power_execution.py .....                                      [ 60%]
+tests/test_power_models.py .....................................         [ 70%]
+tests/test_power_tensor_validation.py .........................          [ 78%]
+tests/test_power_validation.py .............................             [ 86%]
+tests/test_examples.py ............                                      [ 89%]
+tests/test_example_controls.py ....................................      [100%]
+
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.14.7-final-0 _______________
+
+Name                                    Stmts   Miss Branch BrPart   Cover   Missing
+------------------------------------------------------------------------------------
+scripts/__init__.py                         0      0      0      0 100.00%
+scripts/artifact_io.py                     34      0     10      0 100.00%
+scripts/artifact_models.py                 44      0      0      0 100.00%
+scripts/benchmark_complexity.py            61      6     16      4  87.01%   32, 66, 72, 113-114, 118
+scripts/benchmark_models.py                50      0      6      0 100.00%
+scripts/benchmark_plots.py                 30      0      6      0 100.00%
+scripts/build_manuscript.py                78      5     24      3  92.16%   29, 110, 161-162, 166
+scripts/check_installed_wheel.py           90     90     28      0   0.00%   12-205
+scripts/example_alphabet.py                31      2      6      1  91.89%   34-35
+scripts/example_inference.py                8      0      0      0 100.00%
+scripts/example_models.py                 103      0     28      0 100.00%
+scripts/example_planning.py                37      1      6      0  97.67%   57
+scripts/example_reports.py                 18      0      0      0 100.00%
+scripts/example_runners.py                 62      8     24      1  89.53%   74-75, 80-87
+scripts/example_spatial.py                 16      0      2      0 100.00%
+scripts/manuscript_claims.py               19      0     10      0 100.00%
+scripts/manuscript_data.py                 75      2     12      2  95.40%   95, 122
+scripts/manuscript_hydration.py            52      1     18      3  94.29%   39->41, 41->43, 44
+scripts/manuscript_power.py                28      0      6      0 100.00%
+scripts/manuscript_power_tables.py         29      0      6      0 100.00%
+scripts/manuscript_profile.py              85      1     14      1  97.98%   114
+scripts/manuscript_tables.py               42      3     12      2  90.74%   21, 24-25
+scripts/manuscript_variables.py            49      2     14      2  93.65%   174, 179
+scripts/manuscript_verification.py         67      1     16      1  97.59%   76
+scripts/plot_experiments.py                28      0      6      0 100.00%
+scripts/power_analysis.py                  64      8     18      3  84.15%   43-44, 49-54, 140-141
+scripts/power_fields.py                    37      3      6      2  88.37%   60-61, 71
+scripts/power_models.py                   118      4     20      4  94.20%   140, 145, 149, 165
+scripts/power_plan.py                      76      2     20      2  95.83%   86, 97
+scripts/power_plots.py                     85      1     14      1  97.98%   26
+scripts/power_preflight.py                 67      8     30     24  62.89%   15-16, 23->24, 23->27, 33->35, 35->36, 36->37, 36->40, 41-42, 47->48, 47->51, 64->115, 64->65, 65->64, 66, 68->76, 77->80, 81-82, 84->85, 84->86, 108, 109->110, 109->114, 127->128, 127->131, 131->132, 131->135
+scripts/power_serialization.py             24      0      0      0 100.00%
+scripts/power_storage.py                   27      0      2      0 100.00%
+scripts/power_summary.py                   22      0      4      0 100.00%
+scripts/power_validation_fields.py         91      3     34      2  96.00%   61, 100-101
+scripts/power_validation_inference.py      70      2     22      1  96.74%   101-102
+scripts/render_manuscript.py               98      7     36      5  91.04%   35-36, 45, 97, 124, 131, 135
+scripts/result_replay.py                   33      6     14      2  78.72%   42-43, 63-66
+scripts/run_experiments.py                124     10     34      4  89.87%   35, 151-152, 188-193, 236-237, 241
+scripts/run_power.py                       52      4     14      2  90.91%   24, 86-87, 91
+scripts/run_study.py                       49      4      6      2  89.09%   26, 95-96, 100
+scripts/study_analysis.py                  69      9     26      3  83.16%   104-107, 114-117, 192
+scripts/study_diagnostics.py               75      1     18      2  96.77%   64, 97->90
+scripts/study_fields.py                    64      6     32      4  89.58%   48-49, 62, 85-86, 88
+scripts/study_models.py                   129      5     24      5  93.46%   64, 88, 180, 184, 186
+scripts/study_plot_helpers.py              14      0      6      1  95.00%   30->39
+scripts/study_plots.py                     86      0     18      0 100.00%
+scripts/template_provenance.py             58      4     16      4  89.19%   55, 76, 81, 86
+scripts/validate_artifacts.py             172     18     86     11  87.21%   39, 110, 129, 140-145, 176, 190-194, 205, 210, 272, 281, 285
+scripts/validate_benchmarks.py             46      1     18      1  96.88%   30
+scripts/validate_power.py                  70      0     22      0 100.00%
+scripts/validate_publication.py           112     15     48      9  85.00%   58, 60, 62, 64, 71, 155-164, 166, 168-170, 172-183
+scripts/validate_study.py                  80      7     34      7  87.72%   32, 35, 38, 54, 84, 87, 101
+------------------------------------------------------------------------------------
+TOTAL                                    3148    250    892    121  89.68%
+Coverage JSON written to file output/reports/verification/infrastructure-coverage-power.json
+Required test coverage of 60% reached. Total coverage: 89.68%
+======================== 351 passed in 95.58s (0:01:35) ========================

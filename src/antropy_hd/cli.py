@@ -15,6 +15,7 @@ from numpy.typing import NDArray
 from pydantic import JsonValue, ValidationError
 
 from antropy_hd._complexity import InputShape
+from antropy_hd.cli_inference import compare_files
 from antropy_hd.complexity import ComplexityConfig, estimate_complexity
 from antropy_hd.errors import ParameterError
 from antropy_hd.orchestration import METHODS, AnalysisSpec, BatchConfig, canonical_json, run_batch
@@ -100,6 +101,22 @@ def methods_command() -> None:
         None,
         overwrite=False,
     )
+
+
+@app.command("compare")
+def compare_command(
+    first: Annotated[Path, typer.Argument(exists=True, file_okay=True, dir_okay=False)],
+    second: Annotated[Path, typer.Argument(exists=True, file_okay=True, dir_okay=False)],
+    config: Annotated[Path, typer.Option(exists=True, file_okay=True, dir_okay=False)],
+    output: Annotated[Path | None, typer.Option()] = None,
+    overwrite: Annotated[bool, typer.Option()] = False,
+) -> None:
+    """Compare two explicit observation vectors using a fully declared permutation test."""
+    try:
+        emit(compare_files(first, second, config), output, overwrite=overwrite)
+    except (OSError, ValueError, TypeError, ValidationError) as exc:
+        typer.echo(f"Error: {exc}", err=True)
+        raise typer.Exit(code=2) from exc
 
 
 @app.command("version")

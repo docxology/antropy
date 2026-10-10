@@ -234,5 +234,210 @@
     ],
     "volume": "87",
     "page": null
+  },
+  {
+    "doi": "10.2202/1544-6115.1585",
+    "registry_url": "https://api.crossref.org/works/10.2202%2F1544-6115.1585",
+    "title": [
+      "Permutation P-values Should Never Be Zero: Calculating Exact P-values When Permutations Are Randomly Drawn"
+    ],
+    "author": [
+      {
+        "given": "Belinda",
+        "family": "Phipson",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "The Walter and Eliza Hall Institute of Medical Research"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Gordon K",
+        "family": "Smyth",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "The Walter and Eliza Hall Institute of Medical Reseach"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "volume": "9",
+    "issue": "1",
+    "page": null,
+    "journal": [
+      "Statistical Applications in Genetics and Molecular Biology"
+    ]
+  },
+  {
+    "doi": "10.1002/sim.8086",
+    "registry_url": "https://api.crossref.org/works/10.1002%2Fsim.8086",
+    "title": [
+      "Using simulation studies to evaluate statistical methods"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-5850-3610",
+        "authenticated-orcid": false,
+        "given": "Tim P.",
+        "family": "Morris",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "London Hub for Trials Methodology Research MRC Clinical Trials Unit at UCL London United Kingdom"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6718-7661",
+        "authenticated-orcid": false,
+        "given": "Ian R.",
+        "family": "White",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "London Hub for Trials Methodology Research MRC Clinical Trials Unit at UCL London United Kingdom"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-8378-8259",
+        "authenticated-orcid": false,
+        "given": "Michael J.",
+        "family": "Crowther",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Biostatistics Research Group, Department of Health Sciences University of Leicester Leicester United Kingdom"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "volume": "38",
+    "issue": "11",
+    "page": "2074-2102",
+    "journal": [
+      "Statistics in Medicine"
+    ]
+  },
+  {
+    "doi": "10.1214/aos/1176344552",
+    "registry_url": "https://api.crossref.org/works/10.1214%2Faos%2F1176344552",
+    "title": [
+      "Bootstrap Methods: Another Look at the Jackknife"
+    ],
+    "author": [
+      {
+        "given": "B.",
+        "family": "Efron",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "volume": "7",
+    "issue": "1",
+    "page": null,
+    "journal": [
+      "The Annals of Statistics"
+    ]
+  },
+  {
+    "doi": "10.1214/ss/1009213286",
+    "registry_url": "https://api.crossref.org/works/10.1214%2Fss%2F1009213286",
+    "title": [
+      "Interval Estimation for a Binomial Proportion"
+    ],
+    "author": [
+      {
+        "given": "Lawrence D.",
+        "family": "Brown",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "T. Tony",
+        "family": "Cai",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Anirban",
+        "family": "DasGupta",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "volume": "16",
+    "issue": "2",
+    "page": null,
+    "journal": [
+      "Statistical Science"
+    ]
+  },
+  {
+    "source_url": "https://www.jstor.org/stable/4615733",
+    "verified_original_copy": "https://www.ime.usp.br/~abe/lista/pdf4R8xPVzCnX.pdf",
+    "title": "A Simple Sequentially Rejective Multiple Test Procedure",
+    "author": "Sture Holm",
+    "journal": "Scandinavian Journal of Statistics",
+    "year": 1979,
+    "volume": 6,
+    "issue": 2,
+    "pages": "65\u201370"
   }
 ]

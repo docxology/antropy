@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{21}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -17,6 +17,12 @@ D.~S. Broomhead and G.~P. King.
 \newblock \emph{Physica D: Nonlinear Phenomena}, 20:\penalty0 217--236, 1986.
 \newblock \doi{10.1016/0167-2789(86)90031-X}.
 
+\bibitem[Brown et~al.(2001)Brown, Cai, and DasGupta]{brown2001interval}
+Lawrence~D. Brown, T.~Tony Cai, and Anirban DasGupta.
+\newblock Interval estimation for a binomial proportion.
+\newblock \emph{Statistical Science}, 16\penalty0 (2), 2001.
+\newblock \doi{10.1214/ss/1009213286}.
+
 \bibitem[Chen et~al.(2007)Chen, Wang, Xie, and Yu]{chen2007}
 Weiting Chen, Zhizhong Wang, Hongbo Xie, and Wangxin Yu.
 \newblock Characterization of surface emg signal based on fuzzy entropy.
@@ -30,6 +36,12 @@ Madalena Costa, Ary~L. Goldberger, and C.-K. Peng.
 \newblock \emph{Physical Review Letters}, 89:\penalty0 068102, 2002.
 \newblock \doi{10.1103/PhysRevLett.89.068102}.
 
+\bibitem[Efron(1979)]{efron1979bootstrap}
+Bradley Efron.
+\newblock Bootstrap methods: Another look at the jackknife.
+\newblock \emph{The Annals of Statistics}, 7\penalty0 (1), 1979.
+\newblock \doi{10.1214/aos/1176344552}.
+
 \bibitem[Fadlallah et~al.(2013)Fadlallah, Chen, Keil, and
   Principe]{fadlallah2013}
 Bilal Fadlallah, Badong Chen, Andreas Keil, and Jose Principe.
@@ -37,6 +49,13 @@ Bilal Fadlallah, Badong Chen, Andreas Keil, and Jose Principe.
   incorporating amplitude information.
 \newblock \emph{Physical Review E}, 87:\penalty0 022911, 2013.
 \newblock \doi{10.1103/PhysRevE.87.022911}.
+
+\bibitem[Holm(1979)]{holm1979}
+Sture Holm.
+\newblock A simple sequentially rejective multiple test procedure.
+\newblock \emph{Scandinavian Journal of Statistics}, 6\penalty0 (2):\penalty0
+  65--70, 1979.
+\newblock URL \url{https://www.jstor.org/stable/4615733}.
 
 \bibitem[Li et~al.(2015)Li, Liu, Li, Zheng, Liu, and Hou]{li2015distribution}
 Peng Li, Chengyu Liu, Ke~Li, Dingchang Zheng, Changchun Liu, and Yinglong Hou.
@@ -60,6 +79,21 @@ M.~T. Martin, A.~Plastino, and O.~A. Rosso.
 \newblock \emph{Physica A: Statistical Mechanics and its Applications},
   369:\penalty0 439--462, 2006.
 \newblock \doi{10.1016/j.physa.2005.11.053}.
+
+\bibitem[Morris et~al.(2019)Morris, White, and Crowther]{morris2019simulation}
+Tim~P. Morris, Ian~R. White, and Michael~J. Crowther.
+\newblock Using simulation studies to evaluate statistical methods.
+\newblock \emph{Statistics in Medicine}, 38\penalty0 (11):\penalty0 2074--2102,
+  2019.
+\newblock \doi{10.1002/sim.8086}.
+
+\bibitem[Phipson and Smyth(2010)]{phipson2010permutation}
+Belinda Phipson and Gordon~K. Smyth.
+\newblock Permutation {P}-values should never be zero: Calculating exact
+  {P}-values when permutations are randomly drawn.
+\newblock \emph{Statistical Applications in Genetics and Molecular Biology},
+  9\penalty0 (1), 2010.
+\newblock \doi{10.2202/1544-6115.1585}.
 
 \bibitem[Pincus(1991)]{pincus1991}
 Steven~M. Pincus.

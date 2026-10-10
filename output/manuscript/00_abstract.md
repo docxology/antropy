@@ -5,7 +5,7 @@ probability information, ordinal patterns, spectral distributions and trajectory
 structure. The implementation separates local spatial extraction from pair
 selection and estimator semantics. A common typed result preserves finite,
 undefined and infinite outcomes instead of collapsing them into missing numeric
-values. This manuscript accompanies antropy-hd 0.2.0.
+values. This manuscript accompanies antropy-hd 0.3.0.
 
 The retained baseline contains 54 measured rows. The configured
 replicated study contains 150 fields and 1650 scalar
@@ -15,6 +15,8 @@ with 5 independent generated trials per condition. Analytical
 work estimates report actual blocked-kernel schedules; empirical runtimes retain
 their host and repetition metadata. Source variables, figures and tables are
 generated from the stored reports and validated configuration.
+
+A separate prospective simulation retains 18432 whole-field estimator records, 6912 inference decisions and 108 operating-characteristic cells. The configured procedure compares 4 estimators under holm multiplicity control at significance level 0.05, with pointwise 0.95 confidence intervals. Availability and selected rejection retain separate denominators; these synthetic operating characteristics do not certify a scientific sample size.
 
 The published HDSE construction motivates the local-template estimator, while
 the manuscript distinguishes source conventions, ambiguities and explicit

@@ -1,0 +1,205 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Volumes/GitVault/Username/docxology/Public/antropy
+configfile: pyproject.toml
+testpaths: tests
+plugins: hypothesis-6.168.5, cov-7.1.0
+collected 809 items
+
+tests/test_artifact_roundoff.py ................                         [  1%]
+tests/test_artifacts.py ................................................ [  7%]
+                                                                         [  7%]
+tests/test_benchmarks.py .........................                       [ 11%]
+tests/test_cli.py ..................                                     [ 13%]
+tests/test_cli_inference.py ....                                         [ 13%]
+tests/test_complexity.py ............................................... [ 19%]
+........................                                                 [ 22%]
+tests/test_hdse.py ..................................................... [ 29%]
+...........                                                              [ 30%]
+tests/test_inference.py .................................                [ 34%]
+tests/test_inference_intervals.py ...................................... [ 39%]
+............                                                             [ 40%]
+tests/test_inference_validation.py ........................              [ 43%]
+tests/test_information.py .............................................. [ 49%]
+...................................................                      [ 55%]
+tests/test_manuscript.py ...............................                 [ 59%]
+tests/test_manuscript_tables.py ..                                       [ 59%]
+tests/test_manuscript_verification.py ...................                [ 62%]
+tests/test_multiscale.py ............                                    [ 63%]
+tests/test_orchestration.py .....................................        [ 68%]
+tests/test_ordinal.py .......................                            [ 70%]
+tests/test_power_models.py FFFFFFFFF......FFFF............FFF...         [ 75%]
+tests/test_power_validation.py .............................             [ 79%]
+tests/test_publication.py .....................                          [ 81%]
+tests/test_spectral.py ..............................                    [ 85%]
+tests/test_statistical.py ........................                       [ 88%]
+tests/test_study.py ....................                                 [ 90%]
+tests/test_study_artifacts.py ...............                            [ 92%]
+tests/test_symbolization.py ..................                           [ 94%]
+tests/test_template_variants.py ........................................ [ 99%]
+.                                                                        [100%]
+
+=================================== FAILURES ===================================
+_____ test_available_decision_requires_retained_inference[mean_difference] _____
+tests/test_power_models.py:83: in test_available_decision_requires_retained_inference
+    _ = PowerDecision.model_validate(data)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Available decisions require every inference value [type=value_error, input_value={'scenario_id': 'contrast...64 rational contrasts'}}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+_________ test_available_decision_requires_retained_inference[p_value] _________
+tests/test_power_models.py:83: in test_available_decision_requires_retained_inference
+    _ = PowerDecision.model_validate(data)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Available decisions require every inference value [type=value_error, input_value={'scenario_id': 'contrast...64 rational contrasts'}}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+____ test_available_decision_requires_retained_inference[adjusted_p_value] _____
+tests/test_power_models.py:83: in test_available_decision_requires_retained_inference
+    _ = PowerDecision.model_validate(data)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Available decisions require every inference value [type=value_error, input_value={'scenario_id': 'contrast...64 rational contrasts'}}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+__________ test_available_decision_requires_retained_inference[test] ___________
+tests/test_power_models.py:83: in test_available_decision_requires_retained_inference
+    _ = PowerDecision.model_validate(data)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Test availability differs from the retained field statuses [type=value_error, input_value={'scenario_id': 'contrast...d': False, 'test': None}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+_______ test_unavailable_decision_cannot_impute_a_zero[mean_difference] ________
+tests/test_power_models.py:92: in test_unavailable_decision_cannot_impute_a_zero
+    _ = PowerDecision.model_validate(data)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Unavailable decisions must remain null and unrejected [type=value_error, input_value={'scenario_id': 'contrast...d': False, 'test': None}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+___________ test_unavailable_decision_cannot_impute_a_zero[p_value] ____________
+tests/test_power_models.py:92: in test_unavailable_decision_cannot_impute_a_zero
+    _ = PowerDecision.model_validate(data)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Unavailable decisions must remain null and unrejected [type=value_error, input_value={'scenario_id': 'contrast...d': False, 'test': None}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+_______ test_unavailable_decision_cannot_impute_a_zero[adjusted_p_value] _______
+tests/test_power_models.py:92: in test_unavailable_decision_cannot_impute_a_zero
+    _ = PowerDecision.model_validate(data)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Unavailable decisions must remain null and unrejected [type=value_error, input_value={'scenario_id': 'contrast...d': False, 'test': None}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+__________ test_unavailable_decision_cannot_claim_rejection[rejected] __________
+tests/test_power_models.py:101: in test_unavailable_decision_cannot_claim_rejection
+    _ = PowerDecision.model_validate(data)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Unavailable decisions must remain null and unrejected [type=value_error, input_value={'scenario_id': 'contrast...ed': True, 'test': None}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+________ test_unavailable_decision_cannot_claim_rejection[raw_rejected] ________
+tests/test_power_models.py:101: in test_unavailable_decision_cannot_claim_rejection
+    _ = PowerDecision.model_validate(data)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Unavailable decisions must remain null and unrejected [type=value_error, input_value={'scenario_id': 'contrast...d': False, 'test': None}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+__ test_available_values_must_equal_the_actual_retained_test[mean_difference] __
+tests/test_power_models.py:129: in test_available_values_must_equal_the_actual_retained_test
+    data[field] += 1 if field != "p_value" else 0.1
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Decision values differ from its retained test [type=value_error, input_value={'scenario_id': 'contrast...64 rational contrasts'}}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+______ test_available_values_must_equal_the_actual_retained_test[p_value] ______
+tests/test_power_models.py:129: in test_available_values_must_equal_the_actual_retained_test
+    data[field] += 1 if field != "p_value" else 0.1
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Decision values differ from its retained test [type=value_error, input_value={'scenario_id': 'contrast...64 rational contrasts'}}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+____ test_available_values_must_equal_the_actual_retained_test[sample_size] ____
+tests/test_power_models.py:129: in test_available_values_must_equal_the_actual_retained_test
+    data[field] += 1 if field != "p_value" else 0.1
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Decision values differ from its retained test [type=value_error, input_value={'scenario_id': 'contrast...64 rational contrasts'}}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+________________ test_nonfinite_counts_cannot_exceed_the_group _________________
+tests/test_power_models.py:135: in test_nonfinite_counts_cannot_exceed_the_group
+    data = unavailable_decision.model_dump() | {"undefined_first": 2, "infinite_first": 1}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerDecision
+E     Value error, decision: Nonfinite counts exceed the declared group size [type=value_error, input_value={'scenario_id': 'contrast...d': False, 'test': None}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+_______________ test_generator_does_not_accept_paired_inference ________________
+tests/test_power_models.py:166: in test_generator_does_not_accept_paired_inference
+    data = power_plan.model_dump() | {
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerPlan
+E     Value error, pairing: This generator supplies independent field groups [type=value_error, input_value={'schema_version': 1, 'se..._report_bytes': 2000000}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+__ test_scenario_label_cannot_change_the_generating_hypothesis[null-0.25-0.5] __
+tests/test_power_models.py:177: in test_scenario_label_cannot_change_the_generating_hypothesis
+    def test_scenario_label_cannot_change_the_generating_hypothesis(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerScenario
+E     Value error, scenario: Null labels require identical generating probabilities [type=value_error, input_value={'id': 'trial', 'label': ...econd_probability': 0.5}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+_ test_scenario_label_cannot_change_the_generating_hypothesis[alternative-0.25-0.25] _
+tests/test_power_models.py:177: in test_scenario_label_cannot_change_the_generating_hypothesis
+    def test_scenario_label_cannot_change_the_generating_hypothesis(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for PowerScenario
+E     Value error, scenario: Null labels require identical generating probabilities [type=value_error, input_value={'id': 'trial', 'label': ...cond_probability': 0.25}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/value_error
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.14.7-final-0 _______________
+
+Name                                 Stmts   Miss Branch BrPart   Cover   Missing
+---------------------------------------------------------------------------------
+src/antropy_hd/__init__.py              15      0      0      0 100.00%
+src/antropy_hd/_complexity.py          129      4     28      2  96.18%   70-71, 219-220
+src/antropy_hd/_inference.py           137     14     54      7  89.01%   83-84, 120-121, 142-143, 185-186, 197-198, 210-211, 221-222
+src/antropy_hd/_information.py          70      0     16      0 100.00%
+src/antropy_hd/cli.py                   79      6      8      1  91.95%   115-119, 155
+src/antropy_hd/cli_inference.py         23      8      6      2  58.62%   22, 24, 27-29, 34-36
+src/antropy_hd/complexity.py            89      6     34      2  91.87%   164-173, 222-223
+src/antropy_hd/distribution.py          45      1     18      1  96.83%   62
+src/antropy_hd/embedding.py             70      3     20      2  94.44%   39-40, 125
+src/antropy_hd/errors.py                 9      0      0      0 100.00%
+src/antropy_hd/fuzzy.py                 54      1     16      2  95.71%   41, 67->55
+src/antropy_hd/inference.py             75      2     20      1  96.84%   94-95
+src/antropy_hd/inference_models.py      76      0     16      0 100.00%
+src/antropy_hd/information.py          112      3     32      2  96.53%   146-147, 155
+src/antropy_hd/models.py                73      7     20      5  87.10%   38, 48, 54-55, 96-97, 105
+src/antropy_hd/multiscale.py            35      0      8      0 100.00%
+src/antropy_hd/orchestration.py         88      0     10      0 100.00%
+src/antropy_hd/ordinal.py               48      1     10      1  96.55%   54
+src/antropy_hd/pairs.py                 65      5     26      3  91.21%   32-33, 43, 78-79
+src/antropy_hd/spectral.py              62      3     10      1  94.44%   129, 136-137
+src/antropy_hd/statistical.py           28      0      2      0 100.00%
+src/antropy_hd/symbolization.py         28      0      2      0 100.00%
+src/antropy_hd/template_entropy.py      65      0     14      0 100.00%
+src/antropy_hd/validation.py            37      3     14      1  92.16%   51-52, 54
+---------------------------------------------------------------------------------
+TOTAL                                 1512     67    384     33  94.51%
+Coverage JSON written to file work/source-r1-coverage.json
+Required test coverage of 90.0% reached. Total coverage: 94.51%
+=========================== short test summary info ============================
+FAILED tests/test_power_models.py::test_available_decision_requires_retained_inference[mean_difference]
+FAILED tests/test_power_models.py::test_available_decision_requires_retained_inference[p_value]
+FAILED tests/test_power_models.py::test_available_decision_requires_retained_inference[adjusted_p_value]
+FAILED tests/test_power_models.py::test_available_decision_requires_retained_inference[test]
+FAILED tests/test_power_models.py::test_unavailable_decision_cannot_impute_a_zero[mean_difference]
+FAILED tests/test_power_models.py::test_unavailable_decision_cannot_impute_a_zero[p_value]
+FAILED tests/test_power_models.py::test_unavailable_decision_cannot_impute_a_zero[adjusted_p_value]
+FAILED tests/test_power_models.py::test_unavailable_decision_cannot_claim_rejection[rejected]
+FAILED tests/test_power_models.py::test_unavailable_decision_cannot_claim_rejection[raw_rejected]
+FAILED tests/test_power_models.py::test_available_values_must_equal_the_actual_retained_test[mean_difference]
+FAILED tests/test_power_models.py::test_available_values_must_equal_the_actual_retained_test[p_value]
+FAILED tests/test_power_models.py::test_available_values_must_equal_the_actual_retained_test[sample_size]
+FAILED tests/test_power_models.py::test_nonfinite_counts_cannot_exceed_the_group
+FAILED tests/test_power_models.py::test_generator_does_not_accept_paired_inference
+FAILED tests/test_power_models.py::test_scenario_label_cannot_change_the_generating_hypothesis[null-0.25-0.5]
+FAILED tests/test_power_models.py::test_scenario_label_cannot_change_the_generating_hypothesis[alternative-0.25-0.25]
+================== 16 failed, 793 passed in 84.36s (0:01:24) ===================

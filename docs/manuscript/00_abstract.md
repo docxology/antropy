@@ -16,6 +16,8 @@ work estimates report actual blocked-kernel schedules; empirical runtimes retain
 their host and repetition metadata. Source variables, figures and tables are
 generated from the stored reports and validated configuration.
 
+{{POWER_ABSTRACT}}
+
 The published HDSE construction motivates the local-template estimator, while
 the manuscript distinguishes source conventions, ambiguities and explicit
 extensions. The experiments are controlled synthetic demonstrations rather than

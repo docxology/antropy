@@ -32,7 +32,12 @@ def prepare_project(root: Path) -> Path:
     shutil.copytree(REPOSITORY / "docs/manuscript", root / "docs/manuscript")
     profile_path = root / "docs/manuscript/project.yaml"
     profile = yaml.safe_load(profile_path.read_text())
-    profile.update(study_required=False, complexity_required=False, benchmark_required=False)
+    profile.update(
+        study_required=False,
+        complexity_required=False,
+        benchmark_required=False,
+        power_required=False,
+    )
     profile_path.write_text(yaml.safe_dump(profile, sort_keys=False))
     for name in ("domain_profile.yaml", "pyproject.toml", "uv.lock"):
         shutil.copyfile(REPOSITORY / name, root / name)

@@ -12,7 +12,8 @@ template_exemplar: projects/templates/template_code_project/manuscript
 study_required: true
 complexity_required: true
 benchmark_required: true
-verification_prefix: improved
+power_required: true
+verification_prefix: power
 infrastructure_coverage_floor: 60
 numeric_digits: 6
 language: en
@@ -36,6 +37,7 @@ sections:
   - 05_experimental_setup.md
   - 08_computational_complexity.md
   - 03_results.md
+  - 11_inference_and_power.md
   - 06_reproducibility.md
   - 04_conclusion.md
   - 99_references.md
@@ -81,3 +83,15 @@ figures:
     label: cost
     caption: 'Measured runtime and configured deterministic work estimates. Host timings are diagnostic observations; exact scheduled counts and asymptotic terms have separate interpretations.'
     dependency: benchmark
+  - token: POWER_REJECTION_FIGURE
+    source: output/power/figures/rejection-rates.png
+    label: power-rejection
+    caption: 'Prospective whole-field rejection rates at alpha {{POWER_ALPHA}}, with {{POWER_MULTIPLICITY}} adjustment over {{POWER_ANALYSIS_COUNT}} declared estimators. Each cell uses {{POWER_REPETITIONS}} outer repetitions and group sizes {{POWER_SAMPLE_SIZES}}. Solid curves count all attempts; dotted curves condition on availability, with gaps where no comparison is available. Shading shows pointwise Wilson intervals at confidence level {{POWER_CONFIDENCE}}. Horizontal references show the configured target {{POWER_TARGET}} and alpha. Unavailable decisions remain unrejected in unconditional rates.'
+    dependency: power
+    float_page: true
+  - token: POWER_AVAILABILITY_FIGURE
+    source: output/power/figures/availability-calibration.png
+    label: power-availability
+    caption: 'Availability and unconditional null calibration for {{POWER_NULL_SCENARIOS_CAPTION}}. Raw rejection is compared with {{POWER_MULTIPLICITY}} adjustment over {{POWER_ANALYSIS_COUNT}} declared estimators at alpha {{POWER_ALPHA}}. Whole fields are the independent units; {{POWER_REPETITIONS}} repetitions estimate each cell. Intervals are pointwise at confidence level {{POWER_CONFIDENCE}}.'
+    dependency: power
+    float_page: true

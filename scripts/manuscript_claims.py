@@ -66,7 +66,40 @@ def write_claims(root: Path, data: PublicationData) -> None:
                 "sources": ["benchmark_plan.yaml", "output/study/benchmark.json"],
             }
         )
-    if data.study is not None or data.benchmark is not None or data.complexity is not None:
+    if data.power is not None:
+        claims.extend(
+            [
+                {
+                    "id": "power-design",
+                    "kind": "configuration",
+                    "sources": ["power_plan.yaml", "output/power/report.json"],
+                },
+                {
+                    "id": "power-estimates",
+                    "kind": "measured",
+                    "sources": [
+                        "output/power/report.json",
+                        "output/power/decisions.csv",
+                        "output/power/summary.csv",
+                    ],
+                },
+                {
+                    "id": "inference-method",
+                    "kind": "method",
+                    "sources": [
+                        "docs/manuscript/11_inference_and_power.md",
+                        "src/antropy_hd/inference.py",
+                        "docs/manuscript/references.bib",
+                    ],
+                },
+            ]
+        )
+    if (
+        data.study is not None
+        or data.benchmark is not None
+        or data.complexity is not None
+        or data.power is not None
+    ):
         claims.append(
             {
                 "id": "template-renderer",

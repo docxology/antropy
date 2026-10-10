@@ -45,7 +45,7 @@ diagnostics. `finite` requires a finite value; `undefined` and `infinite` requir
 package version, input shape, canonical array hash, consumed configuration and
 canonical configuration hash. The CLI also hashes the actual input file bytes.
 
-NPY preserves arbitrary dimension; loading disables pickle. CSV always denotes
+NPY preserves arbitrary dimension; loading disables pickle. CSV analysis input denotes
 a two-dimensional numeric grid, including one-row or one-column files. A one-
 dimensional signal should use NPY. Boolean, string, object, complex, scalar,
 empty and nonfinite arrays fail. Output creation is exclusive by default;
@@ -64,3 +64,13 @@ accepts positive infinity for the min-entropy limit; non-standard Infinity/NaN
 JSON is rejected by strict serialization, so that order currently requires the
 Python API. This constraint does not erase finite/infinite/undefined estimate
 statuses, which remain explicitly represented in CLI results.
+
+The `compare` command consumes two explicit observation vectors and a required
+`PermutationConfig` JSON file, including a seed. For this command only, CSV can
+be a single row or column of observation values; an NPY input must be a vector.
+It rejects multidimensional grids rather than treating their cells as independent
+subjects. The result binds both actual input files and the consumed configuration
+bytes. See [inference contracts](inference.md) for pairing, tail, enumeration,
+resampling, work-limit and interval controls. `fixed_alphabet` is a separate typed
+transformation with immutable increasing cuts and explicit tie direction; it
+returns counts and probabilities over the entire declared alphabet.

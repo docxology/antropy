@@ -14,6 +14,7 @@ from pydantic import BaseModel, ConfigDict, Field, JsonValue, TypeAdapter
 from antropy_hd.errors import ParameterError
 from scripts.benchmark_models import BenchmarkReport
 from scripts.manuscript_profile import ManuscriptContext
+from scripts.power_models import PowerReport
 from scripts.study_models import StudyComplexityRecord, StudyReport, StudyRow, StudySummary
 
 
@@ -56,6 +57,7 @@ class PublicationData(BaseModel):
     summaries: tuple[StudySummary, ...]
     complexity: ComplexityReport | None
     benchmark: BenchmarkReport | None
+    power: PowerReport | None
 
 
 def file_sha256(path: Path) -> str:
@@ -126,6 +128,7 @@ def read_data(root: Path, context: ManuscriptContext) -> PublicationData:
     benchmark = json_source(
         root / "output/study/benchmark.json", required=profile.benchmark_required
     )
+    power = json_source(root / "output/power/report.json", required=profile.power_required)
     return PublicationData(
         baseline=baseline,
         study=study,
@@ -133,4 +136,5 @@ def read_data(root: Path, context: ManuscriptContext) -> PublicationData:
         summaries=summaries,
         complexity=None if complexity is None else ComplexityReport.model_validate(complexity),
         benchmark=None if benchmark is None else BenchmarkReport.model_validate(benchmark),
+        power=None if power is None else PowerReport.model_validate(power),
     )

@@ -1,0 +1,35 @@
+schema_version: 1
+kind: inference
+first:
+- 0.1
+- 0.2
+- 0.4
+- 0.3
+second:
+- 0.3
+- 0.5
+- 0.8
+- 0.6
+permutation:
+  seed: 20261009
+  pairing: paired
+  alternative: two_sided
+  mode: auto
+  resamples: 999
+  max_exact_allocations: 100000
+  max_samples: 10000
+  max_resampling_work: 100000000
+bootstrap:
+  seed: 20261010
+  pairing: paired
+  resamples: 999
+  confidence_level: 0.95
+  max_samples: 10000
+  max_resampling_work: 100000000
+binomial:
+  successes: 8
+  total: 20
+  confidence_level: 0.95
+additional_p_values:
+- 0.04
+- 0.2

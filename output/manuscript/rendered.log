@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.9.18)  9 OCT 2026 15:57
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.9.18)  9 OCT 2026 16:49
 entering extended mode
  %&-line parsing enabled.
 **_combined_manuscript.tex
@@ -1297,62 +1297,62 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
  [1]
 LaTeX Font Info:    Font shape `TU/lmmono10-regular.otf(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 284.
+(Font)              scaled to size 10.95pt on input line 292.
 
 [2]
+ignored: Infinite glue shrinkage found in box being split [3]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 10.95pt on input line 344.
+(Font)              scaled to size 10.95pt on input line 406.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 7.665pt on input line 344.
+(Font)              scaled to size 7.665pt on input line 406.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 5.475pt on input line 344.
+(Font)              scaled to size 5.475pt on input line 406.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 10.95099pt on input line 344.
+(Font)              scaled to size 10.95099pt on input line 406.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 7.66568pt on input line 344.
+(Font)              scaled to size 7.66568pt on input line 406.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 5.4755pt on input line 344.
+(Font)              scaled to size 5.4755pt on input line 406.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 10.94882pt on input line 344.
+(Font)              scaled to size 10.94882pt on input line 406.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 7.66417pt on input line 344.
+(Font)              scaled to size 7.66417pt on input line 406.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 5.47441pt on input line 344.
- [3] [4]
-ignored: Infinite glue shrinkage found in box being split [5] [6]
+(Font)              scaled to size 5.47441pt on input line 406.
+ [4] [5] [6] [7] [8]
 File: ../figures/input-fields.png Graphic file (type bmp)
 <../figures/input-fields.png>
- [7]
+ [9]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 639.
+(Font)              scaled to size 10.0pt on input line 750.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 639.
+(Font)              scaled to size 7.0pt on input line 750.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 639.
+(Font)              scaled to size 5.0pt on input line 750.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 639.
+(Font)              scaled to size 10.00092pt on input line 750.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 639.
+(Font)              scaled to size 7.00064pt on input line 750.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 639.
+(Font)              scaled to size 5.00046pt on input line 750.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 639.
+(Font)              scaled to size 9.99893pt on input line 750.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 639.
+(Font)              scaled to size 6.99925pt on input line 750.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 639.
+(Font)              scaled to size 4.99947pt on input line 750.
 
-ignored: Infinite glue shrinkage found in box being split [8
+ignored: Infinite glue shrinkage found in box being split [10
 
 
 ]
 File: ../figures/cost-scaling.png Graphic file (type bmp)
 <../figures/cost-scaling.png>
- [9] [10]
+ [11] [12]
 File: ../figures/hdse-tolerance.png Graphic file (type bmp)
 <../figures/hdse-tolerance.png>
 
-ignored: Infinite glue shrinkage found in box being split [11
+ignored: Infinite glue shrinkage found in box being split [13
 
 ]
 File: ../figures/mix-entropy.png Graphic file (type bmp)
@@ -1361,35 +1361,79 @@ File: ../figures/degeneracy.png Graphic file (type bmp)
 <../figures/degeneracy.png>
 File: ../figures/match-probability.png Graphic file (type bmp)
 <../figures/match-probability.png>
- [12] [13] [14] [15]
+ [14] [15] [16] [17]
 File: ../figures/native-v-flattened.png Graphic file (type bmp)
 <../figures/native-v-flattened.png>
- [16]
-ignored: Infinite glue shrinkage found in box being split [17]
+
+[18]
+ignored: Infinite glue shrinkage found in box being split [19]
 File: ../figures/entropy-complexity.png Graphic file (type bmp)
 <../figures/entropy-complexity.png>
+ [20] [21]
+ignored: Infinite glue shrinkage found in box being split [22]
 
-[18] [19]
+LaTeX Font Warning: Font shape `TU/lmmono10-regular.otf(0)/b/n' undefined
+(Font)              using `TU/lmmono10-regular.otf(0)/m/n' instead on input lin
+e 1310.
+
+[23]
 LaTeX Font Info:    Font shape `TU/lmmono10-regular.otf(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 1090.
- [20] (./_combined_manuscript.bbl [21])
+(Font)              scaled to size 10.0pt on input line 1391.
+ [24]
+ignored: Infinite glue shrinkage found in box being split [25]
+ignored: Infinite glue shrinka
+ge found in box being split [26]
+ignored: Infinite glue shrinkage found in box being spli
+t [27]
+ignored: Infinite glue shrinkage found in box being split [28]
+ignored: Infinite glue shrink
+age found in box being split [29]
+ignored: Infinite glue shrinkage found in box being spl
+it [30] [31]
+File: ../figures/rejection-rates.png Graphic file (type bmp)
+<../figures/rejection-rates.png>
+ [32]
+ignored: Infinite glue shrinkage found in box being split [33
+
+
+] [34]
+ignored: Infinite glue shrinkage found in box being split [35] [36]
+ignored: Infinite glue s
+hrinkage found in box being split [37]
+[38]
+File: ../figures/availability-calibration.png Graphic file (type bmp)
+<../figures/availability-calibration.png>
+ [39]
+ignored: Infinite glue shrinkage found in box being split [40
+
+
+]
+ignored: Infinite glue shrinkage found in box being split [41]
+ignored: Infinite glue shrinkage f
+ound in box being split [42]
+ignored: Infinite glue shrinkage found in box being split [4
+3] [44] [45] (./_combined_manuscript.bbl [46])
 
 Package caption Warning: Unused \captionsetup[table] on input line 82.
 See the caption package documentation for explanation.
 
-[22] (./_combined_manuscript.aux)
+[47] (./_combined_manuscript.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
  )
 Here is how much of TeX's memory you used:
- 23743 strings out of 468168
- 432212 string characters out of 5432815
- 1063423 words of memory out of 64000000
- 52130 multiletter control sequences out of 15000+600000
+ 23826 strings out of 468168
+ 434180 string characters out of 5432815
+ 1091376 words of memory out of 64000000
+ 52211 multiletter control sequences out of 15000+600000
  634669 words of font info for 112 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 90i,7n,116p,1017b,562s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,10n,116p,1017b,567s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on _combined_manuscript.pdf (23 pages).
+Output written on _combined_manuscript.pdf (48 pages).

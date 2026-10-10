@@ -21,6 +21,15 @@ applications may require different data sizes, symbolization, boundary treatment
 or more efficient exact and approximate search methods, each with a new
 validation contract.
 
+Prospective rejection depends on the complete generating and decision procedure.
+Whole-field permutation inference separates stochastic null calibration from
+declared alternative detection. Availability determines whether an estimator
+can support a comparison; conditional rejection alone can select a different
+population. The retained uncertainty intervals, missing-decision bounds and
+allocation-resolution limits make that dependence inspectable. They support
+application-specific planning without certifying a sample size for biological
+measurements.
+
 Ant collective behavior and other spatial scientific applications are future
 empirical domains, not findings of this synthetic study. Progress in those
 domains requires controlled measurements, appropriate null models, sensitivity

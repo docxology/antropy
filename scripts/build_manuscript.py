@@ -34,6 +34,7 @@ from scripts.manuscript_profile import load_context
 from scripts.manuscript_variables import publication_variables
 from scripts.render_manuscript import render_pdf
 from scripts.validate_benchmarks import validate_benchmarks
+from scripts.validate_power import validate_power
 from scripts.validate_study import validate_study
 
 REQUIRED_ARTIFACTS: Final[tuple[str, ...]] = (
@@ -65,7 +66,7 @@ def write_manifest(root: Path) -> JsonValue:
     outputs.update(
         path.relative_to(root).as_posix() for path in (root / "output/data").glob("*.npy")
     )
-    for directory in ("output/manuscript", "output/study"):
+    for directory in ("output/manuscript", "output/study", "output/power"):
         outputs.update(
             path.relative_to(root).as_posix()
             for path in (root / directory).rglob("*")
@@ -83,13 +84,24 @@ def write_manifest(root: Path) -> JsonValue:
     }
     for folder in ("src", "scripts"):
         inputs.update(path.relative_to(root).as_posix() for path in (root / folder).rglob("*.py"))
+    for pattern in ("*.py", "*.yaml", "*.md"):
+        inputs.update(
+            path.relative_to(root).as_posix() for path in (root / "examples").rglob(pattern)
+        )
     inputs.update(path.relative_to(root).as_posix() for path in (root / "typings").rglob("*.pyi"))
     inputs.update(
         path.relative_to(root).as_posix()
         for path in (root / "docs/manuscript").glob("*")
         if path.is_file() and path.name not in {"manuscript.md", "claims.json", "project.yaml"}
     )
-    for name in ("study_plan.yaml", "benchmark_plan.yaml", "docs/study-design.md"):
+    for name in (
+        "study_plan.yaml",
+        "benchmark_plan.yaml",
+        "power_plan.yaml",
+        "docs/study-design.md",
+        "docs/power-design.md",
+        "docs/inference.md",
+    ):
         if (root / name).is_file():
             inputs.add(name)
     prefix = load_context(root).profile.verification_prefix
@@ -131,6 +143,8 @@ def build(root: Path) -> Path:
         _ = validate_study(root)
     if data.benchmark is not None:
         _ = validate_benchmarks(root)
+    if data.power is not None:
+        _ = validate_power(root)
     values = publication_variables(root, context, data)
     _ = hydrate(root, context, values)
     markdown = "\n\n".join(section_texts(root, context, values))

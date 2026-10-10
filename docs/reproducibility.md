@@ -9,7 +9,7 @@ sweeps reuse the same field. Every plan field contributes to execution or a
 resource bound.
 
 Run the research commands in the README in order: baseline, replicated study,
-benchmark, manuscript build and validation. `study_plan.yaml` separately defines
+benchmark, prospective power study, manuscript build and validation. `study_plan.yaml` separately defines
 paired replacement controls, independent trial seeds, fixed alphabet and native
 geometry; `benchmark_plan.yaml` defines real timed kernel requests. Their exact
 schemas and replay policies are documented in [study design](study-design.md).
@@ -19,6 +19,16 @@ and the validated publication profile through the pinned template package.
 The SHA-256 inventory includes source/configuration inputs, generated NPY arrays,
 JSON batches, CSV rows, all selected figures, resolved sections, native compiler
 outputs, template receipt, source manuscript and PDF.
+`power_plan.yaml` supplies independent whole-field contrasts, stochastic nulls,
+fixed analysis families, group-size grids, outer repetitions, inner resampling,
+uncertainty levels and hard work limits. Complete pools, per-subject estimates,
+actual decisions, all denominators and canonical CSV projections are retained;
+the gate independently replays fields, kernels, tests, adjustment and intervals.
+[Power design](power-design.md) states dependence across pool prefixes,
+unavailable-decision policy, prospective scope and statistical limitations.
+Examples read separate strict YAML plans and compose reusable helpers rather
+than embed generation or inferential constants in their entry points.
+
 The manifest is written last. It does not authenticate itself; a reviewed commit
 or release records the manifest's identity externally.
 
@@ -27,7 +37,7 @@ relative path confinement, byte counts and hashes, input-file and canonical-arra
 hashes, consumed configuration hashes, exact batch/CSV analysis coverage, estimate
 values and statuses, effective parameter/diagnostic details, CSV binding in the
 manuscript, PNG geometry and PDF text/provenance. The expanded validators replay
-every study and benchmark result, check complete matrices, verify exact summary
+every study, benchmark and power result, check complete matrices, verify exact summary
 and timing arithmetic, and regenerate manuscript values and hydrated text.
 Native renderer identity, configuration, source inventory, ordered sections,
 TeX, TOC and PDF are checked against the renderer receipt. Adversarial tests remove files,

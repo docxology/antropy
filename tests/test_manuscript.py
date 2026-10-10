@@ -86,7 +86,9 @@ def test_profile_and_project_values_flow_into_resolved_variables(artifacts: Path
     assert "{{" not in manuscript_source(artifacts)
 
 
-@pytest.mark.parametrize("option", ["study_required", "complexity_required", "benchmark_required"])
+@pytest.mark.parametrize(
+    "option", ["study_required", "complexity_required", "benchmark_required", "power_required"]
+)
 def test_required_producer_is_not_silently_omitted(artifacts: Path, option: str) -> None:
     rewrite_profile(artifacts, {option: True})
     with pytest.raises(ParameterError):
@@ -245,6 +247,7 @@ def test_full_profile_renders_authenticated_producer_figures(publication: Path) 
     expected = {
         Path(figure.source).name: file_sha256(publication / figure.source)
         for figure in context.profile.figures
+        if figure.dependency != "power"
     }
     assert receipt["staged_figure_sha256"] == expected
     assert receipt["pdf_sha256"] == file_sha256(pdf)
