@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: Please cite this software and the original estimator sources you use.
 type: software
 title: 'antropy: dimension-agnostic entropy and complexity analysis'
-version: 0.2.0
+version: 0.3.0
 authors:
   - family-names: Friedman
     given-names: Daniel Ari
