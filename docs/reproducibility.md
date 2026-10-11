@@ -30,7 +30,16 @@ Examples read separate strict YAML plans and compose reusable helpers rather
 than embed generation or inferential constants in their entry points.
 
 The manifest is written last. It does not authenticate itself; a reviewed commit
-or release records the manifest's identity externally.
+or release records the manifest's identity externally. The manuscript builder
+also copies `output/pdf/antropy-methods.pdf` to the repository root as
+`antropy-methods.pdf`. Both copies are included in the manifest, and validation
+requires them to be byte-identical; a missing or differing root copy fails.
+
+The v0.3.1 release refreshes manuscript rendering and its renderer receipt while
+retaining the scientific producer snapshots and their original execution
+identities. Rendering does not regenerate those studies. Consult the
+[release entry](releases.md#v031) and its `release-verification.json` for the
+separate scope of scientific replay, renderer, package and archival checks.
 
 The validator independently checks the required artifact floor, nonempty files,
 relative path confinement, byte counts and hashes, input-file and canonical-array

@@ -2,7 +2,7 @@ schema_version: 1
 title: 'antropy: native multidimensional entropy and configurable complexity analysis'
 subtitle: 'Methods, replicated synthetic studies, and resource-aware reproducibility'
 document_id: antropy
-date: '2026-10-09'
+date: '2026-10-11'
 affiliations:
   Daniel Ari Friedman: Active Inference Institute
 orcids: {}
@@ -13,7 +13,7 @@ study_required: true
 complexity_required: true
 benchmark_required: true
 power_required: true
-verification_prefix: power
+verification_prefix: zenodo
 infrastructure_coverage_floor: 60
 numeric_digits: 6
 language: en

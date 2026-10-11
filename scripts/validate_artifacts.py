@@ -57,6 +57,7 @@ REQUIRED_ARTIFACTS: Final[frozenset[str]] = frozenset(
         "output/provenance/experiment-config.json",
         "docs/manuscript/manuscript.md",
         "output/pdf/antropy-methods.pdf",
+        "antropy-methods.pdf",
         "docs/manuscript/claims.json",
     }
 )
@@ -266,7 +267,10 @@ def validate(root: Path, manifest_path: Path | None = None) -> ArtifactReport:
         or int.from_bytes(image[20:24]) < 200
     ):
         fail_artifact("Figure is not a legible PNG artifact")
-    reader = PdfReader(root / "output/pdf/antropy-methods.pdf")
+    pdf = root / "output/pdf/antropy-methods.pdf"
+    if (root / pdf.name).read_bytes() != pdf.read_bytes():
+        fail_artifact("Root PDF differs from the canonical renderer PDF")
+    reader = PdfReader(pdf)
     text = "\n".join(page.extract_text() for page in reader.pages)
     if not reader.pages or csv_hash not in text.replace("\n", ""):
         fail_artifact("PDF lacks the required result and provenance text")

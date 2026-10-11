@@ -5,7 +5,7 @@ probability information, ordinal patterns, spectral distributions and trajectory
 structure. The implementation separates local spatial extraction from pair
 selection and estimator semantics. A common typed result preserves finite,
 undefined and infinite outcomes instead of collapsing them into missing numeric
-values. This manuscript accompanies antropy-hd 0.3.0.
+values. This manuscript accompanies antropy-hd 0.3.1.
 
 The retained baseline contains 54 measured rows. The configured
 replicated study contains 150 fields and 1650 scalar

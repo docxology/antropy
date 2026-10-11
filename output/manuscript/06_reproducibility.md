@@ -16,16 +16,16 @@ coherently altered artifact records are controls proving that checks can fail.
 Configured coverage floors are 90 percent for numerical
 source and 60 percent for research infrastructure.
 
-The configured verification receipts report 900 passing tests, 94.5148 percent source coverage and 90.3808 percent infrastructure coverage. These are recorded runs, not a substitute for independent release review.
+The configured verification receipts report 904 passing tests, 94.5148 percent source coverage and 90.3481 percent infrastructure coverage. These are recorded runs, not a substitute for independent release review.
 
 Receipt identities (SHA-256):
 
 \begingroup\small
 
 ```text
-Source coverage: 03540005d22140e5a9c01a3285f3a7a296fd00face280f7de5ee925a49c6c2f2
-Infra coverage:  eac3d86e592fd68e400e59f9fdaaf572c374a255d6792b2bcebeaacfc5a1a214
-Test log:        8002be50f04715d7253e93f2de3b567791818dcc083ab85ec5923ac4769c6086
+Source coverage: c0244352e54ccbaf78b5b6e9d0fbcead948e8d2dc95047f74e1d983792d0784d
+Infra coverage:  ac676b0754db6e79de1fb87ab59963028dc2e35fd734412b096e789ce007ef8b
+Test log:        234b15d68f951ea5ba9fc70d1078540dc38eeb67a66524c4d1d33ef29d84f46f
 ```
 
 \endgroup
@@ -68,7 +68,7 @@ platform roundoff without changing stored inputs, smoothing matching thresholds
 or relabeling stale results. The initial hosted failure and its adversarial
 regression controls are retained in the project record.
 
-The supplied published PDF is not redistributed. No project DOI, journal
-acceptance, empirical source-paper replication or independent application
-validation is claimed by the software build. Independent scientific and release
+The supplied published PDF is not redistributed. Journal acceptance, empirical
+source-paper replication and independent application validation are not
+established by the software build. Independent scientific and release
 review remains separate from these executable engineering checks.

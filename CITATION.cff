@@ -1,11 +1,14 @@
 cff-version: 1.2.0
 message: Please cite this software and the original estimator sources you use.
 type: software
-title: 'antropy: dimension-agnostic entropy and complexity analysis'
-version: 0.3.0
+title: 'antropy: native multidimensional entropy and configurable complexity analysis'
+version: 0.3.1
+doi: 10.5281/zenodo.23306201
+date-released: 2026-10-11
 authors:
   - family-names: Friedman
     given-names: Daniel Ari
+    affiliation: Active Inference Institute
 repository-code: https://github.com/docxology/antropy
 license: MIT
 abstract: Typed configurable spatial entropy measures with deterministic synthetic experiments and explicit provenance.

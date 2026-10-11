@@ -1,0 +1,11 @@
+{
+  "scenario": "source",
+  "surface": "CLI",
+  "invocation": "uv run pytest --cov=src/antropy_hd --cov-branch --cov-report=term-missing --cov-report=json:work/zenodo-20261011/qa/source-coverage.json --cov-fail-under=90 --junitxml=work/zenodo-20261011/qa/source-junit.xml --basetemp=work/zenodo-20261011/qa/source-fixtures -o cache_dir=work/zenodo-20261011/qa/source-pytest-cache -v",
+  "cwd": "/Volumes/GitVault/Username/docxology/Public/antropy",
+  "COVERAGE_FILE": "/Volumes/GitVault/Username/docxology/Public/antropy/work/zenodo-20261011/qa/source.coverage",
+  "HYPOTHESIS_STORAGE_DIRECTORY": "/Volumes/GitVault/Username/docxology/Public/antropy/work/zenodo-20261011/qa/source-hypothesis",
+  "started": "2026-10-11T22:53:09.765959+00:00",
+  "exit_code": 0,
+  "finished": "2026-10-11T22:55:15.445444+00:00"
+}

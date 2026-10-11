@@ -43,7 +43,7 @@ from antropy_hd.statistical import StatisticalComplexityConfig, statistical_comp
 from antropy_hd.symbolization import SymbolizationConfig, SymbolizationResult, fixed_alphabet
 from antropy_hd.template_entropy import approximate_entropy, fuzzy_entropy, hdse, sample_entropy
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 __all__ = [
     "Alternative",

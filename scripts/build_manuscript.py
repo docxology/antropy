@@ -15,6 +15,7 @@
 
 from __future__ import annotations
 
+import shutil
 import sys
 from pathlib import Path
 from typing import Annotated, Final
@@ -44,6 +45,7 @@ REQUIRED_ARTIFACTS: Final[tuple[str, ...]] = (
     "output/provenance/experiment-config.json",
     "docs/manuscript/manuscript.md",
     "output/pdf/antropy-methods.pdf",
+    "antropy-methods.pdf",
     "docs/manuscript/claims.json",
     "docs/manuscript/project.yaml",
     "output/data/manuscript_variables.json",
@@ -154,6 +156,7 @@ def build(root: Path) -> Path:
     write_claims(root, data)
     pdf = root / "output/pdf/antropy-methods.pdf"
     render_pdf(root, markdown, pdf)
+    _ = shutil.copyfile(pdf, root / pdf.name)
     _ = write_manifest(root)
     return pdf
 

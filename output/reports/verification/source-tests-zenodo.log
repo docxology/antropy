@@ -1,0 +1,8 @@
+Publication projection of the terminal test receipt; original verbose output is retained.
+Full output: output/reports/verification/source-tests-zenodo-full.log
+SHA256: cdacaf72276b2f22027a2c840ddbec91d685cdadb0200cb51722667e33326058
+JUnit: output/reports/verification/source-tests-zenodo.xml
+SHA256: 4df10d0773df2fbc106438587704f3de0edff05a59b4762f15beb5d1db534d6d
+Terminal exit: 0
+Invocation: uv run pytest --cov=src/antropy_hd --cov-branch --cov-report=term-missing --cov-report=json:work/zenodo-20261011/qa/source-coverage.json --cov-fail-under=90 --junitxml=work/zenodo-20261011/qa/source-junit.xml --basetemp=work/zenodo-20261011/qa/source-fixtures -o cache_dir=work/zenodo-20261011/qa/source-pytest-cache -v
+======================= 904 passed in 125.13s (0:02:05) ========================

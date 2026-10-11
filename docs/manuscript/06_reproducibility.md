@@ -56,7 +56,7 @@ platform roundoff without changing stored inputs, smoothing matching thresholds
 or relabeling stale results. The initial hosted failure and its adversarial
 regression controls are retained in the project record.
 
-The supplied published PDF is not redistributed. No project DOI, journal
-acceptance, empirical source-paper replication or independent application
-validation is claimed by the software build. Independent scientific and release
+The supplied published PDF is not redistributed. Journal acceptance, empirical
+source-paper replication and independent application validation are not
+established by the software build. Independent scientific and release
 review remains separate from these executable engineering checks.

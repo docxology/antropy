@@ -1,11 +1,18 @@
 # Changelog
 
-## Unreleased
+## 0.3.1 — 2026-10-11
 
 - Added a documentation index and source quickstart, a complete estimator-family
   overview, version-specific release downloads and manuscript/provenance links.
 - Documented the distinction between current `main` documentation and the
-  published v0.3.0 snapshot, with links to its successful commit and tag checks.
+  historical v0.3.0 snapshot, retaining its commit and tag verification links.
+- Added a root-level methods PDF copied from the manuscript render, included in
+  the provenance manifest, with validation that rejects missing or differing copies.
+- Refreshed the manuscript renderer outputs while retaining the scientific
+  producer snapshots and their recorded provenance.
+- Prepared versioned citation metadata and the eight-asset archival bundle for
+  DOI 10.5281/zenodo.23306201, including an exact-commit source ZIP. Publication
+  and verification status are recorded in the [v0.3.1 release entry](docs/releases.md#v031).
 
 ## 0.3.0
 

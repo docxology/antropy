@@ -5,9 +5,9 @@ result states, computational planning and replicate inference. The distribution
 is `antropy-hd`; import it as `antropy_hd`. Return to the
 [project overview](../README.md) for the scope and development checks.
 
-These pages follow the current `main` branch. For the frozen v0.3.0 bundle, use
-the [tagged documentation](https://github.com/docxology/antropy/tree/v0.3.0/docs)
-and [v0.3.0 downloads](https://github.com/docxology/antropy/releases/tag/v0.3.0).
+These pages follow the current `main` branch. For the v0.3.1 release bundle, use
+the [tagged documentation](https://github.com/docxology/antropy/tree/v0.3.1/docs)
+and [v0.3.1 downloads](https://github.com/docxology/antropy/releases/tag/v0.3.1).
 Documentation updates on `main` do not regenerate or replace those release assets.
 
 ## Start here
@@ -36,10 +36,14 @@ Documentation updates on `main` do not regenerate or replace those release asset
 
 ## Read the manuscript
 
-The [v0.3.0 methods PDF](https://github.com/docxology/antropy/releases/download/v0.3.0/antropy-methods.pdf)
-is this project's generated manuscript. Verify downloaded release assets with
-the accompanying [SHA256SUMS](https://github.com/docxology/antropy/releases/download/v0.3.0/SHA256SUMS)
+The [repository methods PDF](../antropy-methods.pdf) and
+[v0.3.1 PDF asset](https://github.com/docxology/antropy/releases/download/v0.3.1/antropy-methods.pdf)
+contain this project's generated manuscript. Verify downloaded release assets with
+the accompanying [SHA256SUMS](https://github.com/docxology/antropy/releases/download/v0.3.1/SHA256SUMS)
 as described in the [release guide](releases.md#download-verify-and-install).
+The version-specific archive identifier is
+[DOI 10.5281/zenodo.23306201](https://doi.org/10.5281/zenodo.23306201); the
+[release entry](releases.md#v031) records its publication scope.
 The supplied published source paper is not redistributed.
 
 The checkout contains the [manuscript source](manuscript/manuscript.md),

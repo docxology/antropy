@@ -1,18 +1,21 @@
 # antropy
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23306201.svg)](https://doi.org/10.5281/zenodo.23306201)
 [![Main verification](https://github.com/docxology/antropy/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/docxology/antropy/actions/workflows/verify.yml)
 
 **antropy** (entropy + ant) is a dimension-agnostic complexity methods project.
 The distribution is `antropy-hd` and the Python import is `antropy_hd`, avoiding a
 namespace collision with the separate AntroPy time-series project.
 
-[Published v0.3.0](https://github.com/docxology/antropy/releases/tag/v0.3.0)
-provides the numerical wheel, source distribution, methods manuscript and
-verification receipts. Download the [manuscript PDF](https://github.com/docxology/antropy/releases/download/v0.3.0/antropy-methods.pdf),
+[Latest release: v0.3.1](https://github.com/docxology/antropy/releases/tag/v0.3.1)
+collects the numerical wheel, source distribution, exact-commit source archive,
+methods manuscript and verification receipts. Read the [manuscript PDF](antropy-methods.pdf),
 follow the [release installation guide](docs/releases.md#download-verify-and-install),
 or start with the [source quickstart](docs/getting-started.md).
 The [documentation index](docs/README.md) gives a reading order; the
-[changelog](CHANGELOG.md) records versioned changes.
+[changelog](CHANGELOG.md) records versioned changes. The v0.3.1 archive uses
+[DOI 10.5281/zenodo.23306201](https://doi.org/10.5281/zenodo.23306201); see the
+[release entry](docs/releases.md#v031) for publication and verification scope.
 
 The project implements high-dimensional sample entropy (HDSE), related local
 template measures, probability information measures, spatial ordinal measures,
@@ -34,7 +37,7 @@ work limits. `fixed_alphabet` retains declared empty categories and both tails.
 
 ## Choose an analysis
 
-The v0.3.0 registry contains 19 estimators. Input interpretation and geometry
+The v0.3.1 registry contains 19 estimators. Input interpretation and geometry
 determine what each estimate means; see the [method guide](docs/methods-guide.md)
 for populations, units and normalization.
 
@@ -117,7 +120,7 @@ result interpretation and the next steps for each workflow.
 
 ## Inspect the example outputs
 
-![Native and row-major flattened HDSE across paired synthetic replacement fields](output/study/figures/native-v-flattened.png)
+![Native HDSE and row-major flattened sample entropy across paired synthetic replacement fields](output/study/figures/native-v-flattened.png)
 
 Native and row-major flattened analyses change template widths and origin
 populations. Interpret this comparison with the [paired study design](docs/study-design.md)
@@ -175,11 +178,13 @@ Unresolved variables, missing sections, references, glyphs or producer inputs ar
 fatal. The output includes native equations, bibliography, section bookmarks,
 and a real table of contents, plus resolved Markdown, TeX and compiler receipts.
 
-Read the [released manuscript](https://github.com/docxology/antropy/releases/download/v0.3.0/antropy-methods.pdf)
+Read the [repository manuscript](antropy-methods.pdf) or the
+[version-specific PDF](https://github.com/docxology/antropy/releases/download/v0.3.1/antropy-methods.pdf)
 alongside its [scientific manifest](output/provenance/manifest.json) and
 [renderer identity receipt](output/provenance/manuscript-template.json).
-The release guide distinguishes the accepted PDF snapshot, fresh package checks
-and hosted CI; current `main` documentation may contain later updates.
+The release guide distinguishes retained scientific producer snapshots, refreshed
+rendering, package checks and hosted CI; current `main` documentation may contain
+later updates.
 
 Generated arrays, CSV/JSON results, figures, variables, manuscript source and PDF
 are SHA-256 bound in `output/provenance/manifest.json`. Validation also reruns the

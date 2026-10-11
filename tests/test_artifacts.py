@@ -8,6 +8,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 from pydantic import ValidationError
+from pypdf import PdfReader, PdfWriter
 
 from scripts.artifact_io import bounded_path
 from scripts.build_manuscript import build
@@ -41,6 +42,7 @@ def test_complete_pipeline_deterministic_and_bound(baseline: Path, tmp_path: Pat
         "output/figures/hdse-tolerance.png",
         "output/reports/experiments.json",
         "output/pdf/antropy-methods.pdf",
+        "antropy-methods.pdf",
         "docs/manuscript/manuscript.md",
         "output/data/noise-12.npy",
     ],
@@ -281,4 +283,26 @@ def test_live_plan_and_claim_bindings_cannot_be_rehashed_away(
             payload["claims"][0]["sources"] = ["missing.md"]
     mutate_json(artifacts, relative, payload)
     with pytest.raises(ValueError, match=r"snapshot|ledger|Claim source"):
+        validate(artifacts)
+
+
+def test_root_pdf_matches_rendered_artifact(baseline: Path) -> None:
+    canonical = baseline / "output/pdf/antropy-methods.pdf"
+    assert (baseline / canonical.name).read_bytes() == canonical.read_bytes()
+    manifest = json.loads((baseline / "output/provenance/manifest.json").read_text())
+    assert canonical.name in manifest["required_artifacts"]
+    record = next(item for item in manifest["artifacts"] if item["path"] == canonical.name)
+    assert record["kind"] == "output"
+
+
+@pytest.mark.parametrize("reauthenticate", [False, True])
+def test_different_valid_root_pdf_rejected(artifacts: Path, reauthenticate: bool) -> None:
+    root_pdf = artifacts / "antropy-methods.pdf"
+    writer = PdfWriter()
+    writer.add_blank_page(width=612, height=792)
+    writer.write(root_pdf)
+    assert len(PdfReader(root_pdf).pages) == 1
+    if reauthenticate:
+        rehash_record(artifacts, root_pdf.name)
+    with pytest.raises(ValueError, match=r"Root PDF differs|hash mismatch"):
         validate(artifacts)

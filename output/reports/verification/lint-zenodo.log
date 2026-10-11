@@ -1,0 +1,4 @@
+{"scenario": "lint", "surface": "CLI", "invocation": "uv run ruff check .", "cwd": "/Volumes/GitVault/Username/docxology/Public/antropy", "COVERAGE_FILE": "/Volumes/GitVault/Username/docxology/Public/antropy/work/zenodo-20261011/qa/lint.coverage", "HYPOTHESIS_STORAGE_DIRECTORY": "/Volumes/GitVault/Username/docxology/Public/antropy/work/zenodo-20261011/qa/lint-hypothesis", "started": "2026-10-11T22:53:12.211752+00:00"}
+All checks passed!
+
+TERMINAL_EXIT_RECEIPT {"scenario": "lint", "surface": "CLI", "invocation": "uv run ruff check .", "cwd": "/Volumes/GitVault/Username/docxology/Public/antropy", "COVERAGE_FILE": "/Volumes/GitVault/Username/docxology/Public/antropy/work/zenodo-20261011/qa/lint.coverage", "HYPOTHESIS_STORAGE_DIRECTORY": "/Volumes/GitVault/Username/docxology/Public/antropy/work/zenodo-20261011/qa/lint-hypothesis", "started": "2026-10-11T22:53:12.211752+00:00", "exit_code": 0, "finished": "2026-10-11T22:53:12.318707+00:00"}

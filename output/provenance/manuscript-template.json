@@ -1,8 +1,8 @@
 {
   "entrypoint": "infrastructure.rendering.pdf_renderer.PDFRenderer.render_combined",
   "pdf_pages": 48,
-  "pdf_sha256": "eef54c520ec2f7ba67835fa6dee6748532b4ff089857338e5924d73ce774b4a0",
-  "profile_sha256": "d80c8b99f5b9ec75d8f21db0dea4ef0f64c33d9366e93bfe646ea3e605abe723",
+  "pdf_sha256": "fc7223a00626a991947f031ed4a5ff0531a32c1ee077669832aeb97d70119585",
+  "profile_sha256": "a6a5b96d7f85b31434539f6bf144f7d4514a8b707a4a3fe550f31bb6f7a0f7c6",
   "renderer": {
     "distribution": "research-project-template",
     "exemplar": "projects/templates/template_code_project/manuscript",
@@ -849,13 +849,13 @@
     "version": "3.8.0"
   },
   "resolved_sources": {
-    "output/manuscript/00_abstract.md": "4d03e3885fddb8a8bb211cb827ba509f135fff5bd42601da05a89b5511912bfd",
+    "output/manuscript/00_abstract.md": "dfa0068c5412c3bab95ba368b157d3ee02411d6e973e41260ec803eaaaca37bf",
     "output/manuscript/01_introduction.md": "54cc0169236144d79c80fc21454ba86d487bfdb22de4d6f79201da5a6999ae78",
     "output/manuscript/02_methodology.md": "29c2ea8347d2b7f439742d0949959ec833d1594d2010c608baaea95051a61d17",
     "output/manuscript/03_results.md": "b96a4a5f92e205289a8fd543beda3b16d86028a79dfb4c82423a1d58e2121cf3",
     "output/manuscript/04_conclusion.md": "a02248a441b7fbf03fd6d47b74b2db5138359eef6bd049e63a0b46cc1cd82fa9",
     "output/manuscript/05_experimental_setup.md": "54bd516b51e051bb16f63c0c0f71d4db519227ceea5bc3ecb3414ae32406420e",
-    "output/manuscript/06_reproducibility.md": "e69526697ad1e2b301d7206d81c6eced770b2c004468ac91e24fa71423e7f075",
+    "output/manuscript/06_reproducibility.md": "238ec9841504e0e3f879b92ad0e0e78ccfedcc5f5711e11fcf9866cb3719680a",
     "output/manuscript/07_scope_and_related_work.md": "d696895a4f58cdb596ef63ade158868b9a90e8bf905cfc8edfa863051ca79041",
     "output/manuscript/08_computational_complexity.md": "740257160823d130685f2bfc4ae15fb6c0ed884d46e232ab15c355c9e493e142",
     "output/manuscript/11_inference_and_power.md": "cde5075db167b67fb2a17f1118c19a5b1d1ed9f8b3afd9123beb9993e608ff6b",
@@ -875,7 +875,7 @@
     "04_conclusion.md",
     "99_references.md"
   ],
-  "source_date_epoch": 1791504000,
+  "source_date_epoch": 1791676800,
   "staged_figure_sha256": {
     "availability-calibration.png": "fd9015bb05cc3d53c86fa7adb222a8424c8e0e4326ba62c07549f221d8d52337",
     "cost-scaling.png": "44b0ffca629e8edb8901cb8c30a6338e25d9c9f96af62dbc3dab9e69508d2fde",
@@ -888,7 +888,7 @@
     "native-v-flattened.png": "51ec02ba8b2869dd559e933f6f357de63cb0d331a03f43893ab0ba2ec43d1d90",
     "rejection-rates.png": "58109f369e172751b1daf6badb18d72c3af6fad81f1ed67b1c593283daf174f6"
   },
-  "tex_sha256": "e29e8c7a44f9a545a994cd747b18e73389f065b46ced167dde427743b7c566f4",
+  "tex_sha256": "fc6c16a863b18920714b7859b5905aa0d7ca314217e07f59070f6e50f1e3b123",
   "toc_sha256": "b9eaad4dc9c6e60bd179299dc4da676920be2d1eb9d4f00ec5f4391dec4f95ed",
-  "variables_sha256": "c30a8f916e9d9a7cba009c764f57a9dfd711b62790a837b98e56f4f9e3cc645a"
+  "variables_sha256": "813185bc0fb96558fd73909608a629c44291c39e466e926a01acdc69b725c22c"
 }

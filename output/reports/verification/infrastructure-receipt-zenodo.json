@@ -1,0 +1,11 @@
+{
+  "scenario": "infrastructure",
+  "surface": "CLI",
+  "invocation": "uv run pytest tests/test_artifacts.py tests/test_artifact_roundoff.py tests/test_manuscript.py tests/test_manuscript_tables.py tests/test_manuscript_verification.py tests/test_manuscript_power.py tests/test_publication.py tests/test_study.py tests/test_study_artifacts.py tests/test_benchmarks.py tests/test_power_execution.py tests/test_power_models.py tests/test_power_tensor_validation.py tests/test_power_validation.py tests/test_examples.py tests/test_example_controls.py --cov=scripts --cov-branch --cov-report=term-missing --cov-report=json:work/zenodo-20261011/qa/infrastructure-coverage.json --cov-fail-under=60 --junitxml=work/zenodo-20261011/qa/infrastructure-junit.xml --basetemp=work/zenodo-20261011/qa/infrastructure-fixtures -o cache_dir=work/zenodo-20261011/qa/infrastructure-pytest-cache -v",
+  "cwd": "/Volumes/GitVault/Username/docxology/Public/antropy",
+  "COVERAGE_FILE": "/Volumes/GitVault/Username/docxology/Public/antropy/work/zenodo-20261011/qa/infrastructure.coverage",
+  "HYPOTHESIS_STORAGE_DIRECTORY": "/Volumes/GitVault/Username/docxology/Public/antropy/work/zenodo-20261011/qa/infrastructure-hypothesis",
+  "started": "2026-10-11T22:55:15.446464+00:00",
+  "exit_code": 0,
+  "finished": "2026-10-11T22:58:20.903763+00:00"
+}

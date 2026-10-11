@@ -1,5 +1,11 @@
 # Accepted verification evidence
 
+The 0.3.1 manuscript uses the `zenodo` receipt suffix for fresh full-source and
+infrastructure coverage runs. Its test and coverage producer identities are
+bound in the refreshed manuscript and manifest. Scientific experiment, study,
+benchmark and power snapshots retain their original producer identities;
+re-rendering the manuscript does not relabel them as new executions.
+
 The 0.3.0 candidate uses the `power` receipt suffix. Its selected full-source
 and infrastructure JSON inventories cover every current Python module; their
 logs retain the actual passing test counts and branch-inclusive percentages.
