@@ -4,6 +4,11 @@
 The distribution is `antropy-hd` and the Python import is `antropy_hd`, avoiding a
 namespace collision with the separate AntroPy time-series project.
 
+[Release downloads](https://github.com/docxology/antropy/releases/latest) include
+the numerical wheel, source distribution, this project's methods PDF and checksums.
+See the [release and verification guide](docs/releases.md) for installation from
+a downloaded wheel and the [changelog](CHANGELOG.md) for versioned changes.
+
 The project implements high-dimensional sample entropy (HDSE), related local
 template measures, probability information measures, spatial ordinal measures,
 and FFT/SVD entropy through a shared typed result and an explicit configuration
@@ -24,10 +29,13 @@ work limits. `fixed_alphabet` retains declared empty categories and both tails.
 
 ## Install and run
 
-CPython 3.14 and [uv](https://docs.astral.sh/uv/) are required for development.
+The package requires Python 3.14 or newer. For release installation, use the
+[downloaded-wheel instructions](docs/releases.md#download-verify-and-install).
+Development uses CPython 3.14 and [uv](https://docs.astral.sh/uv/); run the following
+from a source checkout:
 
 ```bash
-uv sync --frozen
+uv sync --locked
 uv run antropy-hd methods
 uv run antropy-hd analyze data/demo-grid.csv --measure hdse \
   --parameters '{"embedding":{"shape":2},"match":{"tolerance":0.5}}'
@@ -123,6 +131,11 @@ not claimed as replicated.
 
 ## Verification
 
+Verify downloaded release files against their accompanying checksums using the
+[release guide](docs/releases.md#download-verify-and-install). In a source checkout,
+run the development checks below; the [reproducibility contract](docs/reproducibility.md)
+describes numerical replay, artifact custody and separate rendered-PDF inspection.
+
 ```bash
 uv run ruff check .
 uv run basedpyright
@@ -143,6 +156,9 @@ services. CI installs the built wheel in an isolated environment and runs its CL
 - [Method conventions](docs/implementation-contract.md) and [related primary sources](docs/sources-related.md)
 - [Configuration and API](docs/configuration.md)
 - [Method guide and interpretation](docs/methods-guide.md)
+- [Release history, downloads and verification](docs/releases.md)
+- [Replicate inference and assumptions](docs/inference.md)
+- [Prospective power study](docs/power-design.md)
 - [Computational work and memory](docs/computational-complexity.md)
 - [Replicated study protocol](docs/study-design.md)
 - [Reproducibility and artifact provenance](docs/reproducibility.md)
