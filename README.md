@@ -1,13 +1,18 @@
 # antropy
 
+[![Main verification](https://github.com/docxology/antropy/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/docxology/antropy/actions/workflows/verify.yml)
+
 **antropy** (entropy + ant) is a dimension-agnostic complexity methods project.
 The distribution is `antropy-hd` and the Python import is `antropy_hd`, avoiding a
 namespace collision with the separate AntroPy time-series project.
 
-[Release downloads](https://github.com/docxology/antropy/releases/latest) include
-the numerical wheel, source distribution, this project's methods PDF and checksums.
-See the [release and verification guide](docs/releases.md) for installation from
-a downloaded wheel and the [changelog](CHANGELOG.md) for versioned changes.
+[Published v0.3.0](https://github.com/docxology/antropy/releases/tag/v0.3.0)
+provides the numerical wheel, source distribution, methods manuscript and
+verification receipts. Download the [manuscript PDF](https://github.com/docxology/antropy/releases/download/v0.3.0/antropy-methods.pdf),
+follow the [release installation guide](docs/releases.md#download-verify-and-install),
+or start with the [source quickstart](docs/getting-started.md).
+The [documentation index](docs/README.md) gives a reading order; the
+[changelog](CHANGELOG.md) records versioned changes.
 
 The project implements high-dimensional sample entropy (HDSE), related local
 template measures, probability information measures, spatial ordinal measures,
@@ -26,6 +31,26 @@ paired or independent percentile bootstrap intervals, Wilson score intervals and
 fixed-family Holm adjustment. [The inference contracts](docs/inference.md) state
 exchangeability assumptions, inclusive tails, finite-sample resolution, seed and
 work limits. `fixed_alphabet` retains declared empty categories and both tails.
+
+## Choose an analysis
+
+The v0.3.0 registry contains 19 estimators. Input interpretation and geometry
+determine what each estimate means; see the [method guide](docs/methods-guide.md)
+for populations, units and normalization.
+
+| Family | Registered estimators | Start here |
+| --- | --- | --- |
+| Local template matching | `hdse`, `sample_entropy`, `approximate_entropy`, `fuzzy_entropy`, `distribution_entropy` | [Geometry and HDSE](docs/methods-guide.md#spatial-geometry-and-hdse) |
+| Probability and dependence | `shannon_entropy`, `renyi_entropy`, `tsallis_entropy`, `joint_entropy`, `conditional_entropy`, `mutual_information`, `jensen_shannon_divergence` | [Probability conventions](docs/methods-guide.md#probability-measures-and-fixed-alphabets) |
+| Amplitude distributions and complexity | `histogram_entropy`, `statistical_complexity` | [Fixed alphabets](examples/README.md) |
+| Local ordinal structure | `permutation_entropy`, `weighted_permutation_entropy` | [Estimator populations](docs/methods-guide.md#estimator-families) |
+| Transform distributions | `spectral_entropy`, `svd_entropy` | [FFT and SVD conventions](docs/methods-guide.md#estimator-families) |
+| Scale dependence | `multiscale_entropy` | [Multiscale boundaries](docs/methods-guide.md#multiscale-boundaries-and-result-states) |
+
+Symbolization, resource planning and replicate inference are additional APIs.
+Use `uv run --locked antropy-hd methods` to inspect the installed registry and
+[configuration and API](docs/configuration.md) to construct validated requests.
+HDSE retains native geometry; `sample_entropy` uses its documented 1D population.
 
 ## Install and run
 
@@ -78,6 +103,33 @@ The planner reports feasibility and violations rather than inventing runtime or
 whole-process memory predictions. See the [runnable examples](examples/README.md)
 for anisotropic geometry, exclusion sensitivity and fixed alphabet conventions.
 
+For custom designs, select a checked-in plan explicitly:
+
+```bash
+uv run --locked python examples/spatial_embeddings.py --plan examples/configs/spatial.yaml
+uv run --locked python examples/fixed_alphabet.py --plan examples/configs/alphabet.yaml
+uv run --locked python examples/planning_and_counts.py --plan examples/configs/planning.yaml
+uv run --locked python examples/replicate_inference.py --plan examples/configs/inference.yaml
+```
+
+The [quickstart](docs/getting-started.md) covers input files, safe output handling,
+result interpretation and the next steps for each workflow.
+
+## Inspect the example outputs
+
+![Native and row-major flattened HDSE across paired synthetic replacement fields](output/study/figures/native-v-flattened.png)
+
+Native and row-major flattened analyses change template widths and origin
+populations. Interpret this comparison with the [paired study design](docs/study-design.md)
+and its [consumed plan](study_plan.yaml); the panels do not establish an ordering
+of biological complexity across dimensions.
+
+The [prospective rejection-rate figure](output/power/figures/rejection-rates.png)
+and [availability/calibration figure](output/power/figures/availability-calibration.png)
+show the configured whole-field operating characteristics. Read them with the
+[power protocol](docs/power-design.md), including unavailable decisions,
+pointwise uncertainty and dependence across sample-size prefixes.
+
 ## Reproduce the research artifacts
 
 ```bash
@@ -123,6 +175,12 @@ Unresolved variables, missing sections, references, glyphs or producer inputs ar
 fatal. The output includes native equations, bibliography, section bookmarks,
 and a real table of contents, plus resolved Markdown, TeX and compiler receipts.
 
+Read the [released manuscript](https://github.com/docxology/antropy/releases/download/v0.3.0/antropy-methods.pdf)
+alongside its [scientific manifest](output/provenance/manifest.json) and
+[renderer identity receipt](output/provenance/manuscript-template.json).
+The release guide distinguishes the accepted PDF snapshot, fresh package checks
+and hosted CI; current `main` documentation may contain later updates.
+
 Generated arrays, CSV/JSON results, figures, variables, manuscript source and PDF
 are SHA-256 bound in `output/provenance/manifest.json`. Validation also reruns the
 actual study and benchmark kernels. These are methods demonstrations and a bounded
@@ -138,6 +196,7 @@ describes numerical replay, artifact custody and separate rendered-PDF inspectio
 
 ```bash
 uv run ruff check .
+uv run ruff format --check .
 uv run basedpyright
 uv run pytest --cov=src/antropy_hd --cov-branch --cov-report=term-missing
 uv build
@@ -153,6 +212,7 @@ services. CI installs the built wheel in an isolated environment and runs its CL
 
 ## Scientific and project documentation
 
+- [Documentation index](docs/README.md) and [source quickstart](docs/getting-started.md)
 - [Method conventions](docs/implementation-contract.md) and [related primary sources](docs/sources-related.md)
 - [Configuration and API](docs/configuration.md)
 - [Method guide and interpretation](docs/methods-guide.md)

@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Added a documentation index and source quickstart, a complete estimator-family
+  overview, version-specific release downloads and manuscript/provenance links.
+- Documented the distinction between current `main` documentation and the
+  published v0.3.0 snapshot, with links to its successful commit and tag checks.
+
 ## 0.3.0
 
 - Added whole-observation exact and Monte Carlo permutation tests, paired and

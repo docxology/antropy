@@ -3,7 +3,19 @@
 The [GitHub Releases page](https://github.com/docxology/antropy/releases/latest)
 is the download entry point for `antropy-hd`. The distribution installs the
 `antropy_hd` Python namespace and the `antropy-hd` command. This guide describes
-the v0.3.0 release bundle; it makes no claim of PyPI or DOI publication.
+the [published v0.3.0 bundle](https://github.com/docxology/antropy/releases/tag/v0.3.0);
+it makes no claim of PyPI or DOI publication.
+
+The release targets [commit bbb829b](https://github.com/docxology/antropy/tree/bbb829bb04927e6e865cd0f59788d30b986e81d1).
+[Main-commit verification](https://github.com/docxology/antropy/actions/runs/38176597870)
+and [tag verification](https://github.com/docxology/antropy/actions/runs/38177794341)
+both passed for that snapshot. The release's recorded hashes also passed actual
+download verification, including an anonymous download of the manuscript PDF.
+
+Current `main` documentation can contain later changes. Use the version-specific
+release links, uploaded source distribution and `release-identity.json` together
+when reproducing the published snapshot. See the [documentation index](README.md)
+and [source quickstart](getting-started.md) for the current checkout.
 
 ## Version history
 
@@ -25,18 +37,17 @@ estimated; a version number does not make different configurations comparable.
 
 ## Download, verify and install
 
-Choose v0.3.0 on the Releases page and download the named assets into one
-directory:
+Download all seven v0.3.0 assets below into one directory:
 
 | Asset | Purpose |
 | --- | --- |
-| `antropy_hd-0.3.0-py3-none-any.whl` | Installable numerical package and CLI. |
-| `antropy_hd-0.3.0.tar.gz` | Built source distribution, including research sources and reproducibility inputs. |
-| `antropy-methods.pdf` | This project's generated methods manuscript. The supplied published source paper is not redistributed. |
-| `manifest.json` | Scientific artifact inventory for the accepted research outputs. |
-| `release-identity.json` | Release commit, version, renderer pin, source equivalence and asset identities. |
-| `release-verification.json` | Scoped release checks and the evidence supporting them. |
-| `SHA256SUMS` | SHA-256 inventory for the release assets. |
+| [antropy_hd-0.3.0-py3-none-any.whl](https://github.com/docxology/antropy/releases/download/v0.3.0/antropy_hd-0.3.0-py3-none-any.whl) | Installable numerical package and CLI. |
+| [antropy_hd-0.3.0.tar.gz](https://github.com/docxology/antropy/releases/download/v0.3.0/antropy_hd-0.3.0.tar.gz) | Built source distribution, including research sources and reproducibility inputs. |
+| [antropy-methods.pdf](https://github.com/docxology/antropy/releases/download/v0.3.0/antropy-methods.pdf) | This project's generated methods manuscript. The supplied published source paper is not redistributed. |
+| [manifest.json](https://github.com/docxology/antropy/releases/download/v0.3.0/manifest.json) | Scientific artifact inventory for the accepted research outputs. |
+| [release-identity.json](https://github.com/docxology/antropy/releases/download/v0.3.0/release-identity.json) | Release commit, version, renderer pin, source equivalence and asset identities. |
+| [release-verification.json](https://github.com/docxology/antropy/releases/download/v0.3.0/release-verification.json) | Scoped release checks and the evidence supporting them. |
+| [SHA256SUMS](https://github.com/docxology/antropy/releases/download/v0.3.0/SHA256SUMS) | SHA-256 inventory for the release assets. |
 
 Use the uploaded source distribution for these instructions; GitHub's automatic
 “Source code” archives are separate files. From the download directory, verify
