@@ -1,8 +1,8 @@
 # Getting started from source
 
-This guide follows the current `main` checkout. For the frozen v0.3.0 wheel,
+This guide follows the current `main` checkout. For the frozen v0.3.1 wheel,
 source distribution and manuscript, use the
-[v0.3.0 release](https://github.com/docxology/antropy/releases/tag/v0.3.0) and
+[v0.3.1 release](https://github.com/docxology/antropy/releases/tag/v0.3.1) and
 [download verification instructions](releases.md#download-verify-and-install).
 Current documentation changes do not replace that archive.
 
