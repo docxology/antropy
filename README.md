@@ -57,7 +57,7 @@ HDSE retains native geometry; `sample_entropy` uses its documented 1D population
 
 ## Install and run
 
-The package requires Python 3.14 or newer. For release installation, use the
+The package requires Python (the bound in `pyproject.toml`) or newer. For release installation, use the
 [downloaded-wheel instructions](docs/releases.md#download-verify-and-install).
 Development uses CPython 3.14 and [uv](https://docs.astral.sh/uv/); run the following
 from a source checkout:
