@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Regenerate experiment, study, benchmark, power and manuscript artifacts in CI
+  before validating their source-bound manifest. Retain validation before and
+  after the test suites; dependency-lock changes cannot authenticate stale outputs.
+
 ## 0.3.1 — 2026-10-11
 
 - Added a documentation index and source quickstart, a complete estimator-family
