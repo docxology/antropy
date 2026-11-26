@@ -30,6 +30,8 @@ def prepare_project(root: Path) -> Path:
     for name in ("implementation-contract.md", "sources-related.md"):
         shutil.copyfile(REPOSITORY / "docs" / name, root / "docs" / name)
     shutil.copytree(REPOSITORY / "docs/manuscript", root / "docs/manuscript")
+    shutil.copytree(REPOSITORY / "docs/archive", root / "docs/archive")
+    (root / "config").mkdir()
     profile_path = root / "docs/manuscript/project.yaml"
     profile = yaml.safe_load(profile_path.read_text())
     profile.update(
@@ -41,7 +43,7 @@ def prepare_project(root: Path) -> Path:
     profile_path.write_text(yaml.safe_dump(profile, sort_keys=False))
     for name in ("domain_profile.yaml", "pyproject.toml", "uv.lock"):
         shutil.copyfile(REPOSITORY / name, root / name)
-    plan = root / "experiment_plan.yaml"
+    plan = root / "config/experiment_plan.yaml"
     plan.write_text(
         yaml.safe_dump(
             {

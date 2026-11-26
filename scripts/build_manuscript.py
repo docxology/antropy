@@ -43,7 +43,7 @@ REQUIRED_ARTIFACTS: Final[tuple[str, ...]] = (
     "output/reports/experiments.json",
     "output/figures/hdse-tolerance.png",
     "output/provenance/experiment-config.json",
-    "docs/manuscript/manuscript.md",
+    "docs/archive/manuscript.md",
     "output/pdf/antropy-methods.pdf",
     "antropy-methods.pdf",
     "docs/manuscript/claims.json",
@@ -75,13 +75,13 @@ def write_manifest(root: Path) -> JsonValue:
             if path.is_file()
         )
     inputs = {
-        "experiment_plan.yaml",
+        "config/experiment_plan.yaml",
         "domain_profile.yaml",
         "pyproject.toml",
         "uv.lock",
         "docs/implementation-contract.md",
         "docs/sources-related.md",
-        "docs/manuscript/template.md",
+        "docs/archive/template.md",
         "docs/manuscript/project.yaml",
     }
     for folder in ("src", "scripts"):
@@ -150,7 +150,7 @@ def build(root: Path) -> Path:
     values = publication_variables(root, context, data)
     _ = hydrate(root, context, values)
     markdown = "\n\n".join(section_texts(root, context, values))
-    source = root / "docs/manuscript/manuscript.md"
+    source = root / "docs/archive/manuscript.md"
     source.parent.mkdir(parents=True, exist_ok=True)
     _ = source.write_text(markdown, encoding="utf-8")
     write_claims(root, data)

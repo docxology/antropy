@@ -57,13 +57,13 @@ HDSE retains native geometry; `sample_entropy` uses its documented 1D population
 
 ## Install and run
 
-The package requires Python (the bound in `pyproject.toml`) or newer. For release installation, use the
+The package requires Python 3.14 or newer. For release installation, use the
 [downloaded-wheel instructions](docs/releases.md#download-verify-and-install).
 Development uses CPython 3.14 and [uv](https://docs.astral.sh/uv/); run the following
 from a source checkout:
 
 ```bash
-uv sync --locked
+uv sync --locked --python 3.14
 uv run antropy-hd methods
 uv run antropy-hd analyze data/demo-grid.csv --measure hdse \
   --parameters '{"embedding":{"shape":2},"match":{"tolerance":0.5}}'
@@ -136,7 +136,7 @@ pointwise uncertainty and dependence across sample-size prefixes.
 ## Reproduce the research artifacts
 
 ```bash
-uv run python scripts/run_experiments.py --plan experiment_plan.yaml
+uv run python scripts/run_experiments.py --plan config/experiment_plan.yaml
 uv run python scripts/run_study.py --plan study_plan.yaml
 uv run python scripts/benchmark_complexity.py --plan benchmark_plan.yaml
 uv run python scripts/run_power.py --plan power_plan.yaml
@@ -227,9 +227,9 @@ services. CI installs the built wheel in an isolated environment and runs its CL
 - [Computational work and memory](docs/computational-complexity.md)
 - [Replicated study protocol](docs/study-design.md)
 - [Reproducibility and artifact provenance](docs/reproducibility.md)
-- [Manuscript source](docs/manuscript/manuscript.md)
+- [Manuscript source and pinned PDF replay](docs/manuscript/README.md)
 - [Template adaptation](docs/template-adaptation.md)
-- [Contribution guidance](CONTRIBUTING.md) and [security reporting](SECURITY.md)
+- [Contribution guidance](docs/contributing.md) and [security reporting](SECURITY.md)
 
 The initial scaffold adapted [template_code_project](https://github.com/docxology/template_code_project).
 The publication pipeline now consumes [docxology/template](https://github.com/docxology/template)

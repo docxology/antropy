@@ -116,7 +116,7 @@ def test_independently_derived_roundoff_envelope_rejects_next_ulp(artifacts: Pat
 def test_reseeded_noise_cannot_pass_coherently_resealed_custody(artifacts: Path) -> None:
     path = artifacts / "output/data/noise-12.npy"
     original = np.load(path, allow_pickle=False)
-    payload = yaml.safe_load((artifacts / "experiment_plan.yaml").read_text())
+    payload = yaml.safe_load((artifacts / "config/experiment_plan.yaml").read_text())
     payload["seed"] += 1
     altered_plan = ExperimentPlan.model_validate(payload)
     replacement = synthesize(altered_plan, original.shape, "noise")

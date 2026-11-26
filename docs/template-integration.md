@@ -8,7 +8,7 @@ that revision is `projects/templates/template_code_project/manuscript`.
 The separate `template_code_project` scaffold remains attributed in the project
 adaptation record; neither external checkout is modified by this integration.
 
-This manuscript follows the exemplar's ordered section, `config.yaml`, fenced
+This manuscript follows the exemplar’s ordered sections, fenced
 LaTeX `preamble.md`, and `references.bib` conventions. Its additional sections
 cover related measures, synthetic design, resource estimates and reproducibility.
 `project.yaml` is the project-specific strict publication profile. Project name,

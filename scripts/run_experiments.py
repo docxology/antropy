@@ -229,7 +229,9 @@ DEFAULT_ROOT: Final[Path] = Path(__file__).resolve().parents[1]
 
 
 def main(
-    plan: Annotated[Path, typer.Option(exists=True, dir_okay=False)] = Path("experiment_plan.yaml"),
+    plan: Annotated[Path, typer.Option(exists=True, dir_okay=False)] = Path(
+        "config/experiment_plan.yaml"
+    ),
     root: Annotated[Path, typer.Option(file_okay=False)] = DEFAULT_ROOT,
 ) -> None:
     """Run the explicit experiment plan from the repository root."""

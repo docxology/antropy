@@ -1,6 +1,6 @@
 # Reproducibility and acceptance
 
-`experiment_plan.yaml` specifies the seed, input shapes, structures, tolerances,
+`config/experiment_plan.yaml` specifies the seed, input shapes, structures, tolerances,
 local embedding shape, signal period, mixture amplitude, histogram bins and
 resource budgets. The validated plan rejects extra fields, duplicate designs,
 infeasible shapes and nonfinite parameters. Each generated field uses a
