@@ -24,7 +24,7 @@ def write_claims(root: Path, data: PublicationData) -> None:
         {
             "id": "synthetic-design",
             "kind": "configuration",
-            "sources": ["experiment_plan.yaml", "output/provenance/experiment-config.json"],
+            "sources": ["config/experiment_plan.yaml", "output/provenance/experiment-config.json"],
         },
     ]
     if data.study is not None:
@@ -87,7 +87,7 @@ def write_claims(root: Path, data: PublicationData) -> None:
                     "id": "inference-method",
                     "kind": "method",
                     "sources": [
-                        "docs/manuscript/11_inference_and_power.md",
+                        "docs/manuscript/07_inference_and_power.md",
                         "src/antropy_hd/inference.py",
                         "docs/manuscript/references.bib",
                     ],

@@ -55,7 +55,7 @@ REQUIRED_ARTIFACTS: Final[frozenset[str]] = frozenset(
         "output/reports/experiments.json",
         "output/figures/hdse-tolerance.png",
         "output/provenance/experiment-config.json",
-        "docs/manuscript/manuscript.md",
+        "docs/archive/manuscript.md",
         "output/pdf/antropy-methods.pdf",
         "antropy-methods.pdf",
         "docs/manuscript/claims.json",
@@ -74,7 +74,7 @@ def fail_artifact(reason: str) -> Never:
 
 def validated_design(root: Path, experiments: Experiments) -> FieldDesign:
     """Require the complete matrix derived independently from the live plan."""
-    plan_path = root / "experiment_plan.yaml"
+    plan_path = root / "config/experiment_plan.yaml"
     plan = ExperimentPlan.model_validate(yaml.safe_load(plan_path.read_text(encoding="utf-8")))
     snapshot = ExperimentSnapshot.model_validate(
         read_json(root / "output/provenance/experiment-config.json")
@@ -251,7 +251,7 @@ def validate(root: Path, manifest_path: Path | None = None) -> ArtifactReport:
         ):
             fail_artifact(f"Artifact byte/hash mismatch: {artifact.path}")
     rows = validate_results(root, set(paths))
-    manuscript = (root / "docs/manuscript/manuscript.md").read_text(encoding="utf-8")
+    manuscript = (root / "docs/archive/manuscript.md").read_text(encoding="utf-8")
     csv_hash = digest(root / "output/data/results.csv")
     validate_claims(root, csv_hash, paths)
     validate_publication(root, set(paths))

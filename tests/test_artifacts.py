@@ -43,7 +43,7 @@ def test_complete_pipeline_deterministic_and_bound(baseline: Path, tmp_path: Pat
         "output/reports/experiments.json",
         "output/pdf/antropy-methods.pdf",
         "antropy-methods.pdf",
-        "docs/manuscript/manuscript.md",
+        "docs/archive/manuscript.md",
         "output/data/noise-12.npy",
     ],
 )
@@ -158,7 +158,7 @@ def test_rehashed_csv_cannot_change_estimates(
 
 
 def test_rehashed_manuscript_and_png_controls(artifacts: Path) -> None:
-    relative = "docs/manuscript/manuscript.md"
+    relative = "docs/archive/manuscript.md"
     path = artifacts / relative
     path.write_text(path.read_text().replace("Results CSV SHA-256:", "Removed binding:"))
     rehash_record(artifacts, relative)

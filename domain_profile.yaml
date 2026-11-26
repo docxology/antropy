@@ -1,11 +1,12 @@
-project: antropy
-distribution: antropy-hd
 domain: computational complexity methods
-units:
-  local_template_entropy: nats
-  probability_entropy_default: bits
-  normalized_entropy: dimensionless
-research_boundary: deterministic synthetic implementation demonstrations
-primary_algorithm: high-dimensional sample entropy
-source: https://www.sciencedirect.com/science/article/abs/pii/S0960077926002171
-data_policy: generated synthetic arrays only; published PDF not redistributed
+display_name: antropy native multidimensional entropy
+preferred_outputs: [pdf]
+figure_types:
+  - entropy estimates over synthetic fields
+source_policy: Generated synthetic arrays only. Cite the published HDSE algorithm without redistributing the source paper.
+artifact_expectations:
+  - local template entropy in nats
+  - probability entropy in bits by default
+  - normalized entropy dimensionless
+  - deterministic synthetic implementation demonstrations
+  - checked-in research artifacts, ordered manuscript and bibliography

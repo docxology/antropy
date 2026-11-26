@@ -32,7 +32,7 @@ Documentation updates on `main` do not regenerate or replace those release asset
 | Inspect field generation, pairing and native-versus-flattened comparisons | [Replicated study design](study-design.md) |
 | Reproduce research outputs and check their provenance | [Reproduction commands](../README.md#reproduce-the-research-artifacts) and [acceptance contract](reproducibility.md) |
 | Download and verify a released package | [Release installation and verification](releases.md) and [changelog](../CHANGELOG.md) |
-| Change code or report a vulnerability | [Contributing](../CONTRIBUTING.md) and [security reporting](../SECURITY.md) |
+| Change code or report a vulnerability | [Contributing](contributing.md) and [security reporting](../SECURITY.md) |
 
 ## Read the manuscript
 
@@ -46,10 +46,9 @@ The version-specific archive identifier is
 [release entry](releases.md#v031) records its publication scope.
 The supplied published source paper is not redistributed.
 
-The checkout contains the [manuscript source](manuscript/manuscript.md),
-[publication profile](manuscript/project.yaml) and
-[template adaptation record](template-adaptation.md). Numerical examples and
-synthetic studies demonstrate the declared methods; they do not establish
-biological findings or application-specific sample sizes. Research replay and
-rendered PDF inspection have separate acceptance requirements in the
-[reproducibility guide](reproducibility.md).
+The [manuscript guide](manuscript/README.md) links the editable sections,
+native publication profile and pinned PDF replay. The [native template integration](template-integration.md) documents how the release builder pins and verifies its renderer. Consult the
+[reproducibility guide](reproducibility.md) for scientific replay and acceptance.
+The synthetic examples and studies characterize the implementation under the
+declared designs. Their scope is separate from empirical findings or
+application-specific sample-size recommendations.

@@ -78,6 +78,10 @@ def hydrate(root: Path, context: ManuscriptContext, variables: Variables) -> lis
     texts = section_texts(root, context, variables)
     directory = root / "output/manuscript"
     directory.mkdir(parents=True, exist_ok=True)
+    configured = {*context.profile.sections, "preamble.md"}
+    for stale in directory.glob("*.md"):
+        if stale.name not in configured:
+            stale.unlink()
     sources: list[Path] = []
     for name, text in zip(context.profile.sections, texts, strict=True):
         path = directory / name

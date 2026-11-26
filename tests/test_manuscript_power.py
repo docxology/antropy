@@ -167,7 +167,7 @@ def test_corrupt_power_fails_before_publication_writes(
     payload = json.loads(path.read_text())
     payload["summaries"].pop()
     _ = path.write_text(json.dumps(payload))
-    source = root / "docs/manuscript/manuscript.md"
+    source = root / "docs/archive/manuscript.md"
     original = source.read_bytes()
     with pytest.raises(ParameterError):
         _ = build(root)

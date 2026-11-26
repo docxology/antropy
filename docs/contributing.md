@@ -1,6 +1,6 @@
 # Contributing
 
-Use CPython 3.14 and `uv sync --frozen`. Keep numerical source independent of
+Use CPython 3.14 and `uv sync --locked --python 3.14`. Keep numerical source independent of
 manuscript and plotting infrastructure. Each estimator needs a primary-source
 definition, explicit input meaning, units, normalization, degeneracy handling and
 resource policy. Spatial extensions must be labeled as extensions.
