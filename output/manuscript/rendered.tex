@@ -164,14 +164,14 @@
   pdfcreator={LaTeX via pandoc}}
 
 \ifXeTeX
-\special{pdf:trailerid [ <82ec908f124d2c4b985da63e4062315e> <82ec908f124d2c4b985da63e4062315e> ]}
+\special{pdf:trailerid [ <d947aa2552c35d2d24eba698020eb8bf> <d947aa2552c35d2d24eba698020eb8bf> ]}
 \fi
 \ifPDFTeX
 \pdftrailerid{}
-\pdftrailer{/ID [ <82ec908f124d2c4b985da63e4062315e> <82ec908f124d2c4b985da63e4062315e> ]}
+\pdftrailer{/ID [ <d947aa2552c35d2d24eba698020eb8bf> <d947aa2552c35d2d24eba698020eb8bf> ]}
 \fi
 \ifLuaTeX
-\pdfvariable trailerid {[ <82ec908f124d2c4b985da63e4062315e> <82ec908f124d2c4b985da63e4062315e> ]}
+\pdfvariable trailerid {[ <d947aa2552c35d2d24eba698020eb8bf> <d947aa2552c35d2d24eba698020eb8bf> ]}
 \fi
 
 \title{antropy: native multidimensional entropy and configurable
@@ -441,7 +441,9 @@ A=\sum_{(i,j)\in\mathcal P}\mathbf 1\{D_\infty(u_i^+,u_j^+)<\tau\}.
 
 When \(B>0\) and \(A>0\),
 
-\begin{equation}\protect\phantomsection\label{eq:hdse}{\operatorname{HDSE}(x)=-\ln(A/B).}\end{equation}
+\begin{equation}\protect\phantomsection\label{eq:hdse}{
+\operatorname{HDSE}(x)=-\ln(A/B).
+}\end{equation}
 
 The implementation counts unordered pairs; doubling numerator and
 denominator recovers the corresponding ordered symmetric counting
@@ -525,7 +527,9 @@ estimators}\label{probability-ordinal-and-decomposition-estimators}
 
 For a declared probability alphabet of size \(M\),
 
-\begin{equation}\protect\phantomsection\label{eq:shannon}{H_b(P)=-\sum_{a=1}^{M}p_a\log_b p_a,}\end{equation}
+\begin{equation}\protect\phantomsection\label{eq:shannon}{
+H_b(P)=-\sum_{a=1}^{M}p_a\log_b p_a,
+}\end{equation}
 
 with zero-mass terms contributing zero. Renyi entropy is
 \(\log_b(\sum_a p_a^\alpha)/(1-\alpha)\), with explicit support-size,
