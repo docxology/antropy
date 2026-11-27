@@ -14,7 +14,7 @@ jobs:
         with:
           version: '0.13.5'
           enable-cache: true
-      - run: uv python install 3.14
+      - run: uv python install
       - run: uv sync --frozen
       - name: Install native manuscript toolchain
         run: |
