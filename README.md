@@ -51,7 +51,7 @@ for populations, units and normalization.
 | Scale dependence | `multiscale_entropy` | [Multiscale boundaries](docs/methods-guide.md#multiscale-boundaries-and-result-states) |
 
 Symbolization, resource planning and replicate inference are additional APIs.
-Use `uv run --locked antropy-hd methods` to inspect the installed registry and
+Use `uv run --locked --python 3.14 antropy-hd methods` to inspect the installed registry and
 [configuration and API](docs/configuration.md) to construct validated requests.
 HDSE retains native geometry; `sample_entropy` uses its documented 1D population.
 
@@ -59,15 +59,15 @@ HDSE retains native geometry; `sample_entropy` uses its documented 1D population
 
 The package requires Python 3.14 or newer. For release installation, use the
 [downloaded-wheel instructions](docs/releases.md#download-verify-and-install).
-Development uses CPython 3.14 and [uv](https://docs.astral.sh/uv/); run the following
-from a source checkout:
+The checkout defaults to Python 3.15 through `.python-version`. The source
+examples below select CPython 3.14 explicitly with [uv](https://docs.astral.sh/uv/).
 
 ```bash
 uv sync --locked --python 3.14
-uv run antropy-hd methods
-uv run antropy-hd analyze data/demo-grid.csv --measure hdse \
+uv run --locked --python 3.14 antropy-hd methods
+uv run --locked --python 3.14 antropy-hd analyze data/demo-grid.csv --measure hdse \
   --parameters '{"embedding":{"shape":2},"match":{"tolerance":0.5}}'
-uv run antropy-hd batch data/demo-grid.csv --config data/example-batch.json \
+uv run --locked --python 3.14 antropy-hd batch data/demo-grid.csv --config data/example-batch.json \
   --output output/reports/demo.json
 ```
 
@@ -94,12 +94,12 @@ diagnostics. They remain distinguishable in strict JSON and analysis tables.
 Inspect a request before allocating a data array:
 
 ```bash
-uv run antropy-hd plan --shape '[64,80]' \
+uv run --locked --python 3.14 antropy-hd plan --shape '[64,80]' \
   --config '{"measure":"hdse","embedding":{"shape":[2,3],"stride":[2,2]},"match":{"block_size":32}}'
-uv run python examples/spatial_embeddings.py
-uv run python examples/fixed_alphabet.py
-uv run python examples/planning_and_counts.py
-uv run python examples/replicate_inference.py
+uv run --locked --python 3.14 python examples/spatial_embeddings.py
+uv run --locked --python 3.14 python examples/fixed_alphabet.py
+uv run --locked --python 3.14 python examples/planning_and_counts.py
+uv run --locked --python 3.14 python examples/replicate_inference.py
 ```
 
 The planner reports feasibility and violations rather than inventing runtime or
@@ -109,10 +109,10 @@ for anisotropic geometry, exclusion sensitivity and fixed alphabet conventions.
 For custom designs, select a checked-in plan explicitly:
 
 ```bash
-uv run --locked python examples/spatial_embeddings.py --plan examples/configs/spatial.yaml
-uv run --locked python examples/fixed_alphabet.py --plan examples/configs/alphabet.yaml
-uv run --locked python examples/planning_and_counts.py --plan examples/configs/planning.yaml
-uv run --locked python examples/replicate_inference.py --plan examples/configs/inference.yaml
+uv run --locked --python 3.14 python examples/spatial_embeddings.py --plan examples/configs/spatial.yaml
+uv run --locked --python 3.14 python examples/fixed_alphabet.py --plan examples/configs/alphabet.yaml
+uv run --locked --python 3.14 python examples/planning_and_counts.py --plan examples/configs/planning.yaml
+uv run --locked --python 3.14 python examples/replicate_inference.py --plan examples/configs/inference.yaml
 ```
 
 The [quickstart](docs/getting-started.md) covers input files, safe output handling,
@@ -136,12 +136,12 @@ pointwise uncertainty and dependence across sample-size prefixes.
 ## Reproduce the research artifacts
 
 ```bash
-uv run python scripts/run_experiments.py --plan config/experiment_plan.yaml
-uv run python scripts/run_study.py --plan study_plan.yaml
-uv run python scripts/benchmark_complexity.py --plan benchmark_plan.yaml
-uv run python scripts/run_power.py --plan power_plan.yaml
-uv run python scripts/build_manuscript.py
-uv run python scripts/validate_artifacts.py
+uv run --locked --python 3.14 python scripts/run_experiments.py --plan config/experiment_plan.yaml
+uv run --locked --python 3.14 python scripts/run_study.py --plan study_plan.yaml
+uv run --locked --python 3.14 python scripts/benchmark_complexity.py --plan benchmark_plan.yaml
+uv run --locked --python 3.14 python scripts/run_power.py --plan power_plan.yaml
+uv run --locked --python 3.14 python scripts/build_manuscript.py
+uv run --locked --python 3.14 python scripts/validate_artifacts.py
 ```
 
 The separate replicated study implements the paper's Bernoulli-replacement MIX
@@ -200,12 +200,12 @@ run the development checks below; the [reproducibility contract](docs/reproducib
 describes numerical replay, artifact custody and separate rendered-PDF inspection.
 
 ```bash
-uv run ruff check .
-uv run ruff format --check .
-uv run basedpyright
-uv run pytest --cov=src/antropy_hd --cov-branch --cov-report=term-missing
-uv build
-uv run python scripts/check_installed_wheel.py
+uv run --locked --python 3.14 ruff check .
+uv run --locked --python 3.14 ruff format --check .
+uv run --locked --python 3.14 basedpyright
+uv run --locked --python 3.14 pytest --cov=src/antropy_hd --cov-branch --cov-report=term-missing
+uv build --python 3.14
+uv run --locked --python 3.14 python scripts/check_installed_wheel.py
 ```
 
 Tests use real arrays, files and subprocesses, including deliberate invalid input

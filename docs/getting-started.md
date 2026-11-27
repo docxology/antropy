@@ -15,14 +15,18 @@ then clone into a new directory:
 git clone https://github.com/docxology/antropy.git
 cd antropy
 uv sync --locked --python 3.14
-uv run --locked python --version
-uv run --locked antropy-hd version
-uv run --locked antropy-hd methods
+uv run --locked --python 3.14 python --version
+uv run --locked --python 3.14 antropy-hd version
+uv run --locked --python 3.14 antropy-hd methods
 ```
 
-Use CPython 3.14 for the project environment. `uv sync` installs the checkout and
-its locked development dependencies; the distribution is `antropy-hd` and the
-Python import is `antropy_hd`. The methods command emits JSON listing method
+The checkout defaults to Python 3.15 through `.python-version`. Every `uv run`
+command in this guide explicitly selects CPython 3.14. These commands work without
+activating the environment. If you need to invoke `python` directly in a POSIX
+shell after the sync above, use `. .venv/bin/activate` and check `python --version`.
+
+`uv sync` installs the checkout and its locked development dependencies. The
+distribution is `antropy-hd` and the Python import is `antropy_hd`. The methods command emits JSON listing method
 names and whether each expects observations or probabilities. Numerical analysis
 and the examples below need no TeX installation. Manuscript rendering has
 [additional system requirements](releases.md#interpret-results-and-reproduce-the-manuscript).
@@ -36,16 +40,16 @@ see [data notes](../data/README.md). These commands read existing inputs and emi
 strict JSON on stdout:
 
 ```sh
-uv run --locked antropy-hd analyze data/demo-grid.csv --measure hdse \
+uv run --locked --python 3.14 antropy-hd analyze data/demo-grid.csv --measure hdse \
   --parameters '{"embedding":{"shape":2},"match":{"tolerance":0.5}}'
-uv run --locked antropy-hd batch data/demo-grid.csv --config data/example-batch.json
+uv run --locked --python 3.14 antropy-hd batch data/demo-grid.csv --config data/example-batch.json
 ```
 
 The [batch configuration](../data/example-batch.json) runs HDSE, spatial ordinal
 and spectral analysis. To save a separate result, choose a new path:
 
 ```sh
-uv run --locked antropy-hd batch data/demo-grid.csv --config data/example-batch.json \
+uv run --locked --python 3.14 antropy-hd batch data/demo-grid.csv --config data/example-batch.json \
   --output work/quickstart/demo.json
 ```
 
@@ -59,7 +63,7 @@ disabled; use a vector NPY for a one-dimensional signal. The source checkout
 also includes an existing synthetic NPY signal that can be read directly:
 
 ```sh
-uv run --locked antropy-hd analyze output/data/periodic-64.npy --measure spectral_entropy
+uv run --locked --python 3.14 antropy-hd analyze output/data/periodic-64.npy --measure spectral_entropy
 ```
 
 Scalar, empty, boolean, string, object, complex and nonfinite inputs are rejected.
@@ -88,7 +92,7 @@ This command takes only a shape and configuration. It does not load or allocate
 the requested data array, run an entropy estimate or write an output file:
 
 ```sh
-uv run --locked antropy-hd plan --shape '[64,80]' \
+uv run --locked --python 3.14 antropy-hd plan --shape '[64,80]' \
   --config '{"measure":"hdse","embedding":{"shape":[2,3],"stride":[2,2]},"match":{"block_size":32}}'
 ```
 
@@ -104,10 +108,10 @@ or whole-process memory bounds. See [work and memory planning](computational-com
 Each command consumes its existing strict YAML plan and emits one JSON object:
 
 ```sh
-uv run --locked python examples/spatial_embeddings.py --plan examples/configs/spatial.yaml
-uv run --locked python examples/fixed_alphabet.py --plan examples/configs/alphabet.yaml
-uv run --locked python examples/planning_and_counts.py --plan examples/configs/planning.yaml
-uv run --locked python examples/replicate_inference.py --plan examples/configs/inference.yaml
+uv run --locked --python 3.14 python examples/spatial_embeddings.py --plan examples/configs/spatial.yaml
+uv run --locked --python 3.14 python examples/fixed_alphabet.py --plan examples/configs/alphabet.yaml
+uv run --locked --python 3.14 python examples/planning_and_counts.py --plan examples/configs/planning.yaml
+uv run --locked --python 3.14 python examples/replicate_inference.py --plan examples/configs/inference.yaml
 ```
 
 | Plan | Inspect in the example |
