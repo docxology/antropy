@@ -162,7 +162,9 @@ $$ {#eq:matches}
 
 When $B>0$ and $A>0$,
 
-$$\operatorname{HDSE}(x)=-\ln(A/B).$$ {#eq:hdse}
+$$
+\operatorname{HDSE}(x)=-\ln(A/B).
+$$ {#eq:hdse}
 
 The implementation counts unordered pairs; doubling numerator and denominator
 recovers the corresponding ordered symmetric counting convention. The standard
@@ -228,7 +230,9 @@ $H_D=-\sum_{k=1}^{K}p_k\ln p_k$, optionally divided by $\ln K$ for $K>1$.
 
 For a declared probability alphabet of size $M$,
 
-$$H_b(P)=-\sum_{a=1}^{M}p_a\log_b p_a,$$ {#eq:shannon}
+$$
+H_b(P)=-\sum_{a=1}^{M}p_a\log_b p_a,
+$$ {#eq:shannon}
 
 with zero-mass terms contributing zero. Renyi entropy is
 $\log_b(\sum_a p_a^\alpha)/(1-\alpha)$, with explicit support-size, Shannon
